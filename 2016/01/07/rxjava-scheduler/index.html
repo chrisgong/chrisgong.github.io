@@ -1,0 +1,950 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="RxJava," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。
+某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。
+使用ObserveOn和SubscribeOn操作符，你可以让Observab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava调度器Scheduler">
+<meta property="og:url" content="http://gcblog.cn/2016/01/07/rxjava-scheduler/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。
+某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。
+使用ObserveOn和SubscribeOn操作符，你可以让Observab">
+<meta property="og:updated_time" content="2016-01-07T13:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava调度器Scheduler">
+<meta name="twitter:description" content="如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。
+某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。
+使用ObserveOn和SubscribeOn操作符，你可以让Observab">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> RxJava调度器Scheduler | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                RxJava调度器Scheduler
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-07T20:35:55+08:00" content="2016-01-07">
+              2016-01-07
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/RxJava/" itemprop="url" rel="index">
+                    <span itemprop="name">RxJava</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/07/rxjava-scheduler/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/rxjava-scheduler/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。</p>
+<p>某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。</p>
+<p>使用ObserveOn和SubscribeOn操作符，你可以让Observable在一个特定的调度器上执行，ObserveOn指示一个 Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，SubscribeOn更进一步，它指示Observable将全部的处理过程（包括发射数据和通知）放在特定的调度器上执行。</p>
+<h5 id="调度器的种类">调度器的种类</h5><p>下表展示了RxJava中可用的调度器种类：</p>
+<table>
+<thead>
+<tr>
+<th>调度器类型</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schedulers.computation( )</td>
+<td>用于计算任务，如事件循环或和回调处理，不要用于IO操作(IO操作请使用Schedulers.io())；默认线程数等于处理器的数量。它也是许多RxJava方法的默认调度器：buffer(),debounce(),delay(),interval(),sample(),skip()。</td>
+</tr>
+<tr>
+<td>Schedulers.from(executor)</td>
+<td>使用指定的Executor作为调度器</td>
+</tr>
+<tr>
+<td>Schedulers.immediate( )</td>
+<td>这个调度器允许你立即在当前线程执行你指定的工作。它是timeout(),timeInterval(),以及timestamp()方法默认的调度器。</td>
+</tr>
+<tr>
+<td>Schedulers.io( )</td>
+<td>用于IO密集型任务，如异步阻塞IO操作，这个调度器的线程池会根据需要增长；对于普通的计算任务，请使用Schedulers.computation()；Schedulers.io( )默认是一个CachedThreadScheduler，很像一个有线程缓存的新线程调度器</td>
+</tr>
+<tr>
+<td>Schedulers.newThread( )</td>
+<td>为每个任务创建一个新线程</td>
+</tr>
+<tr>
+<td>Schedulers.trampoline( )</td>
+<td>当我们想在当前线程执行一个任务时，并不是立即，我们可以用.trampoline()将它入队。这个调度器将会处理它的队列并且按序运行队列中每一个任务。它是repeat()和retry()方法默认的调度器。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="默认调度器">默认调度器</h5><p>在RxJava中，某些Observable操作符的变体允许你设置用于操作执行的调度器，其它的则不在任何特定的调度器上执行，或者在一个指定的默认调度器上执行。下面的表格个列出了一些操作符的默认调度器：</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>调度器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>buffer(timespan)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>buffer(timespan, count)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>buffer(timespan, timeshift)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>debounce(timeout, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>delay(delay, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>delaySubscription(delay, unit)    computation</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>repeat</td>
+<td>trampoline</td>
+</tr>
+<tr>
+<td>replay(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(buffersize, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(selector, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>replay(selector, buffersize, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>retry</td>
+<td>trampoline</td>
+</tr>
+<tr>
+<td>sample(period, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>skip(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>skipLast(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>take(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLast(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLast(count, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLastBuffer(time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>takeLastBuffer(count, time, unit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleFirst</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleLast</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>throttleWithTimeout</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timeInterval</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeoutSelector)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(firstTimeoutSelector, timeoutSelector)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeoutSelector, other)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeout, timeUnit)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timeout(firstTimeoutSelector, timeoutSelector, other)</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>timeout(timeout, timeUnit, other)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timer</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>immediate</td>
+</tr>
+<tr>
+<td>window(timespan)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>window(timespan, count)</td>
+<td>computation</td>
+</tr>
+<tr>
+<td>window(timespan, timeshift)</td>
+<td>computation</td>
+</tr>
+</tbody>
+</table>
+<h5 id="使用调度器">使用调度器</h5><p>除了将这些调度器传递给RxJava的Observable操作符，你也可以用它们调度你自己的任务。下面的示例展示了Scheduler.Worker的用法：</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line">worker = Schedulers.newThread().createWorker();</span><br><span class="line">worker.schedule(<span class="keyword">new</span> Action0() &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        yourWork();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// some time later...</span></span><br><span class="line">worker.unsubscribe();</span><br></pre></td></tr></table></figure>
+<h6 id="递归调度器">递归调度器</h6><p>要调度递归的方法调用，你可以使用schedule，然后再用schedule(this)，示例：</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line">worker = Schedulers.newThread().createWorker();</span><br><span class="line">worker.schedule(<span class="keyword">new</span> Action0() &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">call</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        yourWork();</span><br><span class="line">        <span class="comment">// recurse until unsubscribed (schedule will do nothing if unsubscribed)</span></span><br><span class="line">        worker.schedule(<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// some time later...</span></span><br><span class="line">worker.unsubscribe();</span><br></pre></td></tr></table></figure>
+<h6 id="检查或设置取消订阅状态">检查或设置取消订阅状态</h6><p>Worker类的对象实现了Subscription接口，使用它的isUnsubscribed和unsubscribe方法，所以你可以在订阅取消时停止任务，或者从正在调度的任务内部取消订阅，示例：</p>
+<figure class="highlight sml"><table><tr><td class="code"><pre><span class="line"><span class="type">Worker</span> worker = <span class="type">Schedulers</span>.newThread<span class="literal">()</span>.createWorker<span class="literal">()</span>;</span><br><span class="line"><span class="type">Subscription</span> mySubscription = worker.schedule(new <span class="type">Action0</span><span class="literal">()</span> &#123;</span><br><span class="line"> </span><br><span class="line">    @<span class="type">Override</span></span><br><span class="line">    public void call<span class="literal">()</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>(!worker.isUnsubscribed<span class="literal">()</span>) &#123;</span><br><span class="line">            status = yourWork<span class="literal">()</span>;</span><br><span class="line">            <span class="keyword">if</span>(<span class="type">QUIT</span> == status) &#123; worker.unsubscribe<span class="literal">()</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Worker同时是Subscription，因此你可以（通常也应该）调用它的unsubscribe方法通知可以挂起任务和释放资源了。</p>
+<h6 id="延时和周期调度器">延时和周期调度器</h6><p>你可以使用schedule(action,delayTime,timeUnit)在指定的调度器上延时执行你的任务，下面例子中的任务将在500毫秒之后开始执行：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="tag">someScheduler</span><span class="class">.schedule</span>(<span class="tag">someAction</span>, 500, <span class="tag">TimeUnit</span><span class="class">.MILLISECONDS</span>);</span><br></pre></td></tr></table></figure>
+<p>使用另一个版本的schedule，schedulePeriodically(action,initialDelay,period,timeUnit)方法让你可以安排一个定期执行的任务，下面例子的任务将在500毫秒之后执行，然后每250毫秒执行一次：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">someScheduler.schedulePeriodically(someAction, <span class="number">500</span>, <span class="number">250</span>, TimeUnit.MILLISECONDS);</span><br></pre></td></tr></table></figure>
+<h6 id="测试调度器">测试调度器</h6><p>TestScheduler让你可以对调度器的时钟表现进行手动微调。这对依赖精确时间安排的任务的测试很有用处。这个调度器有三个额外的方法：</p>
+<ul>
+<li>advanceTimeTo(time,unit) 向前波动调度器的时钟到一个指定的时间点</li>
+<li>advanceTimeBy(time,unit) 将调度器的时钟向前拨动一个指定的时间段</li>
+<li>triggerActions( ) 开始执行任何计划中的但是未启动的任务，如果它们的计划时间等于或者早于调度器时钟的当前时间</li>
+</ul>
+<h5 id="SubscribeOn_and_ObserveOn">SubscribeOn and ObserveOn</h5><p>RxJava提供了subscribeOn()方法来用于每个Observable对象。subscribeOn()方法用Scheduler来作为参数并在这个Scheduler上执行Observable调用。<br>observeOn()方法将会在指定的调度器上返回结果：如例子中的Android UI线程。<br>onBackpressureBuffer()方法将告诉Observable发射的数据如果比观察者消费的数据要更快的话，它必须把它们存储在缓存中并提供一个合适的时间给它们。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="class">.onBackpressureBuffer</span>()</span><br><span class="line"><span class="class">.subscribeOn</span>(<span class="tag">Schedulers</span><span class="class">.io</span>())</span><br><span class="line"><span class="class">.observeOn</span>(<span class="tag">AndroidSchedulers</span><span class="class">.mainThread</span>())</span><br><span class="line"><span class="class">.subscribe</span>(<span class="tag">new</span> <span class="tag">Observer</span>&lt;<span class="tag">Object</span>&gt;()<span class="rules">&#123;&#125;</span>);</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RxJava/" rel="tag">#RxJava</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/03/rxjava/" rel="next" title="RxJava详解">
+                <i class="fa fa-chevron-left"></i> RxJava详解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/01/07/rxjava-scheduler/"
+     data-title="RxJava调度器Scheduler"
+     data-content=""
+     data-url="http://gcblog.cn/2016/01/07/rxjava-scheduler/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/07/rxjava-scheduler/"
+           data-title="RxJava调度器Scheduler" data-url="http://gcblog.cn/2016/01/07/rxjava-scheduler/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Gc" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Gc</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#调度器的种类"><span class="nav-number">1.</span> <span class="nav-text">调度器的种类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#默认调度器"><span class="nav-number">2.</span> <span class="nav-text">默认调度器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用调度器"><span class="nav-number">3.</span> <span class="nav-text">使用调度器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#递归调度器"><span class="nav-number">3.1.</span> <span class="nav-text">递归调度器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#检查或设置取消订阅状态"><span class="nav-number">3.2.</span> <span class="nav-text">检查或设置取消订阅状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#延时和周期调度器"><span class="nav-number">3.3.</span> <span class="nav-text">延时和周期调度器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#测试调度器"><span class="nav-number">3.4.</span> <span class="nav-text">测试调度器</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SubscribeOn_and_ObserveOn"><span class="nav-number">4.</span> <span class="nav-text">SubscribeOn and ObserveOn</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

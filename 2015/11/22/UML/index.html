@@ -1,0 +1,1049 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="UML," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="类图类图用于描述系统中所包含的类以及它们之间的相互关系，帮助人们简化对系统的理解，它是系统分析和设计阶段的重要产物，也是系统编码和测试的重要模型依据。
+类类(Class)封装了数据和行为，是面向对象的重要组成部分，它是具有相同属性、操作、关系的对象集合的总称。在系统中，每个类都具有一定的职责，职责指的是类要完成什么样的功能，要承担什么样的义务。一个类可以有多种职责，设计得好的类一般只有一种职责。在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UML">
+<meta property="og:url" content="http://gcblog.cn/2015/11/22/UML/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="类图类图用于描述系统中所包含的类以及它们之间的相互关系，帮助人们简化对系统的理解，它是系统分析和设计阶段的重要产物，也是系统编码和测试的重要模型依据。
+类类(Class)封装了数据和行为，是面向对象的重要组成部分，它是具有相同属性、操作、关系的对象集合的总称。在系统中，每个类都具有一定的职责，职责指的是类要完成什么样的功能，要承担什么样的义务。一个类可以有多种职责，设计得好的类一般只有一种职责。在">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112311.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112312.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112313.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112314.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112315.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112316.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112317.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112318.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/2012112319.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123110.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123111.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123112.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123113.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123114.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123115.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123117.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123118.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123119.jpg">
+<meta property="og:image" content="http://www.uml.org.cn/oobject/images/20121123120.jpg">
+<meta property="og:updated_time" content="2015-11-23T07:58:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UML">
+<meta name="twitter:description" content="类图类图用于描述系统中所包含的类以及它们之间的相互关系，帮助人们简化对系统的理解，它是系统分析和设计阶段的重要产物，也是系统编码和测试的重要模型依据。
+类类(Class)封装了数据和行为，是面向对象的重要组成部分，它是具有相同属性、操作、关系的对象集合的总称。在系统中，每个类都具有一定的职责，职责指的是类要完成什么样的功能，要承担什么样的义务。一个类可以有多种职责，设计得好的类一般只有一种职责。在">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> UML | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                UML
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-22T13:44:12+08:00" content="2015-11-22">
+              2015-11-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/UML/" itemprop="url" rel="index">
+                    <span itemprop="name">UML</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/22/UML/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/22/UML/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="类图">类图</h3><p>类图用于描述系统中所包含的类以及它们之间的相互关系，帮助人们简化对系统的理解，它是系统分析和设计阶段的重要产物，也是系统编码和测试的重要模型依据。</p>
+<h4 id="类">类</h4><p>类(Class)封装了数据和行为，是面向对象的重要组成部分，它是具有相同属性、操作、关系的对象集合的总称。在系统中，每个类都具有一定的职责，职责指的是类要完成什么样的功能，要承担什么样的义务。一个类可以有多种职责，设计得好的类一般只有一种职责。在定义类的时候，将类的职责分解成为类的属性和操作（即方法）。类的属性即类的数据职责，类的操作即类的行为职责。设计类是面向对象设计中最重要的组成部分，也是最复杂和最耗时的部分。</p>
+<p>在软件系统运行时，类将被实例化成对象(Object)，对象对应于某个具体的事物，是类的实例(Instance)。</p>
+<p>类图(Class Diagram)使用出现在系统中的不同类来描述系统的静态结构，它用来描述不同的类以及它们之间的关系。</p>
+<p>在系统分析与设计阶段，类通常可以分为三种，分别是实体类(Entity Class)、控制类(Control Class)和边界类(Boundary Class)，下面对这三种类加以简要说明：</p>
+<ol>
+<li>实体类：实体类对应系统需求中的每个实体，它们通常需要保存在永久存储体中，一般使用数据库表或文件来记录，实体类既包括存储和传递数据的类，还包括操作数据的类。实体类来源于需求说明中的名词，如学生、商品等。</li>
+<li>控制类：控制类用于体现应用程序的执行逻辑，提供相应的业务操作，将控制类抽象出来可以降低界面和数据库之间的耦合度。控制类一般是由动宾结构的短语（动词+名词）转化来的名词，如增加商品对应有一个商品增加类，注册对应有一个用户注册类等</li>
+<li>边界类：边界类用于对外部用户与系统之间的交互对象进行抽象，主要包括界面类，如对话框、窗口、菜单等。</li>
+</ol>
+<p>在面向对象分析和设计的初级阶段，通常首先识别出实体类，绘制初始类图，此时的类图也可称为领域模型，包括实体类及其它们之间的相互关系。</p>
+<h4 id="类的UML图示">类的UML图示</h4><p>在UML中，类使用包含类名、属性和操作且带有分隔线的长方形来表示，如定义一个Employee类，它包含属性name、age和email，以及操作modifyInfo()，在UML类图中该类如图1所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112311.jpg" alt="图1 类的UML图示"></p>
+<p>图1对应的Java代码片段如下：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Employee</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	<span class="keyword">private</span> String email;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">modifyInfo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		......</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在UML类图中，类一般由三部分组成：</p>
+<ol>
+<li>第一部分是类名：每个类都必须有一个名字，类名是一个字符串。</li>
+<li><p>第二部分是类的属性(Attributes)：属性是指类的性质，即类的成员变量。一个类可以有任意多个    属性，也可以没有属性</p>
+<p>UML规定属性的表示方式为：</p>
+<figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line">可见性 名称:类型 <span class="string">[ = 缺省值 ]</span></span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li>“可见性”表示该属性对于类外的元素而言是否可见，包括公有(public)、私有(private)和    受保护(protected)三种，在类图中分别用符号+、-和#表示。</li>
+<li>“名称”表示属性名，用一个字符串表示。</li>
+<li>“类型”表示属性的数据类型，可以是基本数据类型，也可以是用户自定义类型。</li>
+<li>“缺省值”是一个可选项，即属性的初始值。</li>
+</ul>
+</li>
+<li><p>第三部分是类的操作(Operations)：操作是类的任意一个实例对象都可以使用的行为，是类的成员方法。</p>
+<p> UML规定操作的表示方式为：</p>
+ <figure class="highlight accesslog"><table><tr><td class="code"><pre><span class="line">可见性 名称(参数列表) <span class="string">[ : 返回类型]</span></span><br></pre></td></tr></table></figure>
+<p> 其中：</p>
+<ul>
+<li>“可见性”的定义与属性的可见性定义相同。</li>
+<li>“名称”即方法名，用一个字符串表示。</li>
+<li>“参数列表”表示方法的参数，其语法与属性的定义相似，参数个数是任意的，多个参数之间用逗    号“，”隔开。</li>
+<li>“返回类型”是一个可选项，表示方法的返回值类型，依赖于具体的编程语言，可以是基本数据类    型，也可以是用户自定义类型，还可以是空类型(void)，如果是构造方法，则无返回类型。</li>
+</ul>
+</li>
+</ol>
+<p>在类图2中，操作method1的可见性为public(+)，带入了一个Object类型的参数par，返回值为空(void)；操作method2的可见性为protected(#)，无参数，返回值为String类型；操作method3的可见性为private(-)，包含两个参数，其中一个参数为int类型，另一个为int[]类型，返回值为int类型。</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112312.jpg" alt="图2 类图操作说明示意图"></p>
+<p>由于在Java语言中允许出现内部类，因此可能会出现包含四个部分的类图，如图3所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112313.jpg" alt="图3 包含内部类的类图"></p>
+<h3 id="类与类之间的关系">类与类之间的关系</h3><p>在软件系统中，类并不是孤立存在的，类与类之间存在各种关系，对于不同类型的关系，UML提供了不同的表示方式。</p>
+<h4 id="关联关系">关联关系</h4><p>关联(Association)关系是类与类之间最常用的一种关系，它是一种结构化关系，用于表示一类对象与另一类对象之间有联系，如汽车和轮胎、师傅和徒弟、班级和学生等等。在UML类图中，用实线连接有关联关系的对象所对应的类，在使用Java、C#和C++等编程语言实现关联关系时，通常将一个类的对象作为另一个类的成员变量。在使用类图表示关联关系时可以在关联线上标注角色名，一般使用一个表示两者之间关系的动词或者名词表示角色名（有时该名词为实例对象名），关系的两端代表两种不同的角色，因此在一个关联关系中可以包含两个角色名，角色名不是必须的，可以根据需要增加，其目的是使类之间的关系更加明确。</p>
+<p>如在一个登录界面类LoginForm中包含一个JButton类型的注册按钮loginButton，它们之间可以表示为关联关系，代码实现时可以在LoginForm中定义一个名为loginButton的属性对象，其类型为JButton。如图1所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112314.jpg" alt="图1 关联关系实例"><br>图1对应的Java代码片段如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginForm</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> JButton loginButton; <span class="comment">//定义为成员变量</span></span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JButton</span> </span>&#123;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在UML中，关联关系通常又包含如下几种形式：</p>
+<h5 id="双向关联">双向关联</h5><p>默认情况下，关联是双向的。例如：顾客(Customer)购买商品(Product)并拥有商品，反之，卖出的商品总有某个顾客与之相关联。因此，Customer类和Product类之间具有双向关联关系，如图2所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112315.jpg" alt="图2 双向关联实例"></p>
+<p>图2对应的Java代码片段如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Product[] products;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Customer customer;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="单向关联">单向关联</h5><p>类的关联关系也可以是单向的，单向关联用带箭头的实线表示。例如：顾客(Customer)拥有地址(Address)，则Customer类与Address类具有单向关联关系，如图3所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112316.jpg" alt="图3 单向关联实例"></p>
+<p>图3对应的Java代码片段如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Address address;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span> </span>&#123;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="自关联">自关联</h5><p>在系统中可能会存在一些类的属性对象类型为该类本身，这种特殊的关联关系称为自关联。例如：一个节点类(Node)的成员又是节点Node类型的对象，如图4所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112317.jpg" alt="图4 自关联实例"></p>
+<p>图4对应的Java代码片段如下：</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">public class <span class="keyword">Node</span><span class="identifier"> </span><span class="title">&#123;</span><br><span class="line">	private</span> <span class="keyword">Node</span><span class="identifier"> </span><span class="title">subNode</span>;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="多重性关联">多重性关联</h5><p>多重性关联关系又称为重数性(Multiplicity)关联关系，表示两个关联对象在数量上的对应关系。在UML中，对象之间的多重性可以直接在关联直线上用一个数字或一个数字范围表示。</p>
+<p>对象之间可以存在多种多重性关联关系，常见的多重性表示方式如表1所示：</p>
+<p>表1 多重性表示方式列表</p>
+<table>
+<thead>
+<tr>
+<th>表示方式</th>
+<th>多重性说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1..1</td>
+<td>表示另一个类的一个对象只与该类的一个对象有关系</td>
+</tr>
+<tr>
+<td>0..*</td>
+<td>表示另一个类的一个对象与该类的零个或多个对象有关系</td>
+</tr>
+<tr>
+<td>1..*</td>
+<td>表示另一个类的一个对象与该类的一个或多个对象有关系</td>
+</tr>
+<tr>
+<td>0..1</td>
+<td>表示另一个类的一个对象没有或只与该类的一个对象有关系</td>
+</tr>
+<tr>
+<td>m..n</td>
+<td>表示另一个类的一个对象与该类最少m，最多n个对象有关系 (m≤n)</td>
+</tr>
+</tbody>
+</table>
+<p>例如：一个界面(Form)可以拥有零个或多个按钮(Button)，但是一个按钮只能属于一个界面，因此，一个Form类的对象可以与零个或多个Button类的对象相关联，但一个Button类的对象只能与一个Form类的对象关联，如图5所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112318.jpg" alt="图5 多重性关联实例"></p>
+<p>图5对应的Java代码片段如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Form</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Button[] buttons; <span class="comment">//定义一个集合对象</span></span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Button</span> </span>&#123;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="聚合关系">聚合关系</h5><p>聚合(Aggregation)关系表示整体与部分的关系。在聚合关系中，成员对象是整体对象的一部分，但是成员对象可以脱离整体对象独立存在。在UML中，聚合关系用带空心菱形的直线表示。例如：汽车发动机(Engine)是汽车(Car)的组成部分，但是汽车发动机可以独立存在，因此，汽车和发动机是聚合关系，如图6所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/2012112319.jpg" alt="图6 聚合关系实例"></p>
+<p>在代码实现聚合关系时，成员对象通常作为构造方法、Setter方法或业务方法的参数注入到整体对象中，图6对应的Java代码片段如下：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Car</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> Engine engine;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//构造注入</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Car</span>(<span class="params">Engine engine</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.engine = engine;</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//设值注入</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEngine</span>(<span class="params">Engine engine</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.engine = engine;</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Engine</span> &#123;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="组合关系">组合关系</h5><p>组合(Composition)关系也表示类之间整体和部分的关系，但是在组合关系中整体对象可以控制成员对象的生命周期，一旦整体对象不存在，成员对象也将不存在，成员对象与整体对象之间具有同生共死的关系。在UML中，组合关系用带实心菱形的直线表示。例如：人的头(Head)与嘴巴(Mouth)，嘴巴是头的组成部分之一，而且如果头没了，嘴巴也就没了，因此头和嘴巴是组合关系，如图7所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123110.jpg" alt="图7 组合关系实例"></p>
+<p>在代码实现组合关系时，通常在整体类的构造方法中直接实例化成员类，图7对应的Java代码片段如下：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Head</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> Mouth mouth;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Head</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//实例化成员类</span></span><br><span class="line">		mouth = <span class="keyword">new</span> Mouth();</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Mouth</span> &#123;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="依赖关系">依赖关系</h4><p>依赖(Dependency)关系是一种使用关系，特定事物的改变有可能会影响到使用该事物的其他事物，在需要表示一个事物使用另一个事物时使用依赖关系。大多数情况下，依赖关系体现在某个类的方法使用另一个类的对象作为参数。在UML中，依赖关系用带箭头的虚线表示，由依赖的一方指向被依赖的一方。例如：驾驶员开车，在Driver类的drive()方法中将Car类型的对象car作为一个参数传递，以便在drive()方法中能够调用car的move()方法，且驾驶员的drive()方法依赖车的move()方法，因此类Driver依赖类Car，如图1所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123111.jpg" alt="图1 依赖关系实例"></p>
+<p>在系统实施阶段，依赖关系通常通过三种方式来实现，第一种也是最常用的一种方式是如图1所示的将一个类的对象作为另一个类中方法的参数，第二种方式是在一个类的方法中将另一个类的对象作为其局部变量，第三种方式是在一个类的方法中调用另一个类的静态方法。图1对应的Java代码片段如下：</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Driver</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drive</span>(<span class="params">Car car</span>) </span>&#123;</span><br><span class="line">		car.move();</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Car</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		......</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="泛化关系">泛化关系</h4><p>泛化(Generalization)关系也就是继承关系，用于描述父类与子类之间的关系，父类又称作基类或超类，子类又称作派生类。在UML中，泛化关系用带空心三角形的直线来表示。在代码实现时，我们使用面向对象的继承机制来实现泛化关系，如在Java语言中使用extends关键字、在C++/C#中使用冒号“：”来实现。例如：Student类和Teacher类都是Person类的子类，Student类和Teacher类继承了Person类的属性和方法，Person类的属性包含姓名(name)和年龄(age)，每一个Student和Teacher也都具有这两个属性，另外Student类增加了属性学号(studentNo)，Teacher类增加了属性教师编号(teacherNo)，Person类的方法包括行走move()和说话say()，Student类和Teacher类继承了这两个方法，而且Student类还新增方法study()，Teacher类还新增方法teach()。如图2所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123112.jpg" alt="图2 泛化关系实例"></p>
+<p>图2对应的Java代码片段如下：</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="comment">//父类</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line">	<span class="keyword">protected</span> <span class="type">String</span> name;</span><br><span class="line">	<span class="keyword">protected</span> int age;</span><br><span class="line"></span><br><span class="line">	public void move() &#123;</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void say() &#123;</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Person</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> <span class="type">String</span> studentNo;</span><br><span class="line"></span><br><span class="line">	public void study() &#123;</span><br><span class="line">		……</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子类</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Person</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> <span class="type">String</span> teacherNo;</span><br><span class="line"></span><br><span class="line">	public void teach() &#123;</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="接口与实现关系">接口与实现关系</h4><p>在很多面向对象语言中都引入了接口的概念，如Java、C#等，在接口中，通常没有属性，而且所有的操作都是抽象的，只有操作的声明，没有操作的实现。UML中用与类的表示法类似的方式表示接口，如图3所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123113.jpg" alt="图3 接口的UML图示"></p>
+<p>接口之间也可以有与类之间关系类似的继承关系和依赖关系，但是接口和类之间还存在一种实现(Realization)关系，在这种关系中，类实现了接口，类中的操作实现了接口中所声明的操作。在UML中，类与接口之间的实现关系用带空心三角形的虚线来表示。例如：定义了一个交通工具接口Vehicle，包含一个抽象操作move()，在类Ship和类Car中都实现了该move()操作，不过具体的实现细节将会不一样，如图4所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123114.jpg" alt="图4 实现关系实例"></p>
+<p>实现关系在编程实现时，不同的面向对象语言也提供了不同的语法，如在Java语言中使用implements关键字，而在C++/C#中使用冒号“：”来实现。图4对应的Java代码片段如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Ship</span> <span class="keyword">implements</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">implements</span> <span class="title">Vehicle</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		……</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="实例分析1——登录模块">实例分析1——登录模块</h3><p>某基于C/S的即时聊天系统登录模块功能描述如下：</p>
+<p>用户通过登录界面(LoginForm)输入账号和密码，系统将输入的账号和密码与存储在数据库(User)表中的用户信息进行比较，验证用户输入是否正确，如果输入正确则进入主界面(MainForm)，否则提示“输入错误”。</p>
+<p>根据以上描述绘制初始类图。</p>
+<p><strong>参考解决方案：</strong></p>
+<p>参考类图如下：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123115.jpg" alt=""></p>
+<p>考虑到系统扩展性，在本实例中引入了抽象数据访问接口IUserDAO，再将具体数据访问对象注入到业务逻辑对象中，可通过配置文件（如XML文件）等方式来实现，将具体的数据访问类类名存储在配置文件中，如果需要更换新的具体数据访问对象，只需修改配置文件即可，原有程序代码无须做任何修改。</p>
+<p>类说明：</p>
+<p>|类名|说 明|<br>|||<br>|LoginForm|登录窗口，省略界面组件和按钮事件处理方法（边界类）|<br>|LoginBO|登录业务逻辑类，封装实现登录功能的业务逻辑（控制类）|<br>|IUserDAO|抽象数据访问类接口，声明对User表的数据操作方法，省略除查询外的其他方法（实体类）|<br>|UserDAO|具体数据访问类，实现对User表的数据操作方法，省略除查询外的其他方法（实体类）|<br>|MainForm|主窗口（边界类）|</p>
+<p>方法说明：</p>
+<p>|方法名|说 明|<br>|||<br>|LoginForm类的LoginForm()方法|LoginForm构造函数，初始化实例成员|<br>|LoginForm类的validate()方法|界面类的验证方法，通过调用业务逻辑类LoginBO的validate()方法实现对用户输入信息的验证|<br>|LoginBO类的validate()方法|业务逻辑类的验证方法，通过调用数据访问类的findUserByAccAndPwd()方法验证用户输入信息的合法性|<br>|LoginBO类的setIUserDAO()方法|Setter方法，在业务逻辑对象中注入数据访问对象（注意：此处针对抽象数据访问类编程|<br>|IUserDAO接口的findUserByAccAndPwd()方法|业务方法声明，通过用户账号和密码在数据库中查询用户信息，判断该用户身份的合法性|<br>|UserDAO类的findUserByAccAndPwd()方法|业务方法实现，实现在IUserDAO接口中声明的数据访问方法|</p>
+<h3 id="实例分析2——注册模块">实例分析2——注册模块</h3><p>某基于Java语言的C/S软件需要提供注册功能，该功能简要描述如下：</p>
+<p>用户通过注册界面(RegisterForm)输入个人信息，用户点击“注册”按钮后将输入的信息通过一个封装用户输入数据的对象(UserDTO)传递给操作数据库的数据访问类，为了提高系统的扩展性，针对不同的数据库可能需要提供不同的数据访问类，因此提供了数据访问类接口，如IUserDAO，每一个具体数据访问类都是某一个数据访问类接口的实现类，如OracleUserDAO就是一个专门用于访问Oracle数据库的数据访问类。</p>
+<p>根据以上描述绘制类图。为了简化类图，个人信息仅包括账号(userAccount)和密码(userPassword)，且界面类无需涉及界面细节元素。</p>
+<p><strong>参考解决方案：</strong></p>
+<p>在以上功能说明中，可以分析出该系统包括三个类和一个接口，这三个类分别是注册界面类RegisterForm、用户数据传输类UserDTO、Oracle用户数据访问类OracleUserDAO，接口是抽象用户数据访问接口IUserDAO。它们之间的关系如下：</p>
+<ol>
+<li><p>在RegisterForm中需要使用UserDTO类传输数据且需要使用数据访问类来操作数据库，因此RegisterForm与UserDTO和IUserDAO之间存在关联关系，在RegisterForm中可以直接实例化UserDTO，因此它们之间可以使用组合关联。</p>
+</li>
+<li><p>由于数据库类型需要灵活更换，因此在RegisterForm中不能直接实例化IUserDAO的子类，可以针对接口IUserDAO编程，再通过注入的方式传入一个IUserDAO接口的子类对象（在本书后续章节中将学习如何具体实现），因此RegisterForm和IUserDAO之间具有聚合关联关系。</p>
+</li>
+<li><p>OracleUserDAO是实现了IUserDAO接口的子类，因此它们之间具有类与接口的实现关系。</p>
+</li>
+<li><p>在声明IUserDAO接口的增加用户信息方法addUser()时，需要将在界面类中实例化的UserDTO对象作为参数传递进来，然后取出封装在UserDTO对象中的数据插入数据库，因此addUser()方法的函数原型可以定义为：public boolean addUser(UserDTO user)，在IUserDAO的方法addUser()中将UserDTO类型的对象作为参数，故IUserDAO与UserDTO存在依赖关系。</p>
+</li>
+</ol>
+<p>通过以上分析，该实例参考类图如图1所示：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123117.jpg" alt="图1 注册功能参考类图"></p>
+<p>注意：在绘制类图或其他UML图形时，可以通过注释(Comment)来对图中的符号或元素进行一些附加说明，如果需要详细说明类图中的某一方法的功能或者实现过程，可以使用如图2所示表示方式：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123118.jpg" alt="图2 类图注释实例"></p>
+<h3 id="实例分析3——售票机控制程序">实例分析3——售票机控制程序</h3><p>某运输公司决定为新的售票机开发车票销售的控制软件。图I给出了售票机的面板示意图以及相关的控制部件。</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123119.jpg" alt="图I 售票机面板示意图"></p>
+<p>售票机相关部件的作用如下所述：</p>
+<ol>
+<li>目的地键盘用来输入行程目的地的代码（例如，200表示总站）。</li>
+<li>乘客可以通过车票键盘选择车票种类（单程票、多次往返票和座席种类）。</li>
+<li>继续/取消键盘上的取消按钮用于取消购票过程，继续按钮允许乘客连续购买多张票。</li>
+<li>显示屏显示所有的系统输出和用户提示信息。</li>
+<li>插卡口接受MCard（现金卡），硬币口和纸币槽接受现金。</li>
+<li>打印机用于输出车票。</li>
+<li>所有部件均可实现自检并恢复到初始状态。</li>
+</ol>
+<p>现采用面向对象方法开发该系统，使用UML进行建模，绘制该系统的初始类图。</p>
+<p><strong>参考解决方案：</strong></p>
+<p>参考类图如下：</p>
+<p><img src="http://www.uml.org.cn/oobject/images/20121123120.jpg" alt=""></p>
+<p>类说明：</p>
+<table>
+<thead>
+<tr>
+<th>类名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component</td>
+<td>抽象部件类，所有部件类的父类</td>
+</tr>
+<tr>
+<td>Keyboard</td>
+<td>抽象键盘类</td>
+</tr>
+<tr>
+<td>ActionKeyboard</td>
+<td>继续/取消键盘类</td>
+</tr>
+<tr>
+<td>TicketKindKeyboard</td>
+<td>车票种类键盘类</td>
+</tr>
+<tr>
+<td>DestinationKeyboard</td>
+<td>目的地键盘类</td>
+</tr>
+<tr>
+<td>Screen</td>
+<td>显示屏类</td>
+</tr>
+<tr>
+<td>CardDriver</td>
+<td>卡驱动器类</td>
+</tr>
+<tr>
+<td>CashSlot</td>
+<td>现金（硬币/纸币）槽类</td>
+</tr>
+<tr>
+<td>Printer</td>
+<td>打印机类</td>
+</tr>
+<tr>
+<td>TicketSoldSystem</td>
+<td>售票系统类</td>
+</tr>
+</tbody>
+</table>
+<p>方法说明：</p>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Component 的init()方法</td>
+<td>初始化部件</td>
+</tr>
+<tr>
+<td>Component 的doSeltTest()方法</td>
+<td>自检</td>
+</tr>
+<tr>
+<td>Keyboard的getSelectedKey()方法</td>
+<td>获取按键值</td>
+</tr>
+<tr>
+<td>ActionKeyboard的getAction()方法</td>
+<td>继续/取消键盘事件处理</td>
+</tr>
+<tr>
+<td>TicketKindKeyboard的getTicketKind()方法</td>
+<td>车票种类键盘事件处理</td>
+</tr>
+<tr>
+<td>DestinationKeyboard的getDestinationCode()方法</td>
+<td>目的地键盘事件处理</td>
+</tr>
+<tr>
+<td>Screen的showText()方法</td>
+<td>显示信息</td>
+</tr>
+<tr>
+<td>CardDriver的getCredit()方法</td>
+<td>获取金额</td>
+</tr>
+<tr>
+<td>CardDriver的debitFare()方法</td>
+<td>更新卡余额</td>
+</tr>
+<tr>
+<td>CardDriver的ejectMCard()方法</td>
+<td>退卡</td>
+</tr>
+<tr>
+<td>CashSlot的getCredit()方法</td>
+<td>获取金额</td>
+</tr>
+<tr>
+<td>Printer的printTicket()方法</td>
+<td>打印车票</td>
+</tr>
+<tr>
+<td>Printer的ejectTicket()方法</td>
+<td>出票</td>
+</tr>
+<tr>
+<td>TicketSoldSystem的verifyCredit()方法</td>
+<td>验证金额</td>
+</tr>
+<tr>
+<td>TicketSoldSystem的calculateFare()方法</td>
+<td>计算费用</td>
+</tr>
+</tbody>
+</table>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/UML/" rel="tag">#UML</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/21/jmock/" rel="next" title="jmock">
+                <i class="fa fa-chevron-left"></i> jmock
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/23/Annotation/" rel="prev" title="AndroidAnnotations (一) - Intro">
+                AndroidAnnotations (一) - Intro <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/22/UML/"
+     data-title="UML"
+     data-content=""
+     data-url="http://gcblog.cn/2015/11/22/UML/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/22/UML/"
+           data-title="UML" data-url="http://gcblog.cn/2015/11/22/UML/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Gc" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Gc</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类图"><span class="nav-number">1.</span> <span class="nav-text">类图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类"><span class="nav-number">1.1.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的UML图示"><span class="nav-number">1.2.</span> <span class="nav-text">类的UML图示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类与类之间的关系"><span class="nav-number">2.</span> <span class="nav-text">类与类之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关联关系"><span class="nav-number">2.1.</span> <span class="nav-text">关联关系</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#双向关联"><span class="nav-number">2.1.1.</span> <span class="nav-text">双向关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#单向关联"><span class="nav-number">2.1.2.</span> <span class="nav-text">单向关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#自关联"><span class="nav-number">2.1.3.</span> <span class="nav-text">自关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多重性关联"><span class="nav-number">2.1.4.</span> <span class="nav-text">多重性关联</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#聚合关系"><span class="nav-number">2.1.5.</span> <span class="nav-text">聚合关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#组合关系"><span class="nav-number">2.1.6.</span> <span class="nav-text">组合关系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#依赖关系"><span class="nav-number">2.2.</span> <span class="nav-text">依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛化关系"><span class="nav-number">2.3.</span> <span class="nav-text">泛化关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#接口与实现关系"><span class="nav-number">2.4.</span> <span class="nav-text">接口与实现关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例分析1——登录模块"><span class="nav-number">3.</span> <span class="nav-text">实例分析1——登录模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例分析2——注册模块"><span class="nav-number">4.</span> <span class="nav-text">实例分析2——注册模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例分析3——售票机控制程序"><span class="nav-number">5.</span> <span class="nav-text">实例分析3——售票机控制程序</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

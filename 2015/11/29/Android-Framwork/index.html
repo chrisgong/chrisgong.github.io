@@ -1,0 +1,830 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="英文出处：fernandocejas.com。
+
+开始我们知道编写高质量软件是既困难又复杂的：不仅是满足需求方面，还要健壮、可维护、可测试，并且足够灵活以适应增长和变化。这就是“代码整洁之道”的来源，并可以成为开发任何软件应用程序的良好方法。思想很简单：代码整洁之道代表构建系统的一组实践：
+
+独立于框架
+可测试性
+独立于UI
+独立于数据库
+独立于任何外部代理
+
+
+只限于使用图示中的4个圆圈并不是必">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android简洁架构设计">
+<meta property="og:url" content="http://gcblog.cn/2015/11/29/Android-Framwork/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="英文出处：fernandocejas.com。
+
+开始我们知道编写高质量软件是既困难又复杂的：不仅是满足需求方面，还要健壮、可维护、可测试，并且足够灵活以适应增长和变化。这就是“代码整洁之道”的来源，并可以成为开发任何软件应用程序的良好方法。思想很简单：代码整洁之道代表构建系统的一组实践：
+
+独立于框架
+可测试性
+独立于UI
+独立于数据库
+独立于任何外部代理
+
+
+只限于使用图示中的4个圆圈并不是必">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2015/07/c169972aba197d0b1e79922aa554bfb7.png">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2015/07/c1f3d18f5be40e2e949bc7b1416ac5b1.png">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2015/07/f0a7ef97b9d356c4eb8d20b196239b29.png">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2015/07/1255acd8de2f6705b7963620823fc1d6.png">
+<meta property="og:image" content="http://jbcdn2.b0.upaiyun.com/2015/07/c4dbed79c1a3c5a730c86f87eda5637e.png">
+<meta property="og:updated_time" content="2015-11-29T13:48:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android简洁架构设计">
+<meta name="twitter:description" content="英文出处：fernandocejas.com。
+
+开始我们知道编写高质量软件是既困难又复杂的：不仅是满足需求方面，还要健壮、可维护、可测试，并且足够灵活以适应增长和变化。这就是“代码整洁之道”的来源，并可以成为开发任何软件应用程序的良好方法。思想很简单：代码整洁之道代表构建系统的一组实践：
+
+独立于框架
+可测试性
+独立于UI
+独立于数据库
+独立于任何外部代理
+
+
+只限于使用图示中的4个圆圈并不是必">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> Android简洁架构设计 | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android简洁架构设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-29T21:25:00+08:00" content="2015-11-29">
+              2015-11-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/29/Android-Framwork/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/29/Android-Framwork/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><blockquote>
+<p>英文出处：fernandocejas.com。</p>
+</blockquote>
+<h3 id="开始">开始</h3><p>我们知道编写高质量软件是既困难又复杂的：不仅是满足需求方面，还要健壮、可维护、可测试，并且足够灵活以适应增长和变化。这就是“代码整洁之道”的来源，并可以成为开发任何软件应用程序的良好方法。思想很简单：代码整洁之道代表构建系统的一组实践：</p>
+<ol>
+<li>独立于框架</li>
+<li>可测试性</li>
+<li>独立于UI</li>
+<li>独立于数据库</li>
+<li>独立于任何外部代理</li>
+</ol>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2015/07/c169972aba197d0b1e79922aa554bfb7.png" alt=""></p>
+<p>只限于使用图示中的4个圆圈并不是必须的，因为这只是语义描述，你还要考虑依赖规则（the Dependency Rule）：源码依赖只应该指向内圈，内圈不应该知道外圈的任何东西。</p>
+<p>下面的相关词汇可以帮助熟悉理解这个方法：</p>
+<p>实体（Entities）：应用的逻辑对象。<br>用例（Use Cases）：用例编排数据流从实体的流入和流出。也叫交互器（Interactor）。<br>接口适配器（Interface Adapters）：这些适配器将数据转换为用例和实体最合适的格式。表示器（Presenter）和控制器（Controller）就位于这里。<br>框架和驱动器（Frameworks and Drivers）：这是所有细节集中的地方，UI、工具、框架等。<br>为了更好更深入地理解，看下<a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external">这篇文章</a></p>
+<h3 id="Android架构">Android架构</h3><p>架构的目标是通过将业务规则与外部世界隔离以分离关注点，这样，才可以在不依赖外部元素的情况下测试业务规则。为了达到这个目标，我的建议是将项目拆分为3个不同的层次，每层都有自己的目标，独立地工作。需要提及的是每层都使用自己的数据模型，这样才可以取得依赖（你可以看到，在代码中需要数据映射器（data mapper）来完成数据转换，不想在整个应用之上交叉使用自己的模型总要付出点代价）。下面是一个帮助你理解的模式：</p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2015/07/c1f3d18f5be40e2e949bc7b1416ac5b1.png" alt=""></p>
+<p>注意：我没有使用任何外部库（除了解析json数据的gson，还有测试用的junit、 mockito、 robolectri和espresso）。原因是这么做会让例子会更清楚。无论如何，一定不要犹豫使用那些让生活更美好的东西，比如添加ORM来存储磁盘数据，或者任何依赖注入框架，或者任何你熟悉的工具或库。（记住，重新发明轮子不是一个好的实践）。</p>
+<h4 id="表示层">表示层</h4><p>这里实现了与视图和动画有关的逻辑。它只使用一个模型-视图-表示器（Model View Presenter， 下文称<a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter" target="_blank" rel="external">MVP</a>），但是你可以使用其他任何模式，如MVC或MVVM。在这里我不会深入介绍，这里的片段和活动只有视图，除了UI逻辑之外没有任何其他逻辑，这也是所有渲染发生的地方。这层中的表示器与交互器（用例）共同在Android UI线程之外开启新线程执行这些工作，并通过回调来处理数据，数据将在视图中渲染。</p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2015/07/f0a7ef97b9d356c4eb8d20b196239b29.png" alt=""><br>如果你想要一个使用MVP和MVVM更酷的<a href="https://github.com/pedrovgs/EffectiveAndroidUI/" target="_blank" rel="external">高效Android UI</a>例子，去看看我朋友Pedro Gómez所做的工作。</p>
+<h4 id="领域层">领域层</h4><p>这里的业务规则：所有逻辑都在这层。至于Android项目，你也将会看到所有的交互器（用例）实现。这层是不依赖Android的纯Java模块。所有的外部组件使用接口连接到业务对象。</p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2015/07/1255acd8de2f6705b7963620823fc1d6.png" alt=""></p>
+<h4 id="数据层">数据层</h4><p>应用需要的全部数据都来自这层，数据通过一个使用<a href="http://martinfowler.com/eaaCatalog/repository.html" target="_blank" rel="external">仓储模式（Repository Pattern）</a>实现的UserRepository存取，其策略是通过一个工厂，根据特定的条件来选择不同的数据源。比如，当通过id获取用户时，如果用户已存在于缓存中，就会选取磁盘缓存数据源，不然就会查询云端获取数据，之后保存到磁盘缓存。这里的思想是，数据的来源对客户端是透明的，它不关系数据到底来自内存、磁盘还是云端，唯一的事实是数据将会到达，然后被获取。</p>
+<p><img src="http://jbcdn2.b0.upaiyun.com/2015/07/c4dbed79c1a3c5a730c86f87eda5637e.png" alt=""></p>
+<p>注意：我使用文件系统和Android首选项实现了一个简单的磁盘缓存，仅用于学习目的。再次提醒，如果已经存在某些库可以更好地实现这些功能，你不应该重新发明轮子。</p>
+<h3 id="错误处理">错误处理</h3><p>这个话题很容易引发讨论，如果你能分享自己的解决方案会更棒。我的策略是采用回调，因此，一旦数据仓库有事件发生，回调包含2个方法onResponse()和onError()。最后一个将异常封装到称作“ErrorBundle“的包装类中：这种方法会带来很多难处，因为只有一个回调链，错误会一直到达表示层被渲染。代码可读性略显不佳。另外，我也可以实现一个事件总线系统，一旦出错就抛出事件，但是这个方案就像使用GOTO一样；我认为，有时候如果你订阅了多个事件，不仔细控制的话很容易迷失。</p>
+<h3 id="测试">测试</h3><p>关于测试，我倾向于根据不同层选择多重方案：</p>
+<ul>
+<li>表示层：使用Android instrumentation或espresso进行集成和功能测试。</li>
+<li>领域层：JUnit和mockito进行单元测试。</li>
+<li>数据层：Robolectric（由于这层有Android依赖）和junit、mockito进行集成和单元测试。</li>
+</ul>
+<h3 id="代码展示">代码展示</h3><p><a href="https://github.com/android10/Android-CleanArchitecture" target="_blank" rel="external">github链接</a></p>
+<p>目录结构:</p>
+<ul>
+<li>presentation：表示层的Android模块。</li>
+<li>domain：无Android依赖的java模块。</li>
+<li>data：所有数据存放的Android模块。</li>
+<li>data-test：数据层的测试。由于使用Robolectric有些限制，我不得不在新的Java模块中使用。</li>
+</ul>
+<h3 id="结论">结论</h3><p>就像Bob大叔说过的，“架构在于目的而非框架”，我完全赞同。当然，有很多不同的做事方式（不同的实现），我确定你（像我一样）每天都面对很多挑战，但是使用这些技巧，你可以保证应用将会：</p>
+<ul>
+<li>易于维护。</li>
+<li>易于测试。</li>
+<li>非常内聚。</li>
+<li>解耦。</li>
+</ul>
+<h3 id="链接和资源">链接和资源</h3><ol>
+<li><a href="https://github.com/android10/Android-CleanArchitecture" target="_blank" rel="external">源代码</a></li>
+<li><a href="http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html" target="_blank" rel="external">Bob大叔的整洁架构</a></li>
+<li><a href="http://www.infoq.com/news/2013/07/architecture_intent_frameworks" target="_blank" rel="external">架构在于目的而非框架</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter" target="_blank" rel="external">模型 视图 表示器</a></li>
+<li><a href="http://martinfowler.com/eaaCatalog/repository.html" target="_blank" rel="external">Martin Fowler仓储模式</a></li>
+<li><a href="http://www.slideshare.net/PedroVicenteGmezSnch/" target="_blank" rel="external">Android设计模式演示稿</a></li>
+</ol>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/27/Shell-change-coding/" rel="next" title="Shell批量修改文件编码">
+                <i class="fa fa-chevron-left"></i> Shell批量修改文件编码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/02/first-gradle/" rel="prev" title="gradle配置开发流程">
+                gradle配置开发流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/29/Android-Framwork/"
+     data-title="Android简洁架构设计"
+     data-content=""
+     data-url="http://gcblog.cn/2015/11/29/Android-Framwork/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/29/Android-Framwork/"
+           data-title="Android简洁架构设计" data-url="http://gcblog.cn/2015/11/29/Android-Framwork/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Gc" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Gc</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android架构"><span class="nav-number">2.</span> <span class="nav-text">Android架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表示层"><span class="nav-number">2.1.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#领域层"><span class="nav-number">2.2.</span> <span class="nav-text">领域层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据层"><span class="nav-number">2.3.</span> <span class="nav-text">数据层</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误处理"><span class="nav-number">3.</span> <span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">4.</span> <span class="nav-text">测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码展示"><span class="nav-number">5.</span> <span class="nav-text">代码展示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">6.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接和资源"><span class="nav-number">7.</span> <span class="nav-text">链接和资源</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

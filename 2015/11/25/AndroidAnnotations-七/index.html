@@ -1,0 +1,801 @@
+<!doctype html>
+<html class="theme-next   use-motion ">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+
+
+
+
+<meta name="description" content="WorkingWithThreads@BackgroundThe @Background annotation indicates that a method will run in a thread other than the ui thread.
+Usage example:
+void myMethod() &amp;#123;    someBackgroundWork(&quot;hello&quot;, 42);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations (七) - Thread">
+<meta property="og:url" content="http://gcblog.cn/2015/11/25/AndroidAnnotations-七/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="WorkingWithThreads@BackgroundThe @Background annotation indicates that a method will run in a thread other than the ui thread.
+Usage example:
+void myMethod() &amp;#123;    someBackgroundWork(&quot;hello&quot;, 42);">
+<meta property="og:updated_time" content="2015-11-25T00:03:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations (七) - Thread">
+<meta name="twitter:description" content="WorkingWithThreads@BackgroundThe @Background annotation indicates that a method will run in a thread other than the ui thread.
+Usage example:
+void myMethod() &amp;#123;    someBackgroundWork(&quot;hello&quot;, 42);">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'hide',
+    motion: true
+  };
+</script>
+
+  <title> AndroidAnnotations (七) - Thread | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content">
+          
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations (七) - Thread
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-25T07:39:50+08:00" content="2015-11-25">
+              2015-11-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/25/AndroidAnnotations-七/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/AndroidAnnotations-七/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h3 id="WorkingWithThreads">WorkingWithThreads</h3><h4 id="@Background">@Background</h4><p>The <code>@Background</code> annotation indicates that a method will run in a thread other than the <a href="http://developer.android.com/guide/topics/fundamentals.html#threads" target="_blank" rel="external">ui thread</a>.</p>
+<p>Usage example:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    someBackgroundWork(<span class="string">"hello"</span>, <span class="number">42</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Background</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">someBackgroundWork</span><span class="params">(String aParam, <span class="keyword">long</span> anotherParam)</span> </span>&#123;</span><br><span class="line">    [...]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>The method is executed on a separate thread, but this doesn’t necessarily mean that a new thread will be started, because we use a shared cached thread pool executor (which can be replaced) to prevent creating too much threads.</p>
+<p>This also means that two <code>@Background</code> methods may run in parallel</p>
+</blockquote>
+<h5 id="Id">Id</h5><blockquote>
+<p>Since AndroidAnnotations 3.0</p>
+</blockquote>
+<p>If you want to cancel a background task, you can use the <code>id</code> field. Every task could then be cancelled by <code>BackgroundExecutor.cancelAll(&quot;id&quot;)</code>;:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    someCancellableBackground(<span class="string">"hello"</span>, <span class="number">42</span>);</span><br><span class="line">    [...]</span><br><span class="line">    <span class="keyword">boolean</span> mayInterruptIfRunning = <span class="keyword">true</span>;</span><br><span class="line">    BackgroundExecutor.cancelAll(<span class="string">"cancellable_task"</span>, mayInterruptIfRunning);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@Background</span>(id=<span class="string">"cancellable_task"</span>)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">someCancellableBackground</span><span class="params">(String aParam, <span class="keyword">long</span> anotherParam)</span> </span>&#123;</span><br><span class="line">    [...]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Serial(串行)">Serial(串行)</h5><blockquote>
+<p>Since AndroidAnnotations 3.0</p>
+</blockquote>
+<p>By default, <code>@Background</code> method are processed in parallel(并行). If you want them to be executed sequentially, you can use the <code>serial</code> field. All background tasks with the same <code>serial</code> will be executed sequentially:</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        someSequentialBackgroundMethod(i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Background(serial = <span class="string">"test"</span>)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">someSequentialBackgroundMethod</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    SystemClock.sleep(<span class="keyword">new</span> Random().nextInt(<span class="number">2000</span>)+<span class="number">1000</span>);</span><br><span class="line">    Log.d(<span class="string">"AA"</span>, <span class="string">"value : "</span> + i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Delay">Delay</h5><blockquote>
+<p>Since AndroidAnnotations 3.0</p>
+</blockquote>
+<p>If you need to add a delay before a background method is run, you can use the <code>delay</code> parameter:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@Background</span>(delay=<span class="number">2000</span>)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doInBackgroundAfterTwoSeconds</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="@UiThread">@UiThread</h5><p>The <code>@UiThread</code> annotation indicates that a method will run in the <a href="http://developer.android.com/guide/topics/fundamentals.html#threads" target="_blank" rel="external">ui thread</a>.</p>
+<p>Usage example:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">myMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    doInUiThread(<span class="string">"hello"</span>, <span class="number">42</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@UiThread</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">doInUiThread</span><span class="params">(String aParam, <span class="keyword">long</span> anotherParam)</span> </span>&#123;</span><br><span class="line">    [...]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>No more <code>AsyncTask&lt;Param, Progress, Result&gt;</code>!!</p>
+<h5 id="Propagation">Propagation</h5><p>Prior to 3.0, <code>@Thread</code> annotated method calls was always added in the handler execution queue to ensure that execution was done in Ui thread. Since 3.0, we kept the same behavior for compatibility purpose.</p>
+<p>But, if you want to optimize UiThread calls, you may want to change <code>propagation</code> value to <code>REUSE</code>. In this configuration, the code will make a direct call to the method if current thread is already Ui thread. If not, we’re falling back to handler call.</p>
+<p>If you need to add a delay before a method is run on the UI Thread, you can use the <code>delay</code> parameter:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@UiThread</span>(propagation = Propagation.REUSE)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">runInSameThreadIfOnUiThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Note</strong>: If combined with delay, propagation will be ignored and the call will always be posted in handler execution queue.</p>
+<h4 id="@SupposeBackground">@SupposeBackground</h4><blockquote>
+<p>Since AndroidAnnotations 3.1</p>
+</blockquote>
+<p>Annotate your methods to ensure they are called from a background thread with (optionally) restrictions by allowed serials. If it is not called from a supposed background thread, then <code>IllegalStateException</code> will be thrown (by default). The allowed IDs can be passed to the <code>serial</code> parameter, if nothing is passed, any <code>ID</code> is allowed.<br>If you want to override what happens when the method is not called on the supposed thread, pass an instance of <code>BackgroundExecutor.WrongThreadListener</code>to <code>BackgroundExecutor.setWrongThreadListener()</code>. Its onBgExpected method will be invoked if the annotated method is called on the wrong thread, or its <code>onWrongBgSerial</code> will be invoked if the annotated method called on a background thread but with wrong IDs.</p>
+<p>Usage example:</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EBean</span></span><br><span class="line">public class MyBean &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@SupposeBackground</span></span><br><span class="line">  void <span class="function">someMethodThatShouldNotBeCalledFromUiThread</span>() &#123;</span><br><span class="line">  	<span class="comment">//if this method will be called from the UI-thread an exception will be thrown</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@SupposeBackground</span>(serial = &#123;<span class="string">"serial1"</span>, <span class="string">"serial2"</span>&#125;)</span><br><span class="line">  void <span class="function">someMethodThatShouldBeCalledFromSerial1OrSerial2</span>() &#123;</span><br><span class="line">  	<span class="comment">//if this method will be called from another thread then a background thread with a</span></span><br><span class="line"> 	<span class="comment">//serial "serial1" or "serial2", an exception will be thrown</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="@SupposeUiThread">@SupposeUiThread</h4><blockquote>
+<p>Since AndroidAnnotations 3.1</p>
+</blockquote>
+<p>Annotate your methods to ensure they are called from the UI thread. If they are not, then <code>IllegalStateException</code> will be thrown (by default).<br>If you want to override what happens when the method is not called on the UI thread, pass an instance of <code>BackgroundExecutor.WrongThreadListener</code>to <code>BackgroundExecutor.setWrongThreadListener()</code>. Its <code>onUiExpected</code> method will be invoked if the annotated method is called on the wrong thread.</p>
+<p>Usage example:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBean</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="annotation">@SupposeUiThread</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">someMethodThatShouldBeCalledOnlyFromUiThread</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//if this method will be called from a background thread an exception will be thrown</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="BackgroundTasksAndActivityBinding">BackgroundTasksAndActivityBinding</h3><blockquote>
+<p>Since AndroidAnnotations 2.5</p>
+</blockquote>
+<p>Like an AsyncTask, <code>@Background</code> does not handle any lifecycle changes on your activities.</p>
+<p>For instance, if you call an <code>@Background</code> method and then the screen is rotated, then the <code>@Background</code> code will be executed, no matter what, on the instance it was called on.</p>
+<p>If <code>@Background</code> is placed on a method that belongs to the activity, and in turns call a <code>@UiThread</code> method, there is a risk that the <code>@UiThread</code> method will be called on the wrong activity instance, if a configuration change occurred.</p>
+<p>In Android, prior to Loaders, the usual way to handle that was to use an <code>AsyncTask</code>, keep references to those tasks in <code>onRetainNonConfigurationInstance()</code>, and rebind them to the new activity after a config change.</p>
+<p>AndroidAnnotations provides <code>@NonConfigurationInstance</code>, which can be combined with <code>@EBean</code>, <code>@Bean</code> and <code>@Background</code> to achieve the same effect.</p>
+<p>Here is an example, first of all the activity:</p>
+<figure class="highlight nimrod"><table><tr><td class="code"><pre><span class="line">@<span class="type">EActivity</span></span><br><span class="line">public class <span class="type">MyActivity</span> extends <span class="type">Activity</span> &#123;</span><br><span class="line"></span><br><span class="line">  /* <span class="type">Using</span> @<span class="type">NonConfigurationInstance</span> on a @<span class="type">Bean</span> will automatically </span><br><span class="line">   * update the context <span class="keyword">ref</span> on configuration changes,</span><br><span class="line">   * <span class="keyword">if</span> the bean <span class="keyword">is</span> <span class="keyword">not</span> a singleton</span><br><span class="line">   */</span><br><span class="line">  @<span class="type">NonConfigurationInstance</span></span><br><span class="line">  @<span class="type">Bean</span></span><br><span class="line">  <span class="type">MyBackgroundTask</span> task;</span><br><span class="line"></span><br><span class="line">  @<span class="type">Click</span></span><br><span class="line">  <span class="type">void</span> myButtonClicked() &#123;</span><br><span class="line">    task.doSomethingInBackground();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="type">void</span> showResult(<span class="type">MyResult</span> <span class="literal">result</span>) &#123;</span><br><span class="line">    // <span class="keyword">do</span> something <span class="keyword">with</span> <span class="literal">result</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Then the task itself:</p>
+<figure class="highlight nimrod"><table><tr><td class="code"><pre><span class="line">@<span class="type">EBean</span></span><br><span class="line">public class <span class="type">MyBackgroundTask</span> &#123;</span><br><span class="line"></span><br><span class="line">  @<span class="type">RootContext</span></span><br><span class="line">  <span class="type">MyActivity</span> activity;</span><br><span class="line"></span><br><span class="line">  @<span class="type">Background</span></span><br><span class="line">  <span class="type">void</span> doSomethingInBackground() &#123;</span><br><span class="line">    // <span class="keyword">do</span> something</span><br><span class="line">    <span class="type">MyResult</span> <span class="literal">result</span> = <span class="type">XXX</span>;</span><br><span class="line"></span><br><span class="line">    updateUI(<span class="literal">result</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // <span class="type">Notice</span> that we manipulate the activity <span class="keyword">ref</span> only <span class="keyword">from</span> the <span class="type">UI</span> thread</span><br><span class="line">  @<span class="type">UiThread</span></span><br><span class="line">  <span class="type">void</span> updateUI(<span class="type">MyResult</span> <span class="literal">result</span>) &#123;</span><br><span class="line">    activity.showResult(<span class="literal">result</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>We could probably provide even better solutions, but there are a lot of different use cases, and we need to think about them all. So right now, @Background has a very simple behavior and this is not going to change. We could, however, introduce new annotations with an advanced “thread + lifecycle” behavior.</p>
+</blockquote>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/24/AndroidAnnotations-六/" rel="next" title="AndroidAnnotations (六) - Resources">
+                <i class="fa fa-chevron-left"></i> AndroidAnnotations (六) - Resources
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/25/AndroidAnnotations-八/" rel="prev" title="AndroidAnnotations (八) - SharedPreferences">
+                AndroidAnnotations (八) - SharedPreferences <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2015/11/25/AndroidAnnotations-七/"
+     data-title="AndroidAnnotations (七) - Thread"
+     data-content=""
+     data-url="http://gcblog.cn/2015/11/25/AndroidAnnotations-七/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+        </div>
+
+        
+
+
+        
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2015/11/25/AndroidAnnotations-七/"
+           data-title="AndroidAnnotations (七) - Thread" data-url="http://gcblog.cn/2015/11/25/AndroidAnnotations-七/">
+      </div>
+    
+  </div>
+
+
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/default_avatar.jpg" alt="Gc" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Gc</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description"></p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">33</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#WorkingWithThreads"><span class="nav-number">1.</span> <span class="nav-text">WorkingWithThreads</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#@Background"><span class="nav-number">1.1.</span> <span class="nav-text">@Background</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Id"><span class="nav-number">1.1.1.</span> <span class="nav-text">Id</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Serial(串行)"><span class="nav-number">1.1.2.</span> <span class="nav-text">Serial(串行)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Delay"><span class="nav-number">1.1.3.</span> <span class="nav-text">Delay</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#@UiThread"><span class="nav-number">1.1.4.</span> <span class="nav-text">@UiThread</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Propagation"><span class="nav-number">1.1.5.</span> <span class="nav-text">Propagation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#@SupposeBackground"><span class="nav-number">1.2.</span> <span class="nav-text">@SupposeBackground</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#@SupposeUiThread"><span class="nav-number">1.3.</span> <span class="nav-text">@SupposeUiThread</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BackgroundTasksAndActivityBinding"><span class="nav-number">2.</span> <span class="nav-text">BackgroundTasksAndActivityBinding</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+<script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+<script type="text/javascript" src="/js/motion.js?v=0.4.5.2" id="motion.global"></script>
+
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  <script type="text/javascript" src="/js/bootstrap.js"></script>
+
+  
+  
+
+  
+  
+
+</body>
+</html>

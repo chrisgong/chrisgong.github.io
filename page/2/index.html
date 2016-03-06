@@ -56,7 +56,7 @@
 <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Gc's blog">
-<meta property="og:url" content="http://gcblog.cn/index.html">
+<meta property="og:url" content="http://gcblog.cn/page/2/index.html">
 <meta property="og:site_name" content="Gc's blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -233,8 +233,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/07/rxjava-scheduler/" itemprop="url">
-                  RxJava调度器Scheduler
+                <a class="post-title-link" href="/2015/11/29/Android-Framwork/" itemprop="url">
+                  Android简洁架构设计
                 </a>
               
             
@@ -244,448 +244,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-07T20:35:55+08:00" content="2016-01-07">
-              2016-01-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/RxJava/" itemprop="url" rel="index">
-                    <span itemprop="name">RxJava</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/07/rxjava-scheduler/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/07/rxjava-scheduler/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            如果你想给Observable操作符链添加多线程功能，你可以指定操作符（或者特定的Observable）在特定的调度器(Scheduler)上执行。
-某些ReactiveX的Observable操作符有一些变体，它们可以接受一个Scheduler参数。这个参数指定操作符将它们的部分或全部任务放在一个特定的调度器上执行。
-使用ObserveOn和SubscribeOn操作符，你可以让Observable在一个特定的调度器上执行，ObserveOn指示一个 Observable在一个特定的调度器上调用观察者的onNext, onError和onCompleted方法，SubscribeOn更进一步
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/07/rxjava-scheduler/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/03/rxjava/" itemprop="url">
-                  RxJava详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-03T10:03:41+08:00" content="2016-01-03">
-              2016-01-03
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/RxJava/" itemprop="url" rel="index">
-                    <span itemprop="name">RxJava</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/03/rxjava/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/03/rxjava/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            
-转载自：给 Android 开发者的 RxJava 详解
-
-概念：扩展的观察者模式RxJava 有四个基本概念：Observable (可观察者，即被观察者)、 Observer (观察者)、 subscribe (订阅)、事件。Observable 和 Observer 通过 subscribe() 方法实现订阅关系，从而 Observable 可以在需要的时候发出事件来通知 Observer。
-与传统观察者模式不同， RxJava 的事件回调方法除了普通事件 onNext() （相当于 onClick() / onEvent()）之外，还定义了两个特殊的事件：onCompleted() 
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/03/rxjava/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/02/vim/" itemprop="url">
-                  Vim命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2016-01-02T20:23:56+08:00" content="2016-01-02">
-              2016-01-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Vim/" itemprop="url" rel="index">
-                    <span itemprop="name">Vim</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/01/02/vim/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/02/vim/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            
-转载自：http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26
-
-第一级 – 存活i → Insert 模式，按 ESC 回到 Normal 模式.x → 删当前光标所在的一个字符。:wq → 存盘 + 退出 (:w 存盘, :q 退出)   （陈皓注：:w 后可以跟文件名）dd → 删除当前行，并把删除的行存到剪贴板里p → 粘贴剪贴板推荐:hjkl (强例推荐使用其移动光标，但不必需) →你也可以使用光标键 (←↓↑→). 注: j 就像下箭头。:help &lt;command&gt; → 显示相关命令的帮助。你也可以就
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/02/vim/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/28/BCD/" itemprop="url">
-                  BCD码
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-28T23:05:58+08:00" content="2015-12-28">
-              2015-12-28
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分类于
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/28/BCD/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/28/BCD/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            简介
-BCD码（Binary-Coded Decimal‎）亦称二进码十进数或二-十进制代码。用4位二进制数来表示1位十进制数中的0~9这10个数码。是一种二进制的数字编码形式，用二进制编码的十进制代码。BCD码这种编码形式利用了四个位元来储存一个十进制的数码，使二进制和十进制之间的转换得以快捷的进行。这种编码技巧最常用于会计系统的设计里，因为会计制度经常需要对很长的数字串作准确的计算。相对于一般的浮点式记数法，采用BCD码，既可保存数值的精确度，又可免去使电脑作浮点运算时所耗费的时间。此外，对于其他需要高精确度的计算，BCD编码亦很常用。
-
-BCD码可分为有权码和无权码两类：有权BCD码有8
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/28/BCD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/27/dex-method/" itemprop="url">
-                  Dex Method Size 计算脚本
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-27T22:26:49+08:00" content="2015-12-27">
-              2015-12-27
+            <time itemprop="dateCreated" datetime="2015-11-29T21:25:00+08:00" content="2015-11-29">
+              2015-11-29
             </time>
           </span>
 
@@ -710,8 +270,8 @@ BCD码可分为有权码和无权码两类：有权BCD码有8
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/27/dex-method/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/27/dex-method/" itemprop="commentsCount"></span>
+                <a href="/2015/11/29/Android-Framwork/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/29/Android-Framwork/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -733,14 +293,25 @@ BCD码可分为有权码和无权码两类：有权BCD码有8
         
           <span itemprop="articleBody">
             
-            The script：
-#!/bin/bashSDK_DIR=$1 # SDK dexdump路径APK_DIR=$2  # 需要计算的APK地址$1/./dexdump -f $2 | grep method_ids_size
-The results:
-➜  temp  ./dex_method.sh /Users/chrisgong/Library/Android/sdk/build-tools/23.0.2 ~/mac/git/cim-android/build/outputs/apk/cim-android-debug-v1.3.2.apkmethod_ids_size     : 4
+            
+英文出处：fernandocejas.com。
+
+开始我们知道编写高质量软件是既困难又复杂的：不仅是满足需求方面，还要健壮、可维护、可测试，并且足够灵活以适应增长和变化。这就是“代码整洁之道”的来源，并可以成为开发任何软件应用程序的良好方法。思想很简单：代码整洁之道代表构建系统的一组实践：
+
+独立于框架
+可测试性
+独立于UI
+独立于数据库
+独立于任何外部代理
+
+
+只限于使用图示中的4个圆圈并不是必须的，因为这只是语义描述，你还要考虑依赖规则（the Dependency Rule）：源码依赖只应该指向内圈，内圈不应该知道外圈的任何东西。
+下面的相关词汇可以帮助熟悉理解这个方法：
+实体（Ent
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/27/dex-method/#more" rel="contents">
+            <a class="btn" href="/2015/11/29/Android-Framwork/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -783,8 +354,8 @@ The results:
             
               
                 
-                <a class="post-title-link" href="/2015/12/19/logger/" itemprop="url">
-                  Logger - Android日志输出库
+                <a class="post-title-link" href="/2015/11/27/Shell-change-coding/" itemprop="url">
+                  Shell批量修改文件编码
                 </a>
               
             
@@ -794,8 +365,8 @@ The results:
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-19T12:40:51+08:00" content="2015-12-19">
-              2015-12-19
+            <time itemprop="dateCreated" datetime="2015-11-27T11:55:13+08:00" content="2015-11-27">
+              2015-11-27
             </time>
           </span>
 
@@ -804,8 +375,8 @@ The results:
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/Shell/" itemprop="url" rel="index">
+                    <span itemprop="name">Shell</span>
                   </a>
                 </span>
 
@@ -820,8 +391,8 @@ The results:
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/19/logger/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/19/logger/" itemprop="commentsCount"></span>
+                <a href="/2015/11/27/Shell-change-coding/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/27/Shell-change-coding/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -843,26 +414,18 @@ The results:
         
           <span itemprop="articleBody">
             
-            Logger
-原文地址： https://github.com/orhanobut/logger
+            
+第一个Shell脚本，很成功，值得记录一下。
 
-简介Simple, pretty and powerful logger for android
-Logger provides :
+inputDir=`ls ~/mac/temp/SDK\ v1.2.0.F源文件/`outDir=~/mac/temp/out/for file in $inputDirdo new_file="$outDir$file" iconv -f GBK -t UTF-8 $&#123;file&#125; &gt; $&#123;new_file&#125; done
 
-Thread information
-Class information
-Method information
-Pretty-print for json content
-Pretty-print for new line “\n”
-Clean output
-Jump to source
+改进版
 
-依赖gradle 导入
-repositories &#123;  // 
+#!/bin/bashDIR=$1 # 转换编码文件目录FT=$2  # 需要转换的文件类型（扩展名）SE=$3  # 原始编码DE=$4  # 目标编码for file
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/19/logger/#more" rel="contents">
+            <a class="btn" href="/2015/11/27/Shell-change-coding/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -905,8 +468,8 @@ repositories &#123;  //
             
               
                 
-                <a class="post-title-link" href="/2015/12/06/gradle-study-3/" itemprop="url">
-                  gradle学习笔记 构建脚本概要
+                <a class="post-title-link" href="/2015/11/25/AndroidAnnotations-九/" itemprop="url">
+                  AndroidAnnotations (十) - Trace
                 </a>
               
             
@@ -916,8 +479,8 @@ repositories &#123;  //
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-06T10:37:31+08:00" content="2015-12-06">
-              2015-12-06
+            <time itemprop="dateCreated" datetime="2015-11-25T09:52:48+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
@@ -926,8 +489,8 @@ repositories &#123;  //
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/gradle/" itemprop="url" rel="index">
-                    <span itemprop="name">gradle</span>
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
                   </a>
                 </span>
 
@@ -942,8 +505,8 @@ repositories &#123;  //
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/06/gradle-study-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/06/gradle-study-3/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/AndroidAnnotations-九/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/AndroidAnnotations-九/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -965,13 +528,15 @@ repositories &#123;  //
         
           <span itemprop="articleBody">
             
-            构建块一个gradle构建包含三个基本构建块：project、task、property。每个构建包含至少一个project，进而又包含一个或多个task。
-projecttask扩展属性project.ext.myProp = 'myValue'ext &#123;    someOtherProp = 123&#125;assert myProp == 'myValue'println project.someOtherPropext.someOtherProp = 567
-Gradle属性通过再gradle.properties文件中声明直接添加到项目中，这个文件中声明的属性对所有的项目
+            TraceThe @Trace annotation allows you to trace the execution of a method by writing log entries.
+The method must not be private.
+Usage examples:
+@Tracevoid doWork() &#123;    // ... Do Work ...&#125;@Traceboolean doMoreWork(String someString) &#123;    // ... Do more Work ...&#125;
+Will generate the
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/06/gradle-study-3/#more" rel="contents">
+            <a class="btn" href="/2015/11/25/AndroidAnnotations-九/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1014,8 +579,8 @@ Gradle属性通过再gradle.properties文件中声明直接添加到项目中，
             
               
                 
-                <a class="post-title-link" href="/2015/12/06/gradle-study-2/" itemprop="url">
-                  gradle学习笔记 - 命令行、守护进程、包装器
+                <a class="post-title-link" href="/2015/11/25/AndroidAnnotations-十/" itemprop="url">
+                  AndroidAnnotations (九) - Event Handling
                 </a>
               
             
@@ -1025,8 +590,8 @@ Gradle属性通过再gradle.properties文件中声明直接添加到项目中，
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-06T08:09:34+08:00" content="2015-12-06">
-              2015-12-06
+            <time itemprop="dateCreated" datetime="2015-11-25T09:26:39+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
@@ -1035,8 +600,8 @@ Gradle属性通过再gradle.properties文件中声明直接添加到项目中，
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/gradle/" itemprop="url" rel="index">
-                    <span itemprop="name">gradle</span>
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
                   </a>
                 </span>
 
@@ -1051,8 +616,8 @@ Gradle属性通过再gradle.properties文件中声明直接添加到项目中，
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/06/gradle-study-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/06/gradle-study-2/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/AndroidAnnotations-十/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/AndroidAnnotations-十/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1074,16 +639,12 @@ Gradle属性通过再gradle.properties文件中声明直接添加到项目中，
         
           <span itemprop="articleBody">
             
-            Gradle命令行使用列出所有可用的tasks
-gradle -q tasks
-需要更多task信息，使用–all选项
-gradle -q tasks -all
-gradle能够以驼峰式的缩写再命令行上运行任务(任务名字的缩写必须是唯一的)
-task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo(message: 'Repeat after me...')&#125;3.times &#123;    task "yayGradle$it" &lt;&lt; &#123;        p
+            ClickEvents@Click@Click(R.id.myButton)void myButtonWasClicked() &#123;    [...]&#125;@Clickvoid anotherButton() &#123;    [...]&#125;@Clickvoid yetAnotherButton(View clickedView) &#123;    [...]&#125;@Click(&#123;R.id.myButton, R.id.myOtherButton&#125;)void handlesTwoButtons() &#123;    [...]&#125;
+
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/06/gradle-study-2/#more" rel="contents">
+            <a class="btn" href="/2015/11/25/AndroidAnnotations-十/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1126,8 +687,8 @@ task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo
             
               
                 
-                <a class="post-title-link" href="/2015/12/02/gradle-study-1/" itemprop="url">
-                  gradle学习笔记 - Task
+                <a class="post-title-link" href="/2015/11/25/AndroidAnnotations-八/" itemprop="url">
+                  AndroidAnnotations (八) - SharedPreferences
                 </a>
               
             
@@ -1137,8 +698,8 @@ task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-02T21:23:36+08:00" content="2015-12-02">
-              2015-12-02
+            <time itemprop="dateCreated" datetime="2015-11-25T08:05:16+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
@@ -1147,8 +708,8 @@ task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/gradle/" itemprop="url" rel="index">
-                    <span itemprop="name">gradle</span>
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
                   </a>
                 </span>
 
@@ -1163,8 +724,8 @@ task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/02/gradle-study-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/02/gradle-study-1/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/AndroidAnnotations-八/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/AndroidAnnotations-八/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1186,20 +747,12 @@ task startSession &lt;&lt; &#123;    chant()&#125;def chant() &#123;    ant.echo
         
           <span itemprop="articleBody">
             
-            构建脚本task：
-task hello &#123;    doLast &#123;        println 'Hello world!'    &#125;&#125;
-闭包写法：
-task hello &lt;&lt; &#123;    println 'Hello world!'&#125;
-
-构建脚本：
-
-使用Groovy语言
-
-task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original: " + someString     println "Upper case: " 
+            Defining the preferencesFirst, you should create an interface annotated with @SharedPref to define the SharedPreferences :
+@SharedPrefpublic interface MyPrefs &#123;        // The field name will have default value "John"    @DefaultString("John")    String name();        // The field age will have 
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/02/gradle-study-1/#more" rel="contents">
+            <a class="btn" href="/2015/11/25/AndroidAnnotations-八/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1242,8 +795,8 @@ task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original
             
               
                 
-                <a class="post-title-link" href="/2015/12/02/first-gradle/" itemprop="url">
-                  gradle配置开发流程
+                <a class="post-title-link" href="/2015/11/25/AndroidAnnotations-七/" itemprop="url">
+                  AndroidAnnotations (七) - Thread
                 </a>
               
             
@@ -1253,8 +806,8 @@ task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-12-02T16:59:50+08:00" content="2015-12-02">
-              2015-12-02
+            <time itemprop="dateCreated" datetime="2015-11-25T07:39:50+08:00" content="2015-11-25">
+              2015-11-25
             </time>
           </span>
 
@@ -1263,8 +816,8 @@ task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original
               &nbsp; | &nbsp; 分类于
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/gradle/" itemprop="url" rel="index">
-                    <span itemprop="name">gradle</span>
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
                   </a>
                 </span>
 
@@ -1279,8 +832,8 @@ task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/12/02/first-gradle/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/02/first-gradle/" itemprop="commentsCount"></span>
+                <a href="/2015/11/25/AndroidAnnotations-七/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/25/AndroidAnnotations-七/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1302,18 +855,464 @@ task upper &lt;&lt; &#123;    String someString = 'mY_nAmE'    println "Original
         
           <span itemprop="articleBody">
             
-            最近开始学习gradle的使用。今天跑起了第一个task。记录一下过程。
-Step 1下载地址:
-Complete distribution (binaries, sources and offline documentation)
-Binary only distribution (no documentation or source code)
-Gradle source code (just the Gradle source code; not a usable Gradle installation)
-文档地址
-Step 2下载完解压缩，配置gralde命令路径
-vim ~/.bas
+            WorkingWithThreads@BackgroundThe @Background annotation indicates that a method will run in a thread other than the ui thread.
+Usage example:
+void myMethod() &#123;    someBackgroundWork("hello", 42);&#125;@Backgroundvoid someBackgroundWork(String aParam, long anotherParam) &#123;    [...]&#125;
+
+Th
             ...
           </span>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/02/first-gradle/#more" rel="contents">
+            <a class="btn" href="/2015/11/25/AndroidAnnotations-七/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/AndroidAnnotations-六/" itemprop="url">
+                  AndroidAnnotations (六) - Resources
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-24T22:43:55+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/24/AndroidAnnotations-六/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/24/AndroidAnnotations-六/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            
+对应Android本身各种资源标签，没什么探究的了，实在记不住用得时候查一下就好了。
+
+All @XXXRes annotations indicate that an activity field should be injected with the corresponding Android resource from your res folder. The resource id can be set in the annotation parameter, ie @StringRes(R.string.hello).
+@StringRes
+@EActivitypublic cla
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/24/AndroidAnnotations-六/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/AndroidAnnotations-五/" itemprop="url">
+                  AndroidAnnotations (五) - CustomClasses/CustomViews
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-24T16:59:00+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/24/AndroidAnnotations-五/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/24/AndroidAnnotations-五/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            Custom Classes定义注解classes@EBeanpublic class MyClass &#123;&#125;
+
+@EBean类只能有一个构造函数，并且这个构造函数必须没有参数,AndroidAnnotations 2.7以后它可以有一个Context参数。
+
+使用注解classes@EBeanpublic class MyOtherClass &#123;	@Bean	MyClass myClass;&#125;
+@EActivitypublic class MyActivity extends Activity &#123;	@Bean	MyOtherClass myOt
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/24/AndroidAnnotations-五/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/AndroidAnnotations-四/" itemprop="url">
+                  AndroidAnnotations (四) - Broadcastreceivers
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-24T15:32:02+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/24/AndroidAnnotations-四/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/24/AndroidAnnotations-四/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            声明Broadcastreceivers注解@EReceiverpublic class MyReceiver extends BroadcastReceiver &#123;&#125;
+@ReceiverAction
+Since AndroidAnnotations 3.2
+
+默认Recevier用法里，只能通过onReceive()来分发不同的action。
+在Annotations可以通过@ReceiverAction注解来自定义接收方法
+根据方法参数分类：
+
+Intent
+
+@EReceiverpublic class MyIntentService extends Broadcas
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/24/AndroidAnnotations-四/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/11/24/AndroidAnnotations-三/" itemprop="url">
+                  AndroidAnnotations (三) - Services
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-24T14:49:59+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/AndroidAnnotations/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidAnnotations</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/11/24/AndroidAnnotations-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/24/AndroidAnnotations-三/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            Service声明EService注解
+@EServicepublic class MyService extends IntentService &#123;    /**     * Creates an IntentService.  Invoked by your subclass's constructor.     */    public MyService() &#123;        super(MyService.class.getSimpleName());    &#125;    @Override    protected void onHandleIntent(
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/24/AndroidAnnotations-三/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1340,7 +1339,7 @@ vim ~/.bas
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
