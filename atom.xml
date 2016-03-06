@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gcblog.cn/"/>
-  <updated>2016-03-06T07:45:43.000Z</updated>
+  <updated>2016-03-06T05:50:10.000Z</updated>
   <id>http://gcblog.cn/</id>
   
   <author>
@@ -14,22 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://gcblog.cn/2016/03/06/test/"/>
-    <id>http://gcblog.cn/2016/03/06/test/</id>
-    <published>2016-03-06T07:45:43.000Z</published>
-    <updated>2016-03-06T07:45:43.000Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>RxJava调度器Scheduler</title>
@@ -1498,6 +1482,54 @@
     <summary type="html">
     
       &lt;h3 id=&quot;声明Broadcastreceivers注解&quot;&gt;&lt;a href=&quot;#声明Broadcastreceivers注解&quot; class=&quot;headerlink&quot; title=&quot;声明Broadcastreceivers注解&quot;&gt;&lt;/a&gt;声明Broadcastreceivers
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://gcblog.cn/tags/Android/"/>
+    
+      <category term="AndroidAnnotations" scheme="http://gcblog.cn/tags/AndroidAnnotations/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AndroidAnnotations (三) - Services</title>
+    <link href="http://gcblog.cn/2015/11/24/AndroidAnnotations-%E4%B8%89-Services/"/>
+    <id>http://gcblog.cn/2015/11/24/AndroidAnnotations-三-Services/</id>
+    <published>2015-11-24T07:25:04.000Z</published>
+    <updated>2016-03-06T05:38:40.000Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;Service&quot;&gt;&lt;a href=&quot;#Service&quot; class=&quot;headerlink&quot; title=&quot;Service&quot;&gt;&lt;/a&gt;Service&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;声明EService注解&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight scala&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;annotation&quot;&gt;@EService&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyService&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;IntentService&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;/&lt;em&gt;*&lt;/em&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      Creates an IntentService.  Invoked by your subclass’s constructor.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public &lt;span class=&quot;type&quot;&gt;MyService&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;MyService&lt;/span&gt;.&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;.getSimpleName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; void onHandleIntent(&lt;span class=&quot;type&quot;&gt;Intent&lt;/span&gt; intent) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        showToast();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@UiThread&lt;/span&gt; &lt;span class=&quot;comment&quot;&gt;//在UI主线程运行&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void showToast() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;type&quot;&gt;Toast&lt;/span&gt;.makeText(getApplicationContext(), &lt;span class=&quot;string&quot;&gt;“Hello World!”&lt;/span&gt;, &lt;span class=&quot;type&quot;&gt;Toast&lt;/span&gt;.&lt;span class=&quot;type&quot;&gt;LENGTH_LONG&lt;/span&gt;).show();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;启动Service：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;MyService_&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.intent&lt;/span&gt;(&lt;span class=&quot;tag&quot;&gt;getApplication&lt;/span&gt;())&lt;span class=&quot;class&quot;&gt;.start&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;停止Service：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;MyService_&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.intent&lt;/span&gt;(&lt;span class=&quot;tag&quot;&gt;getApplication&lt;/span&gt;())&lt;span class=&quot;class&quot;&gt;.stop&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;IntentServices：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;创建IntentSerive&lt;/p&gt;
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;annotation&quot;&gt;@EIntentService&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyIntentService&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;IntentService&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyIntentService&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;“MyIntentService”&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@ServiceAction&lt;/span&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;mySimpleAction&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// …&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@ServiceAction&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;myAction&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(String param)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// …&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@Override&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;onHandleIntent&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(Intent intent)&lt;/span&gt; &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// Do nothing here&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;带自定义方法启动IntentService&lt;/p&gt;
+&lt;figure class=&quot;highlight 1c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MyIntentService_.intent(getApplication()) &lt;span class=&quot;comment&quot;&gt;//&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .myAction(&lt;span class=&quot;string&quot;&gt;“test”&lt;/span&gt;) &lt;span class=&quot;comment&quot;&gt;//对应 void myAction(String param)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    .start();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;如果你调用多个Action,只有最后的会被执行。&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AndroidAnnotations 3.3版本后新增功能&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Note： 由于IntentService # onHandleIntent是抽象方法, 所以必须添加一个空的实现. 为了方便起见,可以继承AbstractIntentService类，代码里就可以忽略此方法.&lt;/p&gt;
+&lt;figure class=&quot;highlight scala&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;annotation&quot;&gt;@EService&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public &lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;MyService&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;AbstractIntentService&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;/&lt;em&gt;*&lt;/em&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      Creates an IntentService.  Invoked by your subclass’s constructor.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    public &lt;span class=&quot;type&quot;&gt;MyService&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;super&lt;/span&gt;(&lt;span class=&quot;type&quot;&gt;MyService&lt;/span&gt;.&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt;.getSimpleName());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;annotation&quot;&gt;@UiThread&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    void showToast() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;type&quot;&gt;Toast&lt;/span&gt;.makeText(getApplicationContext(), &lt;span class=&quot;string&quot;&gt;“Hello World!”&lt;/span&gt;, &lt;span class=&quot;type&quot;&gt;Toast&lt;/span&gt;.&lt;span class=&quot;type&quot;&gt;LENGTH_LONG&lt;/span&gt;).show();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Service&quot;&gt;&lt;a href=&quot;#Service&quot; class=&quot;headerlink&quot; title=&quot;Service&quot;&gt;&lt;/a&gt;Service&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;声明EService注解&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;h
     
     </summary>
     

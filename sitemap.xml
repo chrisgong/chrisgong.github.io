@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://gcblog.cn/2016/03/06/test/</loc>
+    <loc>http://gcblog.cn/categories/index.html</loc>
     
-    <lastmod>2016-03-06T07:45:43.000Z</lastmod>
+    <lastmod>2016-03-06T06:41:36.000Z</lastmod>
     
   </url>
   
@@ -135,14 +135,14 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B9%9D-Event-Handling/</loc>
+    <loc>http://gcblog.cn/2016/01/04/RxJava%E8%AF%A6%E8%A7%A3/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2016/01/04/RxJava%E8%AF%A6%E8%A7%A3/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B9%9D-Event-Handling/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
