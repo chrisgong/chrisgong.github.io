@@ -1,0 +1,764 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,AndroidAnnotations," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="ClickEvents@Click@Click(R.id.myButton)void myButtonWasClicked() &amp;#123;    […]&amp;#125;@Clickvoid anotherButton() &amp;#123;    […]&amp;#125;@Clickvoid yetAnotherButton(View clickedView) &amp;#123;    […]&amp;#125;@Click">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations (九) - Event Handling">
+<meta property="og:url" content="http://gcblog.cn/2015/11/25/AndroidAnnotations-九-Event-Handling/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="ClickEvents@Click@Click(R.id.myButton)void myButtonWasClicked() &amp;#123;    […]&amp;#125;@Clickvoid anotherButton() &amp;#123;    […]&amp;#125;@Clickvoid yetAnotherButton(View clickedView) &amp;#123;    […]&amp;#125;@Click">
+<meta property="og:updated_time" content="2016-03-06T05:38:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations (九) - Event Handling">
+<meta name="twitter:description" content="ClickEvents@Click@Click(R.id.myButton)void myButtonWasClicked() &amp;#123;    […]&amp;#125;@Clickvoid anotherButton() &amp;#123;    […]&amp;#125;@Clickvoid yetAnotherButton(View clickedView) &amp;#123;    […]&amp;#125;@Click">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AndroidAnnotations (九) - Event Handling | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations (九) - Event Handling
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-25T09:54:42+08:00" content="2015-11-25">
+              2015-11-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="ClickEvents"><a href="#ClickEvents" class="headerlink" title="ClickEvents"></a>ClickEvents</h3><h4 id="Click"><a href="#Click" class="headerlink" title="@Click"></a>@Click</h4><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@Click</span>(R.id.myButton)</span><br><span class="line">void <span class="function">myButtonWasClicked</span>() &#123;</span><br><span class="line">    <span class="attr_selector">[…]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@Click</span></span><br><span class="line">void <span class="function">anotherButton</span>() &#123;</span><br><span class="line">    <span class="attr_selector">[…]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@Click</span></span><br><span class="line">void <span class="function">yetAnotherButton</span>(View clickedView) &#123;</span><br><span class="line">    <span class="attr_selector">[…]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@Click</span>(&#123;R.id.myButton, R.id.myOtherButton&#125;)</span><br><span class="line">void <span class="function">handlesTwoButtons</span>() &#123;</span><br><span class="line">    <span class="attr_selector">[…]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Other-events"><a href="#Other-events" class="headerlink" title="Other events"></a>Other events</h3><p>Currently, AndroidAnnotations supports the following <a href="http://developer.android.com/guide/topics/ui/ui-events.html#EventListeners" target="_blank" rel="external">events</a> on views:</p>
+<p><a href="http://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank" rel="external">Clicks</a> with @Click<br><a href="http://developer.android.com/reference/android/view/View.OnLongClickListener.html" target="_blank" rel="external">Long clicks</a> with @LongClick<br><a href="http://developer.android.com/reference/android/view/View.OnTouchListener.html" target="_blank" rel="external">Touches</a> with @Touch</p>
+<h3 id="AdapterViewEvents"><a href="#AdapterViewEvents" class="headerlink" title="AdapterViewEvents"></a>AdapterViewEvents</h3><p>You can bind methods to handle events on items in an AdapterView:</p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener.html" target="_blank" rel="external">Item clicks</a> with @ItemClick</li>
+<li><a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemLongClickListener.html" target="_blank" rel="external">Long item clicks</a> with @ItemLongClick</li>
+<li><a href="http://developer.android.com/reference/android/widget/AdapterView.OnItemSelectedListener.html" target="_blank" rel="external">Item selection</a> with @ItemSelect</li>
+</ul>
+<p>The annotation value should be one or several of R.id.<em> fields. If not set, the method name will be used as the R.id.</em> field name.</p>
+<p>Methods annotated with @ItemClick or @ItemLongClick must have one parameter. This parameter can be of any type, it’s the object retrieved when calling adapter.getItem(position).</p>
+<p>Methods annotated with @ItemSelect may have one or two parameters. The first parameter must be a boolean, and the second is the object from the adapter, at the selected position.</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EActivity</span>(R.layout.my_list)</span><br><span class="line">public class MyListActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemClick</span></span><br><span class="line">    public void <span class="function">myListItemClicked</span>(MyItem clickedItem) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemLongClick</span></span><br><span class="line">    public void <span class="function">myListItemLongClicked</span>(MyItem clickedItem) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemSelect</span></span><br><span class="line">    public void <span class="function">myListItemSelected</span>(boolean selected, MyItem selectedItem) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>&gt; Since AndroidAnnotations 2.4<br>&gt;<br>&gt; For <code>@ItemClick</code>, <code>@ItemLongClick</code> and <code>@ItemSelect</code>, if the parameter is of type int, then the position is given instead of the object coming from the adapter.<br><figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EActivity</span>(R.layout.my_list)</span><br><span class="line">public class MyListActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// …</span></span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemClick</span></span><br><span class="line">    public void <span class="function">myListItemClicked</span>(int position) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemLongClick</span></span><br><span class="line">    public void <span class="function">myListItemLongClicked</span>(int position) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ItemSelect</span></span><br><span class="line">    public void <span class="function">myListItemSelected</span>(boolean selected, int position) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="TextChangeEvents"><a href="#TextChangeEvents" class="headerlink" title="TextChangeEvents"></a>TextChangeEvents</h3><h4 id="TextChange"><a href="#TextChange" class="headerlink" title="@TextChange"></a>@TextChange</h4><p>This annotation is intended to be used on methods to receive events defined by <code>android.text.TextWatcher.onTextChanged(CharSequence s, int start, int before, int count)</code>when the text is changed on the targeted TextView or subclass of TextView. The annotation value should be one or several R.id.<em> fields that refers to TextView or subclasses of TextView. If not set, the <a href="https://github.com/excilys/androidannotations/wiki/InferringIDFromMethodName" target="_blank" rel="external">method name</a> will be used as the R.id.</em> field name. The method may have multiple parameter:</p>
+<ul>
+<li>A <code>android.widget.TextView</code> parameter to know which view has received this event</li>
+<li>A <code>java.lang.CharSequence</code> parameter to get the modified text.</li>
+<li>An int parameter named start to get the start position of the modified text.</li>
+<li>An int parameter named before to know the text length before modification.</li>
+<li>An int parameter named count to know the number of modified characters.</li>
+</ul>
+<p>Some usage examples of <code>@BeforeTextChange</code> annotation:</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@TextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">onTextChangesOnHelloTextView</span>(CharSequence text, TextView hello, int before, int start, int count) &#123;</span><br><span class="line">   <span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@TextChange</span></span><br><span class="line">void <span class="function">helloTextViewTextChanged</span>(TextView hello) &#123;</span><br><span class="line">   <span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@TextChange</span>(&#123;R.id.editText, R.id.helloTextView&#125;)</span><br><span class="line">void <span class="function">onTextChangesOnSomeTextViews</span>(TextView tv, CharSequence text) &#123;</span><br><span class="line">   <span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@TextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">onTextChangesOnHelloTextView</span>() &#123;</span><br><span class="line">   <span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="BeforeTextChange"><a href="#BeforeTextChange" class="headerlink" title="@BeforeTextChange"></a>@BeforeTextChange</h4><p>This annotation is intended to be used on methods to receive events defined by android.text.TextWatcher.beforeTextChanged(CharSequence s, int start, int count, int after) before the text is changed on the targeted TextView or subclass of TextView. The annotation value should be one or several R.id.<em> fields that refers to TextView or subclasses of TextView. If not set, the <a href="https://github.com/excilys/androidannotations/wiki/InferringIDFromMethodName" target="_blank" rel="external">method name</a> will be used as the R.id.</em> field name. The method may have multiple parameters:</p>
+<ul>
+<li>A <code>android.widget.TextView</code> parameter to know which view has targeted this event</li>
+<li>An <code>java.lang.CharSequence</code> parameter to get the text before modification.</li>
+<li>An int parameter named start to get the start position of the modified text.</li>
+<li>An int parameter named count to know the number of modified characters.</li>
+<li>An int parameter named after to know the text length after the text modification.</li>
+</ul>
+<p>Some usage examples of <code>@BeforeTextChange</code> annotation:</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@BeforeTextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">beforeTextChangedOnHelloTextView</span>(TextView hello, CharSequence text, int start, int count, int after) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@BeforeTextChange</span></span><br><span class="line">void <span class="function">helloTextViewBeforeTextChanged</span>(TextView hello) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@BeforeTextChange</span>(&#123;R.id.editText, R.id.helloTextView&#125;)</span><br><span class="line">void <span class="function">beforeTextChangedOnSomeTextViews</span>(TextView tv, CharSequence text) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@BeforeTextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">beforeTextChangedOnHelloTextView</span>() &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="AfterTextChange"><a href="#AfterTextChange" class="headerlink" title="@AfterTextChange"></a>@AfterTextChange</h4><p>This annotation is intended to be used on methods to receive events defined by <code>android.text.TextWatcher.afterTextChanged(Editable s)</code> after the text is changed on the targeted TextView or subclass of TextView. The annotation value should be one or several <code>R.id.*</code> fields that refers to TextView or subclasses of TextView. If not set, the <a href="https://github.com/excilys/androidannotations/wiki/InferringIDFromMethodName" target="_blank" rel="external">method name</a> will be used as the <code>R.id.*</code> field name. The method may have multiple parameter:</p>
+<ul>
+<li>A <code>android.widget.TextView</code> parameter to know which view has targeted this event</li>
+<li><code>An android.text.Editable</code> to make changes on modified text.</li>
+</ul>
+<p>Some usage examples of <code>@BeforeTextChange</code> annotation :</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@AfterTextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">afterTextChangedOnHelloTextView</span>(Editable text, TextView hello) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@AfterTextChange</span></span><br><span class="line">void <span class="function">helloTextViewAfterTextChanged</span>(TextView hello) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@AfterTextChange</span>(&#123;R.id.editText, R.id.helloTextView&#125;)</span><br><span class="line">void <span class="function">afterTextChangedOnSomeTextViews</span>(TextView tv, Editable text) &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">@AfterTextChange</span>(R.id.helloTextView)</span><br><span class="line">void <span class="function">afterTextChangedOnHelloTextView</span>() &#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="EditorAction"><a href="#EditorAction" class="headerlink" title="@EditorAction"></a>@EditorAction</h4><p>This annotation is intended to be used on methods to receive events defined by <code>android.widget.TextView.OnEditorActionListener#onEditorAction(android.widget.TextView, int, android.view.KeyEvent)</code> when an action is performed on the editor.</p>
+<p>The annotation value should be one or several R.id.<em> fields that refers to TextView or subclasses of <code>TextView</code>. If not set, the <a href="https://github.com/excilys/androidannotations/wiki/InferringIDFromMethodName" target="_blank" rel="external">method name</a> will be used as the R.id.</em> field name.</p>
+<p>The method may have multiple parameters:</p>
+<ul>
+<li>A <code>android.widget.TextView</code> parameter to know which view has targeted this event.</li>
+<li>An <code>int</code> parameter to get the <code>actionId</code>.</li>
+<li>A <code>android.view.KeyEvent</code> parameter.</li>
+</ul>
+<p>The return type of the method can be either <code>void</code> or <code>boolean</code>. In case of <code>boolean</code>, the value returned from the annotated method will be returned in the generated listener method (indicating event consumption). If the annotated method is <code>void</code>, always <code>true</code> will be returned in the listener method (so the event is consumed).</p>
+<p>Some usage examples of <code>@EditorAction</code> annotation:</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EditorAction</span>(R.id.helloTextView)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onEditorActionsOnHelloTextView</span><span class="params">(TextView hello, <span class="keyword">int</span> actionId, KeyEvent keyEvent)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@EditorAction</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">helloTextViewEditorAction</span><span class="params">(TextView hello)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@EditorAction</span>(&#123;R.id.editText, R.id.helloTextView&#125;)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onEditorActionsOnSomeTextViews</span><span class="params">(TextView tv, <span class="keyword">int</span> actionId)</span> </span>&#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="annotation">@EditorAction</span>(R.id.helloTextView)</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">onEditorActionsOnHelloTextView</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="annotation">@EditorAction</span>(R.id.helloTextView)</span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">onEditorActionsOnHelloTextView</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">// Something Here</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Handling-options-menu"><a href="#Handling-options-menu" class="headerlink" title="Handling options menu"></a><a href="https://github.com/excilys/androidannotations/wiki/Handling%20Options%20Menu" target="_blank" rel="external">Handling options menu</a></h3><h3 id="KeyEvents"><a href="#KeyEvents" class="headerlink" title="KeyEvents"></a><a href="https://github.com/excilys/androidannotations/wiki/KeyEvents" target="_blank" rel="external">KeyEvents</a></h3><h3 id="SeekBarEvents"><a href="#SeekBarEvents" class="headerlink" title="SeekBarEvents"></a><a href="https://github.com/excilys/androidannotations/wiki/SeekBarEvents" target="_blank" rel="external">SeekBarEvents</a></h3>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/AndroidAnnotations/" rel="tag">#AndroidAnnotations</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/25/AndroidAnnotations-十-Trace/" rel="next" title="AndroidAnnotations (十) - Trace">
+                <i class="fa fa-chevron-left"></i> AndroidAnnotations (十) - Trace
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/27/Shell批量修改文件编码/" rel="prev" title="Shell批量修改文件编码">
+                Shell批量修改文件编码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Gc's blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ClickEvents"><span class="nav-number">1.</span> <span class="nav-text">ClickEvents</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Click"><span class="nav-number">1.1.</span> <span class="nav-text">@Click</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-events"><span class="nav-number">2.</span> <span class="nav-text">Other events</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AdapterViewEvents"><span class="nav-number">3.</span> <span class="nav-text">AdapterViewEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TextChangeEvents"><span class="nav-number">4.</span> <span class="nav-text">TextChangeEvents</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TextChange"><span class="nav-number">4.1.</span> <span class="nav-text">@TextChange</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeforeTextChange"><span class="nav-number">4.2.</span> <span class="nav-text">@BeforeTextChange</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AfterTextChange"><span class="nav-number">4.3.</span> <span class="nav-text">@AfterTextChange</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EditorAction"><span class="nav-number">4.4.</span> <span class="nav-text">@EditorAction</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-options-menu"><span class="nav-number">5.</span> <span class="nav-text">Handling options menu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KeyEvents"><span class="nav-number">6.</span> <span class="nav-text">KeyEvents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SeekBarEvents"><span class="nav-number">7.</span> <span class="nav-text">SeekBarEvents</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>

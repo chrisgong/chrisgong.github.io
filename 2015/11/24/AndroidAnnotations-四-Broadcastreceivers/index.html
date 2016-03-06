@@ -1,0 +1,776 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,AndroidAnnotations," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="声明Broadcastreceivers注解@EReceiverpublic class MyReceiver extends BroadcastReceiver &amp;#123;&amp;#125;
+
+@ReceiverAction
+Since AndroidAnnotations 3.2
+
+默认Recevier用法里，只能通过onReceive()来分发不同的action。
+在Annotations可以通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations (四) - Broadcastreceivers">
+<meta property="og:url" content="http://gcblog.cn/2015/11/24/AndroidAnnotations-四-Broadcastreceivers/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="声明Broadcastreceivers注解@EReceiverpublic class MyReceiver extends BroadcastReceiver &amp;#123;&amp;#125;
+
+@ReceiverAction
+Since AndroidAnnotations 3.2
+
+默认Recevier用法里，只能通过onReceive()来分发不同的action。
+在Annotations可以通">
+<meta property="og:updated_time" content="2016-03-06T05:38:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations (四) - Broadcastreceivers">
+<meta name="twitter:description" content="声明Broadcastreceivers注解@EReceiverpublic class MyReceiver extends BroadcastReceiver &amp;#123;&amp;#125;
+
+@ReceiverAction
+Since AndroidAnnotations 3.2
+
+默认Recevier用法里，只能通过onReceive()来分发不同的action。
+在Annotations可以通">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AndroidAnnotations (四) - Broadcastreceivers | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations (四) - Broadcastreceivers
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-24T16:56:15+08:00" content="2015-11-24">
+              2015-11-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="声明Broadcastreceivers注解"><a href="#声明Broadcastreceivers注解" class="headerlink" title="声明Broadcastreceivers注解"></a>声明Broadcastreceivers注解</h3><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EReceiver</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyReceiver</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">BroadcastReceiver</span> &#123;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ReceiverAction"><a href="#ReceiverAction" class="headerlink" title="@ReceiverAction"></a>@ReceiverAction</h3><blockquote>
+<p>Since AndroidAnnotations 3.2</p>
+</blockquote>
+<p>默认Recevier用法里，只能通过onReceive()来分发不同的action。</p>
+<p>在Annotations可以通过@ReceiverAction注解来自定义接收方法</p>
+<p>根据方法参数分类：</p>
+<ul>
+<li><p>Intent</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EReceiver</span></span><br><span class="line">public class MyIntentService extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ReceiverAction</span>(<span class="string">“BROADCAST_ACTION_NAME”</span>)</span><br><span class="line">    void <span class="function">mySimpleAction</span>(Intent intent) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//多个行为</span></span><br><span class="line">    <span class="variable">@ReceiverAction</span>(&#123;<span class="string">“MULTI_BROADCAST_ACTION1”</span>, <span class="string">“MULTI_BROADCAST_ACTION2”</span>&#125;)</span><br><span class="line">    void <span class="function">multiAction</span>(Intent intent) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="variable">@Override</span></span><br><span class="line">    public void <span class="function">onReceive</span>(Context context, Intent intent) &#123;</span><br><span class="line">        <span class="comment">// empty, will be overridden in generated subclass</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>任何android.os.Parcelable 或者 java.io.Serializable 参数.</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EReceiver</span></span><br><span class="line">public class MyIntentService extends BroadcastReceiver &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ReceiverAction</span></span><br><span class="line">    void <span class="function">myAction</span>(<span class="variable">@ReceiverAction</span>.Extra String valueString, Context context) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@ReceiverAction</span></span><br><span class="line">    void <span class="function">anotherAction</span>(<span class="variable">@ReceiverAction</span>.<span class="function">Extra</span>(<span class="string">“specialExtraName”</span>) String valueString, <span class="variable">@ReceiverAction</span>.Extra long valueLong) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Override</span></span><br><span class="line">    public void <span class="function">onReceive</span>(Context context, Intent intent) &#123;</span><br><span class="line">        <span class="comment">// empty, will be overridden in generated subclass</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>Since AndroidAnnotations 3.3</p>
+</blockquote>
+<p><strong><em>Note:</em></strong> 由于BroadcastReceiver # onReceive 是抽象方法, 所以必须添加一个空的实现. 为了方便起见,可以继承AbstractBroadcastReceiver类，代码里就可以忽略此方法.</p>
+<h3 id="Data-Schemes"><a href="#Data-Schemes" class="headerlink" title="Data Schemes"></a>Data Schemes</h3><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EReceiver</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyIntentService</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">BroadcastReceiver</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@ReceiverAction</span>(value = <span class="type">Intent</span>.<span class="type">ACTION_VIEW</span>,dataSchemes = <span class="string">“http”</span>)</span><br><span class="line">    <span class="keyword">protected</span> void onHttp() &#123;</span><br><span class="line">        <span class="comment">// Will be called when an App wants to open a http website but not for https.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@ReceiverAction</span>(value = <span class="type">Intent</span>.<span class="type">ACTION_VIEW</span>, dataSchemes = &#123;<span class="string">“http”</span>, <span class="string">“https”</span>&#125;)</span><br><span class="line">    <span class="keyword">protected</span> void onHttps() &#123;</span><br><span class="line">        <span class="comment">// Will be called when an App wants to open a http or https website.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Receiver"><a href="#Receiver" class="headerlink" title="@Receiver"></a>@Receiver</h3><p>注册广播：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EActivity</span></span><br><span class="line">public class MyActivity extends Activity &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//监听的Action</span></span><br><span class="line">    <span class="variable">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_1”</span>)</span><br><span class="line">    protected void <span class="function">onAction1</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//Action: myAction 未指定情况下Action及方法名称</span></span><br><span class="line">    <span class="variable">@Receiver</span></span><br><span class="line">    void <span class="function">myAction</span>(<span class="variable">@Receiver</span>.Extra String valueString, Context context) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span></span><br><span class="line">    void <span class="function">anotherAction</span>(<span class="variable">@Receiver</span>.<span class="function">Extra</span>(<span class="string">“specialExtraName”</span>) String valueString, <span class="variable">@Receiver</span>.Extra long valueLong) &#123;</span><br><span class="line">        <span class="comment">// …</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="variable">@Receiver</span>(value = Intent.ACTION_VIEW,dataSchemes = <span class="string">“http”</span>)</span><br><span class="line">    protected void <span class="function">onHttp</span>() &#123;</span><br><span class="line">        <span class="comment">// Will be called when an App wants to open a http website but not for https.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span>(value = Intent.ACTION_VIEW, dataSchemes = &#123;<span class="string">“http”</span>, <span class="string">“https”</span>&#125;)</span><br><span class="line">    protected void <span class="function">onHttps</span>() &#123;</span><br><span class="line">        <span class="comment">// Will be called when an App wants to open a http or https website.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Registration"><a href="#Registration" class="headerlink" title="Registration"></a>Registration</h3><p>在Activity, Fragment, Service的生命周期里指定BroadcastReceiver的registers 和 unregisters</p>
+<p>通过registerAt来指定在哪个生命周期方法里注册和销毁，默认值是OnCreateOnDestroy</p>
+<table><br><thead><br><tr><br><th></th><br><th>Register</th><br><th>Unregister</th><br><th>Activity</th><br><th>Fragment</th><br><th>Service</th><br></tr><br></thead><br><tbody><br><tr><br><td>OnCreateOnDestroy</td><br><td>onCreate</td><br><td>onDestroy</td><br><td>▲</td><br><td>▲</td><br><td>▲</td><br></tr><br><tr><br><td>OnStartOnStop</td><br><td>onStart</td><br><td>onStop</td><br><td>▲</td><br><td>▲</td><br><td></td><br></tr><br><tr><br><td>OnResumeOnPause</td><br><td>onResume</td><br><td>onPause</td><br><td>▲</td><br><td>▲</td><br><td></td><br></tr><br><tr><br><td>OnAttachOnDetach</td><br><td>onAttach</td><br><td>onDetach</td><br><td></td><br><td>▲</td><br></tr><br></tbody><br></table>
+
+<p>example:</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EFragment</span></span><br><span class="line">public class MyFragment extends Fragment &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_1”</span>)</span><br><span class="line">    protected void <span class="function">onAction1RegisteredOnCreateOnDestroy</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_2”</span>, registerAt = Receiver.RegisterAt.OnAttachOnDetach)</span><br><span class="line">    protected void <span class="function">onAction2RegisteredOnAttachOnDetach</span>(Intent intent) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_3”</span>, registerAt = Receiver.RegisterAt.OnStartOnStop)</span><br><span class="line">    protected void <span class="function">action3RegisteredOnStartOnStop</span>() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_4”</span>, registerAt = Receiver.RegisterAt.OnResumeOnPause)</span><br><span class="line">    protected void <span class="function">action4RegisteredOnResumeOnPause</span>(Intent intent) &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Local-broadcasting"><a href="#Local-broadcasting" class="headerlink" title="Local broadcasting"></a>Local broadcasting</h3><p>LocalBroadcastManager是Android Support包提供了一个工具，是用来在同一个应用内的不同组件间发送Broadcast的。</p>
+<p>使用LocalBroadcastManager有如下好处：</p>
+<ul>
+<li>发送的广播只会在自己App内传播，不会泄露给其他App，确保隐私数据不会泄露</li>
+<li>其他App也无法向你的App发送该广播，不用担心其他App会来搞破坏</li>
+<li>比系统全局广播更加高效</li>
+</ul>
+<p>和系统广播使用方式类似：</p>
+<p>先通过LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this); 获取实例</p>
+<p>然后通过函数 registerReceiver来注册监听器</p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line">lbm.registerReceiver(<span class="keyword">new</span> BroadcastReceiver() &#123;  </span><br><span class="line">        <span class="annotation">@Override</span>  </span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onReceive</span><span class="params">(Context context, Intent intent)</span> </span>&#123;  </span><br><span class="line">        <span class="comment">// TODO Handle the received local broadcast  </span></span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;, <span class="keyword">new</span> IntentFilter(LOCAL_ACTION));</span><br></pre></td></tr></table></figure>
+
+<p>通过 sendBroadcast 函数来发送广播</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line">lbm.sendBroadcast(<span class="keyword">new</span> Intent(LOCAL_ACTION));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>AndroidAnnotations里使用LocalBroadcast方法</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EService</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyService</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Service</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//local默认值是false。</span></span><br><span class="line">    <span class="annotation">@Receiver</span>(actions = <span class="string">“org.androidannotations.ACTION_1”</span>, local = <span class="literal">true</span>)</span><br><span class="line">    <span class="keyword">protected</span> void onAction1OnCreate() &#123;  </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    public <span class="type">IBinder</span> onBind(<span class="type">Intent</span> intent) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/AndroidAnnotations/" rel="tag">#AndroidAnnotations</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/24/AndroidAnnotations-三-Services/" rel="next" title="AndroidAnnotations (三) - Services">
+                <i class="fa fa-chevron-left"></i> AndroidAnnotations (三) - Services
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/24/AndroidAnnotations-六-Resources/" rel="prev" title="AndroidAnnotations (六) - Resources">
+                AndroidAnnotations (六) - Resources <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Gc's blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明Broadcastreceivers注解"><span class="nav-number">1.</span> <span class="nav-text">声明Broadcastreceivers注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReceiverAction"><span class="nav-number">2.</span> <span class="nav-text">@ReceiverAction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-Schemes"><span class="nav-number">3.</span> <span class="nav-text">Data Schemes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Receiver"><span class="nav-number">4.</span> <span class="nav-text">@Receiver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Registration"><span class="nav-number">5.</span> <span class="nav-text">Registration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-broadcasting"><span class="nav-number">6.</span> <span class="nav-text">Local broadcasting</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>

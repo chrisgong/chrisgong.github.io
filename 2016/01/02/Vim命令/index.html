@@ -1,0 +1,931 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Vim," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="转载自：http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26
+
+第一级 – 存活i → Insert 模式，按 ESC 回到 Normal 模式.x → 删当前光标所在的一个字符。:wq → 存盘 + 退出 (:w 存盘, :q 退出)   （陈皓注：:w 后可以跟文件名）dd → 删除当前行，并把删除的行存到剪贴板里p → 粘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim命令">
+<meta property="og:url" content="http://gcblog.cn/2016/01/02/Vim命令/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="转载自：http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26
+
+第一级 – 存活i → Insert 模式，按 ESC 回到 Normal 模式.x → 删当前光标所在的一个字符。:wq → 存盘 + 退出 (:w 存盘, :q 退出)   （陈皓注：:w 后可以跟文件名）dd → 删除当前行，并把删除的行存到剪贴板里p → 粘">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213311_pgWj.jpg">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213311_S4ef.jpg">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213319_fpAj.png">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213319_eOK2.gif">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213320_pPoI.gif">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213321_axRo.gif">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213324_dgd1.gif">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213326_mQtz.gif">
+<meta property="og:image" content="http://static.oschina.net/uploads/img/201403/30213328_ANuy.gif">
+<meta property="og:updated_time" content="2016-03-06T05:38:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim命令">
+<meta name="twitter:description" content="转载自：http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26
+
+第一级 – 存活i → Insert 模式，按 ESC 回到 Normal 模式.x → 删当前光标所在的一个字符。:wq → 存盘 + 退出 (:w 存盘, :q 退出)   （陈皓注：:w 后可以跟文件名）dd → 删除当前行，并把删除的行存到剪贴板里p → 粘">
+<meta name="twitter:image" content="http://static.oschina.net/uploads/img/201403/30213311_pgWj.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Vim命令 | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Vim命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-01-02T22:28:09+08:00" content="2016-01-02">
+              2016-01-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>转载自：<a href="http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26" target="_blank" rel="external">http://my.oschina.net/u/1455799/blog/214448?fromerr=oMXPHQ26</a></p>
+</blockquote>
+<h3 id="第一级-–-存活"><a href="#第一级-–-存活" class="headerlink" title="第一级 – 存活"></a>第一级 – 存活</h3><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">i → Insert 模式，按 ESC 回到 Normal 模式.</span><br><span class="line"></span><br><span class="line">x → 删当前光标所在的一个字符。</span><br><span class="line"></span><br><span class="line"><span class="attribute">:wq → 存盘 + 退出 (:w</span> 存盘, :q 退出)   （陈皓注：:w 后可以跟文件名）</span><br><span class="line"></span><br><span class="line">dd → 删除当前行，并把删除的行存到剪贴板里</span><br><span class="line"></span><br><span class="line">p → 粘贴剪贴板</span><br><span class="line"></span><br><span class="line">推荐:</span><br><span class="line"></span><br><span class="line">hjkl (强例推荐使用其移动光标，但不必需) →你也可以使用光标键 (←↓↑→). 注: j 就像下箭头。</span><br><span class="line"></span><br><span class="line"><span class="attribute">:help &lt;command&gt; → 显示相关命令的帮助。你也可以就输入 :help</span> 而不跟命令。（陈皓注：退出帮助需要输入:q）</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二级-–-感觉良好"><a href="#第二级-–-感觉良好" class="headerlink" title="第二级 – 感觉良好"></a>第二级 – 感觉良好</h3><h4 id="各种插入模式"><a href="#各种插入模式" class="headerlink" title="各种插入模式"></a>各种插入模式</h4><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="tag">a</span> → 在光标后插入</span><br><span class="line"></span><br><span class="line">o → 在当前行后插入一个新行</span><br><span class="line"></span><br><span class="line">O → 在当前行前插入一个新行</span><br><span class="line"></span><br><span class="line">cw → 替换从光标所在位置后到一个单词结尾的字符</span><br></pre></td></tr></table></figure>
+
+<h4 id="简单的移动光标"><a href="#简单的移动光标" class="headerlink" title="简单的移动光标"></a>简单的移动光标</h4><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="number">0</span> → 数字零，到行头</span><br><span class="line"></span><br><span class="line">^ → 到本行第一个不是<span class="keyword">blank</span>字符的位置（所谓<span class="keyword">blank</span>字符就是空格，tab，换行，回车等）</span><br><span class="line"></span><br><span class="line">$ → 到本行行尾</span><br><span class="line"></span><br><span class="line">g_ → 到本行最后一个不是<span class="keyword">blank</span>字符的位置。</span><br><span class="line"></span><br><span class="line">/pattern → 搜索 pattern 的字符串（陈皓注：如果搜索出多个匹配，可按n键到下一个）</span><br></pre></td></tr></table></figure>
+
+<h4 id="拷贝-粘贴"><a href="#拷贝-粘贴" class="headerlink" title="拷贝/粘贴"></a>拷贝/粘贴</h4><figure class="highlight tp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">P</span> → 粘贴（p/<span class="keyword">P</span>都可以，p是表示在当前位置之后，<span class="keyword">P</span>表示在当前位置之前）</span><br><span class="line"></span><br><span class="line">yy → 拷贝当前行当行于 ddP</span><br></pre></td></tr></table></figure>
+
+<h4 id="Undo-Redo"><a href="#Undo-Redo" class="headerlink" title="Undo/Redo"></a>Undo/Redo</h4><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">u → <span class="keyword">undo</span></span><br><span class="line"></span><br><span class="line">&lt;C-r&gt; → <span class="keyword">redo</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="打开-保存-退出-改变文件-Buffer"><a href="#打开-保存-退出-改变文件-Buffer" class="headerlink" title="打开/保存/退出/改变文件(Buffer)"></a>打开/保存/退出/改变文件(Buffer)</h4><figure class="highlight asciidoc"><table><tr><td class="code"><pre><span class="line">:e &lt;path/to/file&gt; → 打开一个文件</span><br><span class="line"></span><br><span class="line">:w → 存盘</span><br><span class="line"></span><br><span class="line">:saveas &lt;path/to/file&gt; → 另存为 &lt;path/to/file&gt;</span><br><span class="line"></span><br><span class="line"><span class="attribute">:x， ZZ 或 :wq</span> → 保存并退出 (:x 表示仅在需要时保存，ZZ不需要输入冒号并回车)</span><br><span class="line"></span><br><span class="line"><span class="attribute">:q! → 退出不保存 :qa!</span> 强行退出所有的正在编辑的文件，就算别的文件有更改。</span><br><span class="line"></span><br><span class="line"><span class="attribute">:bn 和 :bp</span> → 你可以同时打开很多文件，使用这两个命令来切换下一个或上一个文件。（陈皓注：我喜欢使用:n到下一个文件）</span><br></pre></td></tr></table></figure>
+
+<h3 id="第三级-–-更好，更强，更快"><a href="#第三级-–-更好，更强，更快" class="headerlink" title="第三级 – 更好，更强，更快"></a>第三级 – 更好，更强，更快</h3><figure class="highlight livecodeserver"><table><tr><td class="code"><pre><span class="line">. → (小数点) 可以重复上一次的命令</span><br><span class="line"></span><br><span class="line">N&lt;<span class="command"><span class="keyword">command</span>&gt; → 重复某个命令<span class="title">N</span>次</span></span><br></pre></td></tr></table></figure>
+
+<p>下面是一个示例，找开一个文件你可以试试下面的命令：</p>
+<blockquote>
+<ul>
+<li><p>2dd → 删除2行</p>
+</li>
+<li><p>3p → 粘贴文本3次</p>
+</li>
+<li><p>100idesu [ESC] → 会写下 “desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu “</p>
+</li>
+<li><p>→ 重复上一个命令—— 100 “desu “.</p>
+</li>
+<li><p>→ 重复 3 次 “desu” (注意：不是 300，你看，VIM多聪明啊).</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="更强"><a href="#更强" class="headerlink" title="更强"></a>更强</h4><p>你要让你的光标移动更有效率，你一定要了解下面的这些命令，千万别跳过。</p>
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">NG → 到第 <span class="keyword">N</span> 行 （陈皓注：注意命令中的<span class="keyword">G</span>是大写的，另我一般使用 : <span class="keyword">N</span> 到第<span class="keyword">N</span>行，如 :137 到第137行）</span><br><span class="line"></span><br><span class="line">gg → 到第一行。（陈皓注：相当于1G，或 :1）</span><br><span class="line"></span><br><span class="line"><span class="keyword">G</span> → 到最后一行。</span><br></pre></td></tr></table></figure>
+
+<p>按单词移动：</p>
+<blockquote>
+<p>如果你认为单词是由默认方式，那么就用小写的e和w。默认上来说，一个单词由字母，数字和下划线组成（陈皓注：程序变量）</p>
+<p>如果你认为单词是由blank字符分隔符，那么你需要使用大写的E和W。（陈皓注：程序语句）</p>
+</blockquote>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213311_pgWj.jpg" alt=""></p>
+<ol>
+<li><p>w → 到下一个单词的开头。</p>
+</li>
+<li><p>e → 到下一个单词的结尾。</p>
+</li>
+</ol>
+<p>下面，让我来说说最强的光标移动：</p>
+<blockquote>
+<ul>
+<li><p>% : 匹配括号移动，包括 (, {, [. （陈皓注：你需要把光标先移到括号上）</p>
+</li>
+<li><p>和 #:  匹配光标当前所在的单词，移动光标到下一个（或上一个）匹配单词（*是下一个，#是上一个）</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="更快"><a href="#更快" class="headerlink" title="更快"></a>更快</h4><p>你一定要记住光标的移动，因为很多命令都可以和这些移动光标的命令连动。很多命令都可以如下来干：</p>
+<start position=""><command><end position=""></end></start>
+
+<p>例如 0y$ 命令意味着：</p>
+<ul>
+<li><p>0 → 先到行头</p>
+</li>
+<li><p>y → 从这里开始拷贝</p>
+</li>
+<li><p>$ → 拷贝到本行最后一个字符</p>
+</li>
+</ul>
+<p>你可可以输入 ye，从当前位置拷贝到本单词的最后一个字符。</p>
+<p>你也可以输入 y2/foo 来拷贝2个 “foo” 之间的字符串。</p>
+<p>还有很多时间并不一定你就一定要按y才会拷贝，下面的命令也会被拷贝：</p>
+<ul>
+<li><p>d (删除 )</p>
+</li>
+<li><p>v (可视化的选择)</p>
+</li>
+<li><p>gU (变大写)</p>
+</li>
+<li><p>gu (变小写)</p>
+</li>
+<li><p>等等</p>
+</li>
+</ul>
+<h3 id="第四级-–-Vim-超能力"><a href="#第四级-–-Vim-超能力" class="headerlink" title="第四级 – Vim 超能力"></a>第四级 – Vim 超能力</h3><p>你只需要掌握前面的命令，你就可以很舒服的使用VIM了。但是，现在，我们向你介绍的是VIM杀手级的功能。下面这些功能是我只用vim的原因。</p>
+<p>在当前行上移动光标: 0 ^ $ f F t T , ;</p>
+<blockquote>
+<ul>
+<li><p>0 → 到行头</p>
+</li>
+<li><p>^ → 到本行的第一个非blank字符</p>
+</li>
+<li><p>$ → 到行尾</p>
+</li>
+<li><p>g_ → 到本行最后一个不是blank字符的位置。</p>
+</li>
+<li><p>fa → 到下一个为a的字符处，你也可以fs到下一个为s的字符。</p>
+</li>
+<li><p>t, → 到逗号前的第一个字符。逗号可以变成其它字符。</p>
+</li>
+<li><p>3fa → 在当前行查找第三个出现的a。</p>
+</li>
+<li><p>F 和 T → 和 f 和 t 一样，只不过是相反方向。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213311_S4ef.jpg" alt=""></p>
+<p>还有一个很有用的命令是 dt” → 删除所有的内容，直到遇到双引号—— “。</p>
+<h4 id="区域选择-amp-lt-action-amp-gt-a-amp-lt-object-amp-gt-或-amp-lt-action-amp-gt-i-amp-lt-object-amp-gt"><a href="#区域选择-amp-lt-action-amp-gt-a-amp-lt-object-amp-gt-或-amp-lt-action-amp-gt-i-amp-lt-object-amp-gt" class="headerlink" title="区域选择 &amp;lt;action&amp;gt;a&amp;lt;object&amp;gt; 或 &amp;lt;action&amp;gt;i&amp;lt;object&amp;gt;"></a>区域选择 <code>&amp;lt;action&amp;gt;a&amp;lt;object&amp;gt; 或 &amp;lt;action&amp;gt;i&amp;lt;object&amp;gt;</code></h4><p>在visual 模式下，这些命令很强大，其命令格式为</p>
+<p><code>&amp;lt;action&amp;gt;a&amp;lt;object&amp;gt; 和 &amp;lt;action&amp;gt;i&amp;lt;object&amp;gt;</code></p>
+<ul>
+<li><p>action可以是任何的命令，如 d (删除), y (拷贝), v (可以视模式选择)。</p>
+</li>
+<li><p>object 可能是： w 一个单词， W 一个以空格为分隔的单词， s 一个句字， p 一个段落。也可以是一个特别的字符：”、 ‘、 )、 }、 ]。</p>
+</li>
+</ul>
+<p>假设你有一个字符串 (map (+) (“foo”)).而光标键在第一个 o 的位置。</p>
+<blockquote>
+<ul>
+<li><p>vi” → 会选择 foo.</p>
+</li>
+<li><p>va” → 会选择 “foo”.</p>
+</li>
+<li><p>vi) → 会选择 “foo”.</p>
+</li>
+<li><p>va) → 会选择(“foo”).</p>
+</li>
+<li><p>v2i) → 会选择 map (+) (“foo”)</p>
+</li>
+<li><p>v2a) → 会选择 (map (+) (“foo”))</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213319_fpAj.png" alt=""></p>
+<h4 id="块操作-amp-lt-C-v-amp-gt"><a href="#块操作-amp-lt-C-v-amp-gt" class="headerlink" title="块操作: &amp;lt;C-v&amp;gt;"></a>块操作: <code>&amp;lt;C-v&amp;gt;</code></h4><p>块操作，典型的操作： <code>0 &amp;lt;C-v&amp;gt; &amp;lt;C-d&amp;gt; I-- [ESC]</code></p>
+<ul>
+<li>^ → 到行头</li>
+<li><code>&amp;lt;C-v&amp;gt;</code> → 开始块操作</li>
+<li><code>&amp;lt;C-d&amp;gt;</code> → 向下移动 (你也可以使用hjkl来移动光标，或是使用%，或是别的)</li>
+<li>I– [ESC] → I是插入，插入“–”，按ESC键来为每一行生效。</li>
+</ul>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213319_eOK2.gif" alt=""></p>
+<p>在Windows下的vim，你需要使用 <code>&amp;lt;C-q&amp;gt;</code> 而不是 <code>&amp;lt;C-v&amp;gt;</code> ，<code>&amp;lt;C-v&amp;gt;</code> 是拷贝剪贴板。</p>
+<h4 id="自动提示：-amp-lt-C-n-amp-gt-和-amp-lt-C-p-amp-gt"><a href="#自动提示：-amp-lt-C-n-amp-gt-和-amp-lt-C-p-amp-gt" class="headerlink" title="自动提示： &amp;lt;C-n&amp;gt; 和 &amp;lt;C-p&amp;gt;"></a>自动提示： <code>&amp;lt;C-n&amp;gt; 和 &amp;lt;C-p&amp;gt;</code></h4><p>在 Insert 模式下，你可以输入一个词的开头，然后按 <code>&amp;lt;C-p&amp;gt;或是&amp;lt;C-n&amp;gt;</code>，自动补齐功能就出现了……</p>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213320_pPoI.gif" alt=""></p>
+<h4 id="宏录制：-qa-操作序列-q-a"><a href="#宏录制：-qa-操作序列-q-a" class="headerlink" title="宏录制： qa 操作序列 q, @a , @@"></a>宏录制： qa 操作序列 q, @a , @@</h4><ul>
+<li><p>qa 把你的操作记录在寄存器 a。</p>
+</li>
+<li><p>于是 @a  会replay被录制的宏。</p>
+</li>
+<li><p>@@ 是一个快捷键用来replay最新录制的宏。</p>
+<blockquote>
+<p><strong><em>示例</em></strong></p>
+<p>在一个只有一行且这一行只有“1”的文本中，键入如下命令：</p>
+<ul>
+<li><p>qaYp<c-a>q→</c-a></p>
+<pre><code>*   qa 开始录制
+
+*   Yp 复制行.
+
+*   `&amp;lt;C-a&amp;gt;` 增加1.
+
+*   q 停止录制.
+</code></pre></li>
+<li><p>@a  → 在1下面写下 2</p>
+</li>
+<li><p>@@ → 在2 正面写下3</p>
+</li>
+<li><p>现在做 100@@ 会创建新的100行，并把数据增加到 103.</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213321_axRo.gif" alt=""></p>
+<h4 id="可视化选择：-v-V-amp-lt-C-v-amp-gt"><a href="#可视化选择：-v-V-amp-lt-C-v-amp-gt" class="headerlink" title="可视化选择： v,V,&amp;lt;C-v&amp;gt;"></a>可视化选择： v,V,<code>&amp;lt;C-v&amp;gt;</code></h4><p>前面，我们看到了 <code>&amp;lt;C-v&amp;gt;</code>的示例 （在Windows下应该是<code>&amp;lt;C-q&amp;gt;</code>），我们可以使用 v 和 V。一但被选好了，你可以做下面的事：</p>
+<ul>
+<li><p>J → 把所有的行连接起来（变成一行）</p>
+</li>
+<li><p>&lt; 或 &gt; → 左右缩进</p>
+</li>
+<li><p>= → 自动给缩进</p>
+</li>
+</ul>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213324_dgd1.gif" alt=""></p>
+<p>在所有被选择的行后加上点东西：</p>
+<ul>
+<li><p><code>&amp;lt;C-v&amp;gt;</code></p>
+</li>
+<li><p>选中相关的行 (可使用 j 或 <code>&amp;lt;C-d&amp;gt;</code> 或是 /pattern 或是 % 等……)</p>
+</li>
+<li><p>$ 到行最后</p>
+</li>
+<li><p>A, 输入字符串，按 ESC。</p>
+</li>
+</ul>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213326_mQtz.gif" alt=""></p>
+<h4 id="分屏-split-和-vsplit"><a href="#分屏-split-和-vsplit" class="headerlink" title="分屏: :split 和 vsplit."></a>分屏: :split 和 vsplit.</h4><p>下面是主要的命令，你可以使用VIM的帮助 :help split. 你可以参考本站以前的一篇文章VIM分屏。</p>
+<blockquote>
+<ul>
+<li><p>:split → 创建分屏 (:vsplit创建垂直分屏)</p>
+</li>
+<li><p><code>&amp;lt;C-w&amp;gt;&amp;lt;dir&amp;gt;</code> : dir就是方向，可以是 hjkl 或是 ←↓↑→ 中的一个，其用来切换分屏。</p>
+</li>
+<li><p><code>&amp;lt;C-w&amp;gt;_</code> (或 <code>&amp;lt;C-w&amp;gt;|</code>) : 最大化尺寸 (<code>&amp;lt;C-w&amp;gt;|</code> 垂直分屏)</p>
+</li>
+<li><p><code>&amp;lt;C-w&amp;gt;+</code> (或 <code>&amp;lt;C-w&amp;gt;-</code>) : 增加尺寸</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="http://static.oschina.net/uploads/img/201403/30213328_ANuy.gif" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Vim/" rel="tag">#Vim</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/28/BCD码/" rel="next" title="BCD码">
+                <i class="fa fa-chevron-left"></i> BCD码
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/01/04/RxJava详解/" rel="prev" title="RxJava详解">
+                RxJava详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Gc's blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一级-–-存活"><span class="nav-number">1.</span> <span class="nav-text">第一级 – 存活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二级-–-感觉良好"><span class="nav-number">2.</span> <span class="nav-text">第二级 – 感觉良好</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各种插入模式"><span class="nav-number">2.1.</span> <span class="nav-text">各种插入模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单的移动光标"><span class="nav-number">2.2.</span> <span class="nav-text">简单的移动光标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拷贝-粘贴"><span class="nav-number">2.3.</span> <span class="nav-text">拷贝/粘贴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Undo-Redo"><span class="nav-number">2.4.</span> <span class="nav-text">Undo/Redo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开-保存-退出-改变文件-Buffer"><span class="nav-number">2.5.</span> <span class="nav-text">打开/保存/退出/改变文件(Buffer)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三级-–-更好，更强，更快"><span class="nav-number">3.</span> <span class="nav-text">第三级 – 更好，更强，更快</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更强"><span class="nav-number">3.1.</span> <span class="nav-text">更强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更快"><span class="nav-number">3.2.</span> <span class="nav-text">更快</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四级-–-Vim-超能力"><span class="nav-number">4.</span> <span class="nav-text">第四级 – Vim 超能力</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区域选择-amp-lt-action-amp-gt-a-amp-lt-object-amp-gt-或-amp-lt-action-amp-gt-i-amp-lt-object-amp-gt"><span class="nav-number">4.1.</span> <span class="nav-text">区域选择 &lt;action&gt;a&lt;object&gt; 或 &lt;action&gt;i&lt;object&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块操作-amp-lt-C-v-amp-gt"><span class="nav-number">4.2.</span> <span class="nav-text">块操作: &lt;C-v&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动提示：-amp-lt-C-n-amp-gt-和-amp-lt-C-p-amp-gt"><span class="nav-number">4.3.</span> <span class="nav-text">自动提示： &lt;C-n&gt; 和 &lt;C-p&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏录制：-qa-操作序列-q-a"><span class="nav-number">4.4.</span> <span class="nav-text">宏录制： qa 操作序列 q, @a , @@</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化选择：-v-V-amp-lt-C-v-amp-gt"><span class="nav-number">4.5.</span> <span class="nav-text">可视化选择： v,V,&lt;C-v&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分屏-split-和-vsplit"><span class="nav-number">4.6.</span> <span class="nav-text">分屏: :split 和 vsplit.</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>

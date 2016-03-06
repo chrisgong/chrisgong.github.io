@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,AndroidAnnotations," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="Custom Classes定义注解classes@EBeanpublic class MyClass &amp;#123;&amp;#125;&amp;gt; @EBean类只能有一个构造函数，并且这个构造函数必须没有参数,&amp;gt; AndroidAnnotations 2.7以后它可以有一个Context参数。#### 使用注解classes@EBeanpublic class MyOtherClass &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AndroidAnnotations (五) - CustomClasses/CustomViews">
+<meta property="og:url" content="http://gcblog.cn/2015/11/25/AndroidAnnotations-五-CustomClasses-CustomViews/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="Custom Classes定义注解classes@EBeanpublic class MyClass &amp;#123;&amp;#125;&amp;gt; @EBean类只能有一个构造函数，并且这个构造函数必须没有参数,&amp;gt; AndroidAnnotations 2.7以后它可以有一个Context参数。#### 使用注解classes@EBeanpublic class MyOtherClass &amp;#123;">
+<meta property="og:updated_time" content="2016-03-06T05:38:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AndroidAnnotations (五) - CustomClasses/CustomViews">
+<meta name="twitter:description" content="Custom Classes定义注解classes@EBeanpublic class MyClass &amp;#123;&amp;#125;&amp;gt; @EBean类只能有一个构造函数，并且这个构造函数必须没有参数,&amp;gt; AndroidAnnotations 2.7以后它可以有一个Context参数。#### 使用注解classes@EBeanpublic class MyOtherClass &amp;#123;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> AndroidAnnotations (五) - CustomClasses/CustomViews | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                AndroidAnnotations (五) - CustomClasses/CustomViews
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-11-25T07:39:35+08:00" content="2015-11-25">
+              2015-11-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Custom-Classes"><a href="#Custom-Classes" class="headerlink" title="Custom Classes"></a>Custom Classes</h3><h4 id="定义注解classes"><a href="#定义注解classes" class="headerlink" title="定义注解classes"></a>定义注解classes</h4><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> &#123;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>&gt; @EBean类只能有一个构造函数，并且这个构造函数必须没有参数,<br>&gt; AndroidAnnotations 2.7以后它可以有一个Context参数。<br><br>#### 使用注解classes<br><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyOtherClass</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Bean</span></span><br><span class="line">    MyClass myClass;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EActivity</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Activity</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Bean</span></span><br><span class="line">    <span class="type">MyOtherClass</span> myOtherClass;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>&gt; 当你用@Bean时就会得到一个新实例，bean是一个单例除外<br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EActivity</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyChildActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">MyActivity</span> &#123;</span></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        myOtherClass.myClass.toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用实现关系classes"><a href="#使用实现关系classes" class="headerlink" title="使用实现关系classes"></a>使用实现关系classes</h4><blockquote>
+<p>Since AndroidAnnotations 2.5</p>
+</blockquote>
+<p>如果你想在代码中使用超类或接口，您可以再@Bean内指定实现类。</p>
+<figure class="highlight actionscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInterface</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MyImplementation</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">MyInterface</span> &#123;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EActivity</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">OtherActivity</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Activity</span> &#123;</span></span><br><span class="line">    <span class="annotation">@Bean</span>(<span class="type">MyImplementation</span>.<span class="keyword">class</span>)</span><br><span class="line">    <span class="type">MyInterface</span> myInterface;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="支持的annotations"><a href="#支持的annotations" class="headerlink" title="支持的annotations"></a>支持的annotations</h4><p>可以使用所有AA 支持的的annotations</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@SystemService</span></span><br><span class="line">    NotificationManager notificationManager;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@UiThread</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateUI</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="视图相关annotations"><a href="#视图相关annotations" class="headerlink" title="视图相关annotations"></a>视图相关annotations</h4><p>可以使用@View，@Click…等</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EBean</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@ViewById</span></span><br><span class="line">    TextView myTextView;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Click</span>(R.id.myButton)</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handleButtonClick</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="RootContext"><a href="#RootContext" class="headerlink" title="RootContext"></a>RootContext</h4><p>可以使用@RootContext在@EBean class里注解Android组件，在对应的组件内实例此Bean时，不属于此组件的RootContext将为null。</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@EBean</span></span><br><span class="line">public class MyClass &#123;</span><br><span class="line">    <span class="variable">@RootContext</span></span><br><span class="line">    Context context;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Only injected if the root context is an activity</span></span><br><span class="line">    <span class="variable">@RootContext</span></span><br><span class="line">    Activity activity;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Only injected if the root context is a service</span></span><br><span class="line">    <span class="variable">@RootContext</span></span><br><span class="line">    Service service;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Only injected if the root context is an instance of MyActivity</span></span><br><span class="line">    <span class="variable">@RootContext</span></span><br><span class="line">    MyActivity myActivity;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">@EActivity(R.layout.layout_other)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> OtherActivity extends Activity &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    MyClass myClass;</span><br><span class="line"></span><br><span class="line">    @<span class="function">Override</span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savredInstanceState)</span> </span>&#123;</span><br><span class="line">        super.onCreate(savredInstanceState);</span><br><span class="line">        </span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (myClass.activity == null));</span><br><span class="line"></span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (myClass.service == null));</span><br><span class="line"></span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (myClass.context == null));</span><br><span class="line"></span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (myClass.otherActivity == null));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">\Result</span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">24</span>:<span class="number">39.303</span> <span class="number">2279</span>-<span class="number">2279</span>/? E/cim: <span class="literal">false</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">24</span>:<span class="number">39.303</span> <span class="number">2279</span>-<span class="number">2279</span>/? E/cim: <span class="literal">true</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">24</span>:<span class="number">39.303</span> <span class="number">2279</span>-<span class="number">2279</span>/? E/cim: <span class="literal">false</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">24</span>:<span class="number">39.303</span> <span class="number">2279</span>-<span class="number">2279</span>/? E/cim: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Executing-code-after-dependency-injection"><a href="#Executing-code-after-dependency-injection" class="headerlink" title="Executing code after dependency injection"></a>Executing code after dependency injection</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">@EBean</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MyClass &#123;</span><br><span class="line"></span><br><span class="line">    @SystemService</span><br><span class="line">    NotificationManager notificationManager;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    MyOtherClass dependency;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// notificationManager and dependency are null</span></span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (dependency == null));</span><br><span class="line">        Log.e(<span class="string">“cim”</span>, <span class="string">“”</span> + (notificationManager == null));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="function">AfterInject</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomethingAfterInjection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// notificationManager and dependency are set</span></span><br><span class="line">        Log.e(<span class="string">“cim”</span>,<span class="string">“”</span> + (dependency == null));</span><br><span class="line">        Log.e(<span class="string">“cim”</span>, <span class="string">“”</span> + (notificationManager == null));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Result:</span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">43</span>:<span class="number">04.980</span> <span class="number">3138</span>-<span class="number">3138</span>/? E/cim: <span class="literal">true</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">43</span>:<span class="number">04.980</span> <span class="number">3138</span>-<span class="number">3138</span>/? E/cim: <span class="literal">true</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">43</span>:<span class="number">04.980</span> <span class="number">3138</span>-<span class="number">3138</span>/? E/cim: <span class="literal">false</span></span><br><span class="line"><span class="number">11</span>-<span class="number">24</span> <span class="number">08</span>:<span class="number">43</span>:<span class="number">04.980</span> <span class="number">3138</span>-<span class="number">3138</span>/? E/cim: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>Bean中当构造函数被调用时，所有注解对象都为null，此时对象没还没有被注入。如果你需要在构建Bean时执行某些代码，应该使用@AfterInject注解一个方法，在此方法内执行。</p>
+<h4 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h4><blockquote>
+<p>If the parent and child classes have @AfterViews, @AfterInject or @AfterExtras annotated methods with the same name, the generated code will be buggy. See <a href="https://github.com/excilys/androidannotations/issues/591" target="_blank" rel="external">issue #591</a> for more details.</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>Also, while there is a guaranteed order about when we call @AfterViews, -Inject or -Extras annotated methods, there is no guaranteed order for calling each of the methods with the same @AfterXXX annotation (see <a href="https://github.com/excilys/androidannotations/issues/810" target="_blank" rel="external">issue #810</a>).</p>
+<p>Details about when the methods with one of those annotations are called you can find <a href="https://github.com/excilys/androidannotations/wiki/%40AfterXXX-call-order" target="_blank" rel="external">here</a>.</p>
+</blockquote>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><blockquote>
+<p>Since AndroidAnnotations 2.5</p>
+</blockquote>
+<p>AndroidAnnotations目前支持两种作用域:</p>
+<ul>
+<li>默认范围:每次创建一个新的bean实例时必须被injected。</li>
+<li>单例对象范围:新的bean实例第一次创建被injected，然后保留，之后总是注入相同的实例。<br><figure class="highlight d"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@EBean</span>(<span class="keyword">scope</span> = Scope.Singleton)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> MySingleton &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote>
+<p><strong>Caution</strong></p>
+<ol>
+<li><p>If your bean has a Singleton scope, it will only keep a reference to the application context (using context.getApplicationContext(). That’s because it lives longer than any activity / service, so it shouldn’t keep a reference to any such Android component, to avoid memory leaks.</p>
+</li>
+<li><p>We also disable view injection and view event binding in @EBean components with Singleton scope, for the exact same reason (views have a reference to the activity, which may therefore create a leak).</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h3 id="CustomView"><a href="#CustomView" class="headerlink" title="CustomView"></a>CustomView</h3><blockquote>
+<p>翻译了半天，发现还是原文能更准确的传达意思，所以后面都不翻译了。Youdao，Goodbye~</p>
+</blockquote>
+<p>@EView and @EViewGroup are the annotations to use if you want to create <a href="http://developer.android.com/guide/topics/ui/custom-components.html" target="_blank" rel="external">custom components</a>.</p>
+<h4 id="Custom-Views-with-EView"><a href="#Custom-Views-with-EView" class="headerlink" title="Custom Views with @EView"></a>Custom Views with @EView</h4><blockquote>
+<p>Since AndroidAnnotations 2.4</p>
+</blockquote>
+<p>Just create a new class that extends View, and annotate it with @EView. You can than start using annotations in this view:</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EView</span></span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">CustomButton</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Button</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@App</span></span><br><span class="line">    <span class="type">MyApplication</span> application;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@StringRes</span></span><br><span class="line">    <span class="type">String</span> someStringResource;</span><br><span class="line"></span><br><span class="line">    public <span class="type">CustomButton</span>(<span class="type">Context</span> context, <span class="type">AttributeSet</span> attrs) &#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>You can then start using it in your layouts (don’t forget the _):</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">“<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">“match<em>parent”</em></span></span><br><span class="line">    <span class="attribute">android:orientation</span>=<span class="value">“vertical”</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.androidannotations.view.CustomButton</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap_content”</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!– … –&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also create it programmatically:</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="label">CustomButton</span> <span class="keyword">button </span>= CustomButton_.<span class="keyword">build(context);</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Custom-ViewGroups-with-EViewGroup"><a href="#Custom-ViewGroups-with-EViewGroup" class="headerlink" title="Custom ViewGroups with @EViewGroup"></a>Custom ViewGroups with @EViewGroup</h4><blockquote>
+<p>Since AndroidAnnotations 2.2</p>
+</blockquote>
+<p><strong>How to create it ?</strong></p>
+<hr>
+<p>First of all, let’s create a layout XML file for this component.</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">merge</span> <span class="attribute">xmlns:android</span>=<span class="value">“<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">ImageView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/image”</span></span><br><span class="line">        <span class="attribute">android:layout_alignParentRight</span>=<span class="value">“true”</span></span><br><span class="line">        <span class="attribute">android:layout_alignBottom</span>=<span class="value">“@+id/title”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“wrap_content”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap_content”</span></span><br><span class="line">        <span class="attribute">android:src</span>=<span class="value">“@drawable/check”</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">TextView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/title”</span></span><br><span class="line">        <span class="attribute">android:layout_toLeftOf</span>=<span class="value">“@+id/image”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap_content”</span></span><br><span class="line">        <span class="attribute">android:textColor</span>=<span class="value">“@android:color/white”</span></span><br><span class="line">        <span class="attribute">android:textSize</span>=<span class="value">“12pt”</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">TextView</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/subtitle”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap_content”</span></span><br><span class="line">        <span class="attribute">android:layout_below</span>=<span class="value">“@+id/title”</span></span><br><span class="line">        <span class="attribute">android:textColor</span>=<span class="value">“#FFdedede”</span></span><br><span class="line">        <span class="attribute">android:textSize</span>=<span class="value">“10pt”</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">merge</span>&gt;</span></span><br></pre></td></tr></table></figure><br>&gt; Did you know about <a href="http://developer.android.com/training/improving-layouts/reusing-layouts.html#Merge" target="_blank" rel="external">the merge tag</a> ? When this layout will get inflated, the childrens will be added directly to the parent, you’ll save a level in the view hierarchy.<br><br>As you can see I used some RelativeLayout specific layout attributes (layout_alignParentRight, layout_alignBottom, layout_toLeftOf, etc…), it’s because I’m assuming my layout will be inflated in a RelativeLayout. And that’s indeed what I’ll do !<br><br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EViewGroup</span>(<span class="type">R</span>.layout.title_with_subtitle)</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">TitleWithSubtitle</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">RelativeLayout</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@ViewById</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">TextView</span> title, subtitle;</span><br><span class="line"></span><br><span class="line">    public <span class="type">TitleWithSubtitle</span>(<span class="type">Context</span> context, <span class="type">AttributeSet</span> attrs) &#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setTexts(<span class="type">String</span> titleText, <span class="type">String</span> subTitleText) &#123;</span><br><span class="line">        title.setText(titleText);</span><br><span class="line">        subtitle.setText(subTitleText);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>There you are ! Easy, isn’t it ?</p>
+<p>Now let’s see how to use this brand new component.</p>
+<h4 id="How-to-use-it"><a href="#How-to-use-it" class="headerlink" title="How to use it ?"></a>How to use it ?</h4><p>A custom component can be declared and placed in a layout just as any other View:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version=”1.0” encoding=”utf-8”?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">LinearLayout</span> <span class="attribute">xmlns:android</span>=<span class="value">“<a href="http://schemas.android.com/apk/res/android" target="_blank" rel="external">http://schemas.android.com/apk/res/android</a>“</span></span><br><span class="line">    <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">    <span class="attribute">android:layout_height</span>=<span class="value">“match<em>parent”</em></span></span><br><span class="line">    <span class="attribute">android:gravity</span>=<span class="value">“center”</span></span><br><span class="line">    <span class="attribute">android:orientation</span>=<span class="value">“vertical”</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.androidannotations.viewgroup.TitleWithSubtitle</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/firstTitle”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap<em>content”</em></span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.androidannotations.viewgroup.TitleWithSubtitle</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/secondTitle”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap<em>content”</em></span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">com.androidannotations.viewgroup.TitleWithSubtitle</span></span><br><span class="line">        <span class="attribute">android:id</span>=<span class="value">“@+id/thirdTitle”</span></span><br><span class="line">        <span class="attribute">android:layout_width</span>=<span class="value">“match_parent”</span></span><br><span class="line">        <span class="attribute">android:layout_height</span>=<span class="value">“wrap<em>content”</em></span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">LinearLayout</span>&gt;</span></span><br></pre></td></tr></table></figure><br>&gt; As always, don’t forget the  at the end of the component name!<br><br>And because I’m using AA, I can just as easily get my custom components injected in my activity and use them!<br><br><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@EActivity</span>(<span class="type">R</span>.layout.main)</span><br><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword"><span class="keyword">extends</span></span> <span class="title">Activity</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="annotation">@ViewById</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">TitleWithSubtitle</span> firstTitle, secondTitle, thirdTitle;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@AfterViews</span></span><br><span class="line">    <span class="keyword">protected</span> void init() &#123;</span><br><span class="line"></span><br><span class="line">        firstTitle.setTexts(<span class="string">“decouple your code”</span>,</span><br><span class="line">                <span class="string">“Hide the component logic from the code using it.”</span>);</span><br><span class="line"></span><br><span class="line">        secondTitle.setTexts(<span class="string">“write once, reuse anywhere”</span>,</span><br><span class="line">                <span class="string">“Declare you component in multiple “</span> +</span><br><span class="line">                <span class="string">“places, just as easily as you “</span> +</span><br><span class="line">                <span class="string">“would put a single basic View.”</span>);</span><br><span class="line"></span><br><span class="line">        thirdTitle.setTexts(<span class="string">“Let’s get stated!”</span>,</span><br><span class="line">                <span class="string">“Let’s see how AndroidAnnotations can make it easier!”</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Most AA annotations are available in an @EViewGroup, give it a try !</p>
+<h3 id="AfterXXX-call-order"><a href="#AfterXXX-call-order" class="headerlink" title="@AfterXXX call order"></a>@AfterXXX call order</h3><h4 id="Calls-for-method-with-the-same-AfterXXX-annotation"><a href="#Calls-for-method-with-the-same-AfterXXX-annotation" class="headerlink" title="Calls for method with the same @AfterXXX annotation"></a>Calls for method with the same @AfterXXX annotation</h4><p>The calling order of methods with the same annotation within a class cannot be guaranteed and you should NOT rely on it. If you want multiple methods be called in an ensured order, you should create one method that is annotated and use that to call the other methods in their desired order. If you have to deal with parent/child classes you could try this.</p>
+<p><strong>Example</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="code"><pre><span class="line"><span class="annotation">@AfterInject</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">callInOrder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    methodA();</span><br><span class="line">    methodB();</span><br><span class="line">    methodC();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">void</span> <span class="title">methodC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Initial-calls-after-creation"><a href="#Initial-calls-after-creation" class="headerlink" title="Initial calls (after creation)"></a>Initial calls (after creation)</h4><ol>
+<li><a href="https://github.com/excilys/androidannotations/wiki/Extras#executing-code-after-extras-injection" target="_blank" rel="external">@AfterExtras</a></li>
+<li><a href="https://github.com/excilys/androidannotations/wiki/Enhance-custom-classes#executing-code-after-dependency-injection" target="_blank" rel="external">@AfterInject</a></li>
+<li><a href="https://github.com/excilys/androidannotations/wiki/Injecting-Views" target="_blank" rel="external">@AfterViews</a></li>
+</ol>
+<p>Note: When @AfterExtras annotated methods are called, all injections that are not related to views are done. Therefore it is safe to use fields that are annotated with e.g. @Bean. The views are only available when the @AfterViews annotated methods get called.</p>
+<h4 id="Subsequent-calls"><a href="#Subsequent-calls" class="headerlink" title="Subsequent calls"></a>Subsequent calls</h4><ul>
+<li><a href="https://github.com/excilys/androidannotations/wiki/Extras#executing-code-after-extras-injection" target="_blank" rel="external">@AfterExtras</a> methods get called every time a new Intent reaches the Activity.</li>
+<li><a href="https://github.com/excilys/androidannotations/wiki/Enhance-custom-classes#executing-code-after-dependency-injection" target="_blank" rel="external">@AfterViews</a> will be called everytime setContentView() is called. (Activity only)</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/AndroidAnnotations/" rel="tag">#AndroidAnnotations</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/24/AndroidAnnotations-六-Resources/" rel="next" title="AndroidAnnotations (六) - Resources">
+                <i class="fa fa-chevron-left"></i> AndroidAnnotations (六) - Resources
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/25/AndroidAnnotations-七-Thread/" rel="prev" title="AndroidAnnotations (七) - Thread">
+                AndroidAnnotations (七) - Thread <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Gc's blog</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Custom-Classes"><span class="nav-number">1.</span> <span class="nav-text">Custom Classes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义注解classes"><span class="nav-number">1.1.</span> <span class="nav-text">定义注解classes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用实现关系classes"><span class="nav-number">1.2.</span> <span class="nav-text">使用实现关系classes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支持的annotations"><span class="nav-number">1.3.</span> <span class="nav-text">支持的annotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图相关annotations"><span class="nav-number">1.4.</span> <span class="nav-text">视图相关annotations</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RootContext"><span class="nav-number">1.5.</span> <span class="nav-text">RootContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executing-code-after-dependency-injection"><span class="nav-number">1.6.</span> <span class="nav-text">Executing code after dependency injection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Warning"><span class="nav-number">1.7.</span> <span class="nav-text">Warning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用域"><span class="nav-number">1.8.</span> <span class="nav-text">作用域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CustomView"><span class="nav-number">2.</span> <span class="nav-text">CustomView</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-Views-with-EView"><span class="nav-number">2.1.</span> <span class="nav-text">Custom Views with @EView</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Custom-ViewGroups-with-EViewGroup"><span class="nav-number">2.2.</span> <span class="nav-text">Custom ViewGroups with @EViewGroup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-use-it"><span class="nav-number">2.3.</span> <span class="nav-text">How to use it ?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AfterXXX-call-order"><span class="nav-number">3.</span> <span class="nav-text">@AfterXXX call order</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Calls-for-method-with-the-same-AfterXXX-annotation"><span class="nav-number">3.1.</span> <span class="nav-text">Calls for method with the same @AfterXXX annotation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Initial-calls-after-creation"><span class="nav-number">3.2.</span> <span class="nav-text">Initial calls (after creation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subsequent-calls"><span class="nav-number">3.3.</span> <span class="nav-text">Subsequent calls</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
