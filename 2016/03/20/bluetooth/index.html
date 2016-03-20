@@ -59,39 +59,51 @@
 
 
 
-<meta name="description" content="版本支持: 
+<meta name="description" content="最近一直在倒腾各种版本的蓝牙功能适配.
+今天先介绍下蓝牙4.0连接配对流程中各种对象的作用.
+顺带梳理下Ble从连接到写入到接收通知的流程.
+目前市场上的穿戴设备的蓝牙4.0读写基本都是以下实现过程.
+版本及权限
+版本支持: 
 
 Android OS API &amp;gt;= 18(4.3)
 
 权限支持: 
 
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH&amp;quot;/&amp;gt;
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH_ADMIN&amp;">
+&amp;lt;uses-permission android:name=&amp;quot;android.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android 4.0蓝牙介绍">
 <meta property="og:url" content="http://gcblog.cn/2016/03/20/bluetooth/index.html">
 <meta property="og:site_name" content="Gc's blog">
-<meta property="og:description" content="版本支持: 
+<meta property="og:description" content="最近一直在倒腾各种版本的蓝牙功能适配.
+今天先介绍下蓝牙4.0连接配对流程中各种对象的作用.
+顺带梳理下Ble从连接到写入到接收通知的流程.
+目前市场上的穿戴设备的蓝牙4.0读写基本都是以下实现过程.
+版本及权限
+版本支持: 
 
 Android OS API &amp;gt;= 18(4.3)
 
 权限支持: 
 
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH&amp;quot;/&amp;gt;
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH_ADMIN&amp;">
-<meta property="og:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0 =600x1024">
-<meta property="og:updated_time" content="2016-03-20T13:56:15.000Z">
+&amp;lt;uses-permission android:name=&amp;quot;android.">
+<meta property="og:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0">
+<meta property="og:updated_time" content="2016-03-20T14:06:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android 4.0蓝牙介绍">
-<meta name="twitter:description" content="版本支持: 
+<meta name="twitter:description" content="最近一直在倒腾各种版本的蓝牙功能适配.
+今天先介绍下蓝牙4.0连接配对流程中各种对象的作用.
+顺带梳理下Ble从连接到写入到接收通知的流程.
+目前市场上的穿戴设备的蓝牙4.0读写基本都是以下实现过程.
+版本及权限
+版本支持: 
 
 Android OS API &amp;gt;= 18(4.3)
 
 权限支持: 
 
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH&amp;quot;/&amp;gt;
-&amp;lt;uses-permission android:name=&amp;quot;android.permission.BLUETOOTH_ADMIN&amp;">
-<meta name="twitter:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0 =600x1024">
+&amp;lt;uses-permission android:name=&amp;quot;android.">
+<meta name="twitter:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0">
 
 
 
@@ -306,7 +318,11 @@ Android OS API &amp;gt;= 18(4.3)
       
 
       
-        <blockquote>
+        <p><strong><em>最近一直在倒腾各种版本的蓝牙功能适配.</em></strong></p>
+<p><strong><em>今天先介绍下蓝牙4.0连接配对流程中各种对象的作用.</em></strong></p>
+<p><strong><em>顺带梳理下Ble从连接到写入到接收通知的流程.</em></strong></p>
+<p><strong><em>目前市场上的穿戴设备的蓝牙4.0读写基本都是以下实现过程.</em></strong></p>
+<h4 id="版本及权限"><a href="#版本及权限" class="headerlink" title="版本及权限"></a>版本及权限</h4><blockquote>
 <p>版本支持: </p>
 </blockquote>
 <pre><code>Android OS API &gt;= 18(4.3)
@@ -317,14 +333,11 @@ Android OS API &amp;gt;= 18(4.3)
 &lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt;
 &lt;uses-feature android:name=&quot;android.hardware.bluetooth_le&quot; android:required=&quot;true&quot;/&gt;
 如果 android.hardware.bluetooth_le设置为false,可以安装在不支持的设备上使用，判断是否支持蓝牙4.0用以下代码就可以了
-</code></pre><blockquote>
-<p>流程图:</p>
-</blockquote>
-<p><img src="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0 =600x1024" alt=""></p>
+</code></pre><h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="http://7xs2xr.com1.z0.glb.clouddn.com/bluetooth4.0" alt=""></p>
 <h4 id="BluetoothGatt"><a href="#BluetoothGatt" class="headerlink" title="BluetoothGatt"></a>BluetoothGatt</h4><p>继承BluetoothProfile，通过BluetoothGatt可以连接设备（connect）,发现服务（discoverServices），并把相应地属性返回到BluetoothGattCallback </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void connect(Context context, BluetoothDevice device) &#123;</span><br><span class="line">    mBluetoothGatt = device.connectGatt(context, false, mBTGattCallback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void connect(Context context, BluetoothDevice device) &#123;</span><br><span class="line">	//开启连接</span><br><span class="line">    mBluetoothGatt = device.connectGatt(context, false, mBTGattCallback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="BluetoothGattCallback"><a href="#BluetoothGattCallback" class="headerlink" title="BluetoothGattCallback"></a>BluetoothGattCallback</h4><p>蓝牙设备操作结果返回。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">private BluetoothGattCallback mBTGattCallback = new BluetoothGattCallback() &#123;</span><br><span class="line"></span><br><span class="line">	//连接结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) &#123;</span><br><span class="line">		super.onConnectionStateChange(gatt, status, newState);</span><br><span class="line">		switch (newState) &#123;</span><br><span class="line">			case BluetoothProfile.STATE_CONNECTED:</span><br><span class="line">				gatt.discoverServices();</span><br><span class="line">				break;</span><br><span class="line">			case BluetoothProfile.STATE_DISCONNECTED:</span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line">				break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//扫描结果(连接完成后调用)</span><br><span class="line">	@Override</span><br><span class="line">	public void onServicesDiscovered(BluetoothGatt gatt, int status) &#123;</span><br><span class="line">		super.onServicesDiscovered(gatt, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) &#123;</span><br><span class="line">		super.onCharacteristicRead(gatt, characteristic, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//写入指令结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) &#123;</span><br><span class="line">		super.onCharacteristicWrite(gatt, characteristic, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//蓝牙通知数据结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) &#123;</span><br><span class="line">		super.onCharacteristicChanged(gatt, characteristic);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">private BluetoothGattCallback mBTGattCallback = new BluetoothGattCallback() &#123;</span><br><span class="line"></span><br><span class="line">	//连接结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) &#123;</span><br><span class="line">		super.onConnectionStateChange(gatt, status, newState);</span><br><span class="line">		switch (newState) &#123;</span><br><span class="line">			case BluetoothProfile.STATE_CONNECTED:</span><br><span class="line">				gatt.discoverServices();</span><br><span class="line">				break;</span><br><span class="line">			case BluetoothProfile.STATE_DISCONNECTED:</span><br><span class="line">				break;</span><br><span class="line">			default:</span><br><span class="line">				break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	//发现服务结果(连接完成后调用)</span><br><span class="line">	@Override</span><br><span class="line">	public void onServicesDiscovered(BluetoothGatt gatt, int status) &#123;</span><br><span class="line">		super.onServicesDiscovered(gatt, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) &#123;</span><br><span class="line">		super.onCharacteristicRead(gatt, characteristic, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//写入指令结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) &#123;</span><br><span class="line">		super.onCharacteristicWrite(gatt, characteristic, status);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//蓝牙通知数据结果</span><br><span class="line">	@Override</span><br><span class="line">	public void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) &#123;</span><br><span class="line">		super.onCharacteristicChanged(gatt, characteristic);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>连接调用流程:</p>
 <p>onConnectionStateChange -&gt; onServicesDiscovered()</p>
 <ol>
@@ -542,7 +555,7 @@ Android OS API &amp;gt;= 18(4.3)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGatt"><span class="nav-number">1.</span> <span class="nav-text">BluetoothGatt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattCallback"><span class="nav-number">2.</span> <span class="nav-text">BluetoothGattCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattCharacteristic"><span class="nav-number">3.</span> <span class="nav-text">BluetoothGattCharacteristic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattDescriptor"><span class="nav-number">4.</span> <span class="nav-text">BluetoothGattDescriptor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattService"><span class="nav-number">5.</span> <span class="nav-text">BluetoothGattService</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothManager"><span class="nav-number">6.</span> <span class="nav-text">BluetoothManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothAdapter"><span class="nav-number">7.</span> <span class="nav-text">BluetoothAdapter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LeScanCallback"><span class="nav-number">8.</span> <span class="nav-text">LeScanCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScanCallback"><span class="nav-number">9.</span> <span class="nav-text">ScanCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScanSettings"><span class="nav-number">10.</span> <span class="nav-text">ScanSettings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothProfile"><span class="nav-number">11.</span> <span class="nav-text">BluetoothProfile</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#版本及权限"><span class="nav-number">1.</span> <span class="nav-text">版本及权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程图"><span class="nav-number">2.</span> <span class="nav-text">流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGatt"><span class="nav-number">3.</span> <span class="nav-text">BluetoothGatt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattCallback"><span class="nav-number">4.</span> <span class="nav-text">BluetoothGattCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattCharacteristic"><span class="nav-number">5.</span> <span class="nav-text">BluetoothGattCharacteristic</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattDescriptor"><span class="nav-number">6.</span> <span class="nav-text">BluetoothGattDescriptor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothGattService"><span class="nav-number">7.</span> <span class="nav-text">BluetoothGattService</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothManager"><span class="nav-number">8.</span> <span class="nav-text">BluetoothManager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothAdapter"><span class="nav-number">9.</span> <span class="nav-text">BluetoothAdapter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LeScanCallback"><span class="nav-number">10.</span> <span class="nav-text">LeScanCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScanCallback"><span class="nav-number">11.</span> <span class="nav-text">ScanCallback</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScanSettings"><span class="nav-number">12.</span> <span class="nav-text">ScanSettings</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BluetoothProfile"><span class="nav-number">13.</span> <span class="nav-text">BluetoothProfile</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
