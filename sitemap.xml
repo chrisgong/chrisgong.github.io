@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://gcblog.cn/2016/03/20/bluetooth/</loc>
+    
+    <lastmod>2016-03-20T13:56:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gcblog.cn/categories/index.html</loc>
     
     <lastmod>2016-03-06T06:41:36.000Z</lastmod>
@@ -23,13 +30,6 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%85%AB-SharedPreferences/</loc>
-    
-    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%BA%94-CustomClasses-CustomViews/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
@@ -37,14 +37,14 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/24/AndroidAnnotations-%E5%85%AD-Resources/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%8D%81-Trace/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%8D%81-Trace/</loc>
+    <loc>http://gcblog.cn/2015/11/24/AndroidAnnotations-%E5%85%AD-Resources/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B8%83-Thread/</loc>
+    <loc>http://gcblog.cn/2015/11/27/Shell%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/27/Shell%E6%89%B9%E9%87%8F%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B8%83-Thread/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -107,6 +107,13 @@
   </url>
   
   <url>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B9%9D-Event-Handling/</loc>
+    
+    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gcblog.cn/2015/12/02/gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Task/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
@@ -114,14 +121,14 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/12/10/gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%91%BD%E4%BB%A4%E8%A1%8C%E3%80%81%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E3%80%81%E5%8C%85%E8%A3%85%E5%99%A8/</loc>
+    <loc>http://gcblog.cn/2015/12/19/gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E6%A6%82%E8%A6%81/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/12/19/gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9E%84%E5%BB%BA%E8%84%9A%E6%9C%AC%E6%A6%82%E8%A6%81/</loc>
+    <loc>http://gcblog.cn/2015/12/10/gradle%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%91%BD%E4%BB%A4%E8%A1%8C%E3%80%81%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E3%80%81%E5%8C%85%E8%A3%85%E5%99%A8/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -142,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B9%9D-Event-Handling/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%85%AB-SharedPreferences/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
