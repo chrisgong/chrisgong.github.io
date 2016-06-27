@@ -44,6 +44,13 @@
   </url>
   
   <url>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%8D%81-Trace/</loc>
+    
+    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://gcblog.cn/2015/11/24/AndroidAnnotations-%E5%9B%9B-Broadcastreceivers/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
@@ -58,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%8D%81-Trace/</loc>
+    <loc>http://gcblog.cn/2015/12/28/BCD%E7%A0%81/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -66,13 +73,6 @@
   
   <url>
     <loc>http://gcblog.cn/2015/12/27/Dex-Method-Size-%E8%AE%A1%E7%AE%97%E8%84%9A%E6%9C%AC/</loc>
-    
-    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gcblog.cn/2015/12/28/BCD%E7%A0%81/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -93,13 +93,6 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2016/01/02/Vim%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B8%83-Thread/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
@@ -108,6 +101,20 @@
   
   <url>
     <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%B9%9D-Event-Handling/</loc>
+    
+    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gcblog.cn/2016/01/02/Vim%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gcblog.cn/2015/12/02/gradle%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -128,14 +135,7 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%85%AB-SharedPreferences/</loc>
-    
-    <lastmod>2016-03-06T05:38:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://gcblog.cn/2015/12/02/gradle%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%BA%94-CustomClasses-CustomViews/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
@@ -156,7 +156,7 @@
   </url>
   
   <url>
-    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E4%BA%94-CustomClasses-CustomViews/</loc>
+    <loc>http://gcblog.cn/2015/11/25/AndroidAnnotations-%E5%85%AB-SharedPreferences/</loc>
     
     <lastmod>2016-03-06T05:38:40.000Z</lastmod>
     
