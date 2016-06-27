@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gcblog.cn/"/>
-  <updated>2016-06-27T14:28:39.000Z</updated>
+  <updated>2016-06-27T14:55:10.000Z</updated>
   <id>http://gcblog.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://gcblog.cn/2016/06/27/react-native1/"/>
     <id>http://gcblog.cn/2016/06/27/react-native1/</id>
     <published>2016-06-27T13:45:36.000Z</published>
-    <updated>2016-06-27T14:28:39.000Z</updated>
+    <updated>2016-06-27T14:55:10.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;官网地址 : &lt;a href=&quot;http://reactnative.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://reactnative.cn/&lt;/a&gt;&lt;/p&gt;
@@ -91,9 +91,8 @@
 &lt;li&gt;build过程需要下载boost_1_57_0.zip(100+MB), 最好直接去下载完了扔到ReactAndroid/build/downloads下, 如果在线下载的话最好开墙. 否则你懂得.&lt;/li&gt;
 &lt;li&gt;过程中提示缺包的话, npm info查下, 然后install.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;目前Demo的运行就这些坑, 没太多难度的.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;目前Demo的运行就这些坑, 没太多难度的.&lt;br&gt;附个运行Demo截图:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xs2xr.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-06-27%20%E4%B8%8B%E5%8D%8810.48.05.png =1280x720&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
