@@ -1,0 +1,885 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="官网地址 : http://reactnative.cn/
+
+准备工作
+如果已安装请无视
+
+Homebrew1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+译注：在Max OS X 10.11（El Capitan)版本中，homebrew在安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native环境搭建">
+<meta property="og:url" content="http://gcblog.cn/2016/06/27/react-native1/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="官网地址 : http://reactnative.cn/
+
+准备工作
+如果已安装请无视
+
+Homebrew1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+译注：在Max OS X 10.11（El Capitan)版本中，homebrew在安装">
+<meta property="og:updated_time" content="2016-06-27T14:28:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native环境搭建">
+<meta name="twitter:description" content="官网地址 : http://reactnative.cn/
+
+准备工作
+如果已安装请无视
+
+Homebrew1/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+译注：在Max OS X 10.11（El Capitan)版本中，homebrew在安装">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React Native环境搭建 | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native环境搭建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-27T21:45:36+08:00" content="2016-06-27">
+              2016-06-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/27/react-native1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/react-native1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>官网地址 : <a href="http://reactnative.cn/" target="_blank" rel="external">http://reactnative.cn/</a></p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><blockquote>
+<p>如果已安装请无视</p>
+</blockquote>
+<h4 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></span><br></pre></td></tr></table></figure>
+<p>译注：在Max OS X 10.11（El Capitan)版本中，homebrew在安装软件时可能会碰到/usr/local目录不可写的权限问题。可以使用下面的命令修复：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">chown</span> -R <span class="string">`whoami`</span> /usr/<span class="keyword">local</span></span><br></pre></td></tr></table></figure>
+<h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure>
+<h4 id="react-native-cli"><a href="#react-native-cli" class="headerlink" title="react-native-cli"></a>react-native-cli</h4><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g react-<span class="keyword">native</span>-cli</span><br></pre></td></tr></table></figure>
+<h4 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h4><blockquote>
+<p>国内用户要切换npm源, 原因你自己感受下就懂了. 切换办法如下: </p>
+</blockquote>
+<h5 id="安装nrm"><a href="#安装nrm" class="headerlink" title="安装nrm"></a>安装nrm</h5><blockquote>
+<p>nrm是一个npm源管理器, 允许你快速地在如下npm源间切换：</p>
+</blockquote>
+<ul>
+<li><a href="https://www.npmjs.org/" target="_blank" rel="external">npm</a></li>
+<li><a href="http://cnpmjs.org/" target="_blank" rel="external">cnpm</a></li>
+<li><a href="http://strongloop.com/" target="_blank" rel="external">strongloop</a></li>
+<li><a href="http://npmjs.eu/" target="_blank" rel="external">european</a></li>
+<li><a href="http://npmjs.org.au/" target="_blank" rel="external">australia</a></li>
+<li><a href="https://www.nodejitsu.com/" target="_blank" rel="external">nodejitsu</a></li>
+<li><a href="http://npm.taobao.org/" target="_blank" rel="external">taobao</a></li>
+</ul>
+<h5 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令:"></a>安装命令:</h5><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g nrm</span><br></pre></td></tr></table></figure>
+<h5 id="列出可选的源"><a href="#列出可选的源" class="headerlink" title="列出可选的源:"></a>列出可选的源:</h5><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nrm ls                                                                                                                                    </span><br><span class="line"></span><br><span class="line">* npm ---- <span class="string">https:</span><span class="comment">//registry.npmjs.org/</span></span><br><span class="line">  cnpm --- <span class="string">http:</span><span class="comment">//r.cnpmjs.org/</span></span><br><span class="line">  taobao - <span class="string">http:</span><span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">  eu ----- <span class="string">http:</span><span class="comment">//registry.npmjs.eu/</span></span><br><span class="line">  au ----- <span class="string">http:</span><span class="comment">//registry.npmjs.org.au/</span></span><br><span class="line">  sl ----- <span class="string">http:</span><span class="comment">//npm.strongloop.com/</span></span><br><span class="line">  nj ----- <span class="string">https:</span><span class="comment">//registry.nodejitsu.com/</span></span><br></pre></td></tr></table></figure>
+<h5 id="切换"><a href="#切换" class="headerlink" title="切换:"></a>切换:</h5><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nrm use taobao                                                                                                                             </span><br><span class="line"></span><br><span class="line">   Registry <span class="keyword">has</span> been <span class="keyword">set</span> <span class="keyword">to</span>: http:<span class="comment">//registry.npm.taobao.org/</span></span><br></pre></td></tr></table></figure>
+<h5 id="增加源"><a href="#增加源" class="headerlink" title="增加源:"></a>增加源:</h5><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm <span class="built_in">add</span>  <span class="symbol">&lt;registry&gt;</span> <span class="symbol">&lt;url&gt;</span> [home]</span><br></pre></td></tr></table></figure>
+<h5 id="删除源"><a href="#删除源" class="headerlink" title="删除源:"></a>删除源:</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm <span class="selector-tag">del</span> &lt;registry&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="测试速度"><a href="#测试速度" class="headerlink" title="测试速度:"></a>测试速度:</h5><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nrm test <span class="built_in">npm</span>                                                                                                                               </span><br><span class="line"></span><br><span class="line">  <span class="built_in">npm</span> ---- <span class="number">1328</span>ms</span><br></pre></td></tr></table></figure>
+<h5 id="测试所有源的响应时间："><a href="#测试所有源的响应时间：" class="headerlink" title="测试所有源的响应时间："></a>测试所有源的响应时间：</h5><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nrm test                                                                                                                                   </span><br><span class="line"></span><br><span class="line">  npm <span class="comment">---- 891ms</span></span><br><span class="line">  cnpm <span class="comment">--- 1213ms</span></span><br><span class="line">* taobao - <span class="number">460</span>ms</span><br><span class="line">  eu <span class="comment">----- 3859ms</span></span><br><span class="line">  au <span class="comment">----- 1073ms</span></span><br><span class="line">  sl <span class="comment">----- 4150ms</span></span><br><span class="line">  nj <span class="comment">----- 8008ms</span></span><br></pre></td></tr></table></figure>
+<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><h4 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h4><h4 id="JDK-1-8"><a href="#JDK-1-8" class="headerlink" title="JDK 1.8"></a>JDK 1.8</h4><hr>
+<h3 id="运行DEMO"><a href="#运行DEMO" class="headerlink" title="运行DEMO"></a>运行DEMO</h3><blockquote>
+<p>Demo Github地址: <a href="https://github.com/facebook/react-native" target="_blank" rel="external">https://github.com/facebook/react-native</a></p>
+</blockquote>
+<h4 id="下载项目"><a href="#下载项目" class="headerlink" title="下载项目"></a>下载项目</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">https</span>://github.com/facebook/react-native.git</span><br><span class="line">cd react-native &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
+<h4 id="配置Android环境并运行Demo"><a href="#配置Android环境并运行Demo" class="headerlink" title="配置Android环境并运行Demo"></a>配置Android环境并运行Demo</h4><ol>
+<li>将下载的Examples用Android Studio打开. (如果本地没有gradle会在导入过程中下载, 需要很长时间, 不要着急, 耐心等待)</li>
+<li>修改项目local.properties, 加入以下路径.<ul>
+<li>sdk.dir=$Android SDK路径 </li>
+<li>ndk.dir=$Android NDK路径</li>
+</ul>
+</li>
+<li>打开Terminal</li>
+<li><p>启动本地资源服务</p>
+ <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切记使用sudo来执行, 否则会因权限导致启动错误 </span></span><br><span class="line">sudo .<span class="meta-keyword">/packager/</span>packager.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编译运行项目</p>
+ <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./<span class="string">gradlew :</span><span class="string">Examples:</span><span class="string">Movies:</span><span class="string">android:</span><span class="string">app:</span>installDebug </span><br><span class="line"><span class="comment">//此命令为编译项目, 并且安装debug版本apk到终端(需要连接手机或模拟器)</span></span><br><span class="line"><span class="comment">//也可以自行build项目, 然后运行到终端</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="配置iOS环境并运行Demo"><a href="#配置iOS环境并运行Demo" class="headerlink" title="配置iOS环境并运行Demo"></a>配置iOS环境并运行Demo</h4><ol>
+<li><p>启动本地资源服务</p>
+ <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切记使用sudo来执行, 否则会因权限导致启动错误 </span></span><br><span class="line">sudo .<span class="meta-keyword">/packager/</span>packager.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开Examples/*/*.xcodeproj文件</p>
+</li>
+<li>Build -&gt; Run in Xcode</li>
+</ol>
+<hr>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>ndk版本不要高于r10b</li>
+<li>脚本执行需要提供权限</li>
+<li>Node等支持工具需要最新版本</li>
+<li>build过程需要下载boost_1_57_0.zip(100+MB), 最好直接去下载完了扔到ReactAndroid/build/downloads下, 如果在线下载的话最好开墙. 否则你懂得.</li>
+<li>过程中提示缺包的话, npm info查下, 然后install.</li>
+</ol>
+<blockquote>
+<p>目前Demo的运行就这些坑, 没太多难度的.</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/20/bluetooth/" rel="next" title="Android 4.0蓝牙介绍">
+                <i class="fa fa-chevron-left"></i> Android 4.0蓝牙介绍
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/06/27/react-native1/"
+     data-title="React Native环境搭建"
+     data-content=""
+     data-url="http://gcblog.cn/2016/06/27/react-native1/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/27/react-native1/"
+           data-title="React Native环境搭建" data-url="http://gcblog.cn/2016/06/27/react-native1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Discontent is the first step in progress.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Homebrew"><span class="nav-number">1.1.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node"><span class="nav-number">1.2.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react-native-cli"><span class="nav-number">1.3.</span> <span class="nav-text">react-native-cli</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm"><span class="nav-number">1.4.</span> <span class="nav-text">npm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装nrm"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装nrm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装命令"><span class="nav-number">1.4.2.</span> <span class="nav-text">安装命令:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列出可选的源"><span class="nav-number">1.4.3.</span> <span class="nav-text">列出可选的源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#切换"><span class="nav-number">1.4.4.</span> <span class="nav-text">切换:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加源"><span class="nav-number">1.4.5.</span> <span class="nav-text">增加源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除源"><span class="nav-number">1.4.6.</span> <span class="nav-text">删除源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试速度"><span class="nav-number">1.4.7.</span> <span class="nav-text">测试速度:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试所有源的响应时间："><span class="nav-number">1.4.8.</span> <span class="nav-text">测试所有源的响应时间：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xcode"><span class="nav-number">1.5.</span> <span class="nav-text">Xcode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Studio"><span class="nav-number">1.6.</span> <span class="nav-text">Android Studio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK-1-8"><span class="nav-number">1.7.</span> <span class="nav-text">JDK 1.8</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行DEMO"><span class="nav-number">2.</span> <span class="nav-text">运行DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载项目"><span class="nav-number">2.1.</span> <span class="nav-text">下载项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Android环境并运行Demo"><span class="nav-number">2.2.</span> <span class="nav-text">配置Android环境并运行Demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置iOS环境并运行Demo"><span class="nav-number">2.3.</span> <span class="nav-text">配置iOS环境并运行Demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
