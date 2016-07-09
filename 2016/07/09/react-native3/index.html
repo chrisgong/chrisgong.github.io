@@ -1,0 +1,853 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="React Native," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Gc's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="动画AnimatedAnimated库使得开发者可以非常容易地实现各种各样的动画和交互方式，并且具备极高的性能。Animated仅关注动画的输入与输出声明，在其中建立一个可配置的变化函数，然后使用简单的start/stop方法来控制动画按顺序执行。下面是一个在加载时带有简单的弹跳动画的组件示例：
+123456789101112131415161718192021222324252627282930">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native基础 (二)">
+<meta property="og:url" content="http://gcblog.cn/2016/07/09/react-native3/index.html">
+<meta property="og:site_name" content="Gc's blog">
+<meta property="og:description" content="动画AnimatedAnimated库使得开发者可以非常容易地实现各种各样的动画和交互方式，并且具备极高的性能。Animated仅关注动画的输入与输出声明，在其中建立一个可配置的变化函数，然后使用简单的start/stop方法来控制动画按顺序执行。下面是一个在加载时带有简单的弹跳动画的组件示例：
+123456789101112131415161718192021222324252627282930">
+<meta property="og:image" content="http://reactnative.cn/static/docs/0.28/img/LayoutAnimationExample.gif">
+<meta property="og:updated_time" content="2016-07-09T13:38:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native基础 (二)">
+<meta name="twitter:description" content="动画AnimatedAnimated库使得开发者可以非常容易地实现各种各样的动画和交互方式，并且具备极高的性能。Animated仅关注动画的输入与输出声明，在其中建立一个可配置的变化函数，然后使用简单的start/stop方法来控制动画按顺序执行。下面是一个在加载时带有简单的弹跳动画的组件示例：
+123456789101112131415161718192021222324252627282930">
+<meta name="twitter:image" content="http://reactnative.cn/static/docs/0.28/img/LayoutAnimationExample.gif">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React Native基础 (二) | Gc's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Gc's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Discontent is the first step in progress.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'PYs42SgQqvuLRSDRespH','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native基础 (二)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-09T20:34:36+08:00" content="2016-07-09">
+              2016-07-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/React-Native/" itemprop="url" rel="index">
+                    <span itemprop="name">React Native</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/09/react-native3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/react-native3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h1 id="Animated"><a href="#Animated" class="headerlink" title="Animated"></a>Animated</h1><p>Animated库使得开发者可以非常容易地实现各种各样的动画和交互方式，并且具备极高的性能。Animated仅关注动画的输入与输出声明，在其中建立一个可配置的变化函数，然后使用简单的start/stop方法来控制动画按顺序执行。下面是一个在加载时带有简单的弹跳动画的组件示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Playground extends React.Component &#123;</span><br><span class="line">  constructor(props: any) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      bounceValue: new Animated.Value(0),</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  render(): ReactElement &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;Animated.Image                         // 可选的基本组件类型: Image, Text, View</span><br><span class="line">        source=&#123;&#123;uri: &apos;http://i.imgur.com/XMKOH81.jpg&apos;&#125;&#125;</span><br><span class="line">        style=&#123;&#123;</span><br><span class="line">          flex: 1,</span><br><span class="line">          transform: [                        // `transform`是一个有序数组（动画按顺序执行）</span><br><span class="line">            &#123;scale: this.state.bounceValue&#125;,  // 将`bounceValue`赋值给 `scale`</span><br><span class="line">          ]</span><br><span class="line">        &#125;&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    this.state.bounceValue.setValue(1.5);     // 设置一个较大的初始值</span><br><span class="line">    Animated.spring(                          // 可选的基本动画类型: spring, decay, timing</span><br><span class="line">      this.state.bounceValue,                 // 将`bounceValue`值动画化</span><br><span class="line">      &#123;</span><br><span class="line">        toValue: 0.8,                         // 将其值以动画的形式改到一个较小值</span><br><span class="line">        friction: 1,                          // Bouncier spring</span><br><span class="line">      &#125;</span><br><span class="line">    ).start();                                // 开始执行动画</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>bounceValue在构造函数中初始化为state的一部分，然后和图片的缩放比例进行绑定。在动画执行的背后，其数值会被不断的计算并用于设置缩放比例。当组件刚刚挂载的时候，缩放比例被设置到1.5。然后紧跟着在bounceValue上执行了一个弹跳动画(spring)，会逐帧刷新数值，并同步更新所有依赖本数值的绑定（在这个例子里，就是图片的缩放比例）。比起调用setState然后重新渲染，这一运行过程要快得多。因为整个配置都是声明式的，我们可以实现更进一步的优化，只要序列化好配置，然后我们可以在一个高优先级的线程执行动画。</p>
+<h2 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h2><p>大部分你需要的东西都来自Animated模块。它包括两个值类型，Value用于单个的值，而ValueXY用于向量值；还包括三种动画类型，spring，decay，还有timing，以及三种组件类型，View，Text和Image。你可以使用Animated.createAnimatedComponent方法来对其它类型的组件创建动画。</p>
+<p>这三种动画类型可以用来创建几乎任何你需要的动画曲线，因为它们每一个都可以被自定义：</p>
+<ul>
+<li>spring: 基础的单次弹跳物理模型，符合<a href="https://facebook.github.io/origami/" target="_blank" rel="external">Origami设计标准</a><ul>
+<li>friction: 摩擦力，默认为7.</li>
+<li>tension: 张力，默认40。</li>
+</ul>
+</li>
+<li>decay: 以一个初始速度开始并且逐渐减慢停止。<ul>
+<li>velocity: 起始速度，必填参数。</li>
+<li>deceleration: 速度衰减比例，默认为0.997。</li>
+</ul>
+</li>
+<li>timing: 从时间范围映射到渐变的值。<ul>
+<li>duration: 动画持续的时间（单位是毫秒），默认为500。</li>
+<li>easing：一个用于定义曲线的渐变函数。阅读Easing模块可以找到许多预定义的函数。iOS默认为Easing.inOut(Easing.ease)。</li>
+<li>delay: 在一段时间之后开始动画（单位是毫秒），默认为0。<br>动画可以通过调用start方法来开始。start接受一个回调函数，当动画结束的时候会调用此回调函数。如果动画是因为正常播放完成而结束的，回调函数被调用时的参数为{finished: true}，但若动画是在结束之前被调用了stop而结束（可能是被一个手势或者其它的动画打断），它会收到参数{finished: false}。</li>
+</ul>
+</li>
+</ul>
+<h2 id="组合动画"><a href="#组合动画" class="headerlink" title="组合动画"></a>组合动画</h2><p>多个动画可以通过parallel（同时执行）、sequence（顺序执行）、stagger（交替执行）和delay（延时执行）来组合使用。它们中的每一个都接受一个要执行的动画数组，并且自动在适当的时候调用start/stop。举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Animated.sequence([            // 首先执行decay动画，结束后同时执行spring和twirl动画</span><br><span class="line">  Animated.decay(position, &#123;   // 滑行一段距离后停止</span><br><span class="line">    velocity: &#123;x: gestureState.vx, y: gestureState.vy&#125;, // 根据用户的手势设置速度</span><br><span class="line">    deceleration: 0.997,</span><br><span class="line">  &#125;),</span><br><span class="line">  Animated.parallel([          // 在decay之后并行执行：</span><br><span class="line">    Animated.spring(position, &#123;</span><br><span class="line">      toValue: &#123;x: 0, y: 0&#125;    // 返回到起始点开始</span><br><span class="line">    &#125;),</span><br><span class="line">    Animated.timing(twirl, &#123;   // 同时开始旋转</span><br><span class="line">      toValue: 360,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]),</span><br><span class="line">]).start();                    // 执行这一整套动画序列</span><br></pre></td></tr></table></figure>
+<p>默认情况下，如果任何一个动画被停止或中断了，组内所有其它的动画也会被停止。Parallel有一个stopTogether属性，如果设置为false，可以禁用自动停止。</p>
+<h2 id="插值（interpolate）"><a href="#插值（interpolate）" class="headerlink" title="插值（interpolate）"></a>插值（interpolate）</h2><p>Animated API还有一个很强大的部分就是interpolate插值函数。它可以接受一个输入区间，然后将其映射到另一个的输出区间。下面是一个一个简单的从0-1区间到0-100区间的映射示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">value.interpolate(&#123;</span><br><span class="line">  inputRange: [0, 1],</span><br><span class="line">  outputRange: [0, 100],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>interpolate还支持定义多个区间段落，常用来定义静止区间等。举个例子，要让输入在接近-300时取相反值，然后在输入接近-100时到达0，然后在输入接近0时又回到1，接着一直到输入到100的过程中逐步回到0，最后形成一个始终为0的静止区间，对于任何大于100的输入都返回0。具体写法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">value.interpolate(&#123;</span><br><span class="line">  inputRange: [-300, -100, 0, 100, 101],</span><br><span class="line">  outputRange: [300,    0, 1,   0,   0],</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>它的最终映射结果如下：</p>
+<p>输入    输出<br>-400    450<br>-300    300<br>-200    150<br>-100    0<br>-50    0.5<br>0    1<br>50    0.5<br>100    0<br>101    0<br>200    0<br>interpolation还支持任意的渐变函数，其中有很多已经在Easing类中定义了，包括二次、指数、贝塞尔等曲线以及step、bounce等方法。interpolation还支持限制输出区间outputRange。你可以通过设置extrapolate、extrapolateLeft或extrapolateRight属性来限制输出区间。默认值是extend（允许超出），不过你可以使用clamp选项来阻止输出值超过outputRange。</p>
+<h2 id="跟踪动态值"><a href="#跟踪动态值" class="headerlink" title="跟踪动态值"></a>跟踪动态值</h2><p>动画中所设的值还可以通过跟踪别的值得到。你只要把toValue设置成另一个动态值而不是一个普通数字就行了。比如我们可以用弹跳动画来实现聊天头像的闪动，又比如通过timing设置duration:0来实现快速的跟随。他们还可以使用插值来进行组合：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Animated.spring(follower, &#123;toValue: leader&#125;).start();</span><br><span class="line">Animated.timing(opacity, &#123;</span><br><span class="line">  toValue: pan.x.interpolate(&#123;</span><br><span class="line">    inputRange: [0, 300],</span><br><span class="line">    outputRange: [1, 0],</span><br><span class="line">  &#125;),</span><br><span class="line">&#125;).start();</span><br></pre></td></tr></table></figure>
+<p>ValueXY是一个方便的处理2D交互的办法，譬如旋转或拖拽。它是一个简单的包含了两个Animated.Value实例的包装，然后提供了一系列辅助函数，使得ValueXY在许多时候可以替代Value来使用。比如在上面的代码片段中，leader和follower可以同时为valueXY类型，这样x和y的值都会被跟踪。</p>
+<h2 id="输入事件"><a href="#输入事件" class="headerlink" title="输入事件"></a>输入事件</h2><p>Animated.event是Animated API中与输入有关的部分，允许手势或其它事件直接绑定到动态值上。它通过一个结构化的映射语法来完成，使得复杂事件对象中的值可以被正确的解开。第一层是一个数组，允许同时映射多个值，然后数组的每一个元素是一个嵌套的对象。在下面的例子里，你可以发现scrollX被映射到了event.nativeEvent.contentOffset.x(event通常是回调函数的第一个参数)，并且pan.x和pan.y分别映射到gestureState.dx和gestureState.dy（gestureState是传递给PanResponder回调函数的第二个参数）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">onScroll=&#123;Animated.event(</span><br><span class="line">  [&#123;nativeEvent: &#123;contentOffset: &#123;x: scrollX&#125;&#125;&#125;]   // scrollX = e.nativeEvent.contentOffset.x</span><br><span class="line">)&#125;</span><br><span class="line">onPanResponderMove=&#123;Animated.event([</span><br><span class="line">  null,                                          // 忽略原生事件</span><br><span class="line">  &#123;dx: pan.x, dy: pan.y&#125;                         // 从gestureState中解析出dx和dy的值</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<h2 id="响应当前的动画值"><a href="#响应当前的动画值" class="headerlink" title="响应当前的动画值"></a>响应当前的动画值</h2><p>你可能会注意到这里没有一个明显的方法来在动画的过程中读取当前的值——这是出于优化的角度考虑，有些值只有在原生代码运行阶段中才知道。如果你需要在JavaScript中响应当前的值，有两种可能的办法：</p>
+<p>spring.stopAnimation(callback)会停止动画并且把最终的值作为参数传递给回调函数callback——这在处理手势动画的时候非常有用。<br>spring.addListener(callback) 会在动画的执行过程中持续异步调用callback回调函数，提供一个最近的值作为参数。这在用于触发状态切换的时候非常有用，譬如当用户拖拽一个东西靠近的时候弹出一个新的气泡选项。不过这个状态切换可能并不会十分灵敏，因为它不像许多连续手势操作（如旋转）那样在60fps下运行。</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p><a href="https://github.com/facebook/react-native/tree/master/Examples/UIExplorer/AnimatedGratuitousApp" target="_blank" rel="external">UIExplorer/AnimationExample</a></p>
+<h1 id="LayoutAnimation"><a href="#LayoutAnimation" class="headerlink" title="LayoutAnimation"></a>LayoutAnimation</h1><p>LayoutAnimation允许你在全局范围内创建和更新动画，这些动画会在下一次渲染或布局周期运行。它常用来更新flexbox布局，因为它可以无需测量或者计算特定属性就能直接产生动画。尤其是当布局变化可能影响到父节点（譬如“查看更多”展开动画既增加父节点的尺寸又会将位于本行之下的所有行向下推动）时，如果不使用LayoutAnimation，可能就需要显式声明组件的坐标，才能使得所有受影响的组件能够同步运行动画。</p>
+<p>注意尽管LayoutAnimation非常强大且有用，但它对动画本身的控制没有Animated或者其它动画库那样方便，所以如果你使用LayoutAnimation无法实现一个效果，那可能还是要考虑其他的方案。</p>
+<p>另外，如果要在Android上使用LayoutAnimation，那么目前还需要在UIManager中启用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIManager.setLayoutAnimationEnabledExperimental &amp;&amp; UIManager.setLayoutAnimationEnabledExperimental(true);</span><br></pre></td></tr></table></figure>
+<p><img src="http://reactnative.cn/static/docs/0.28/img/LayoutAnimationExample.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var App = React.createClass(&#123;</span><br><span class="line">  componentWillMount() &#123;</span><br><span class="line">    // 创建动画</span><br><span class="line">    LayoutAnimation.spring();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  getInitialState() &#123;</span><br><span class="line">    return &#123; w: 100, h: 100 &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  _onPress() &#123;</span><br><span class="line">    // 让视图的尺寸变化以动画形式展现</span><br><span class="line">    LayoutAnimation.spring();</span><br><span class="line">    this.setState(&#123;w: this.state.w + 15, h: this.state.h + 15&#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  render: function() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;[styles.box, &#123;width: this.state.w, height: this.state.h&#125;]&#125; /&gt;</span><br><span class="line">        &lt;TouchableOpacity onPress=&#123;this._onPress&#125;&gt;</span><br><span class="line">          &lt;View style=&#123;styles.button&#125;&gt;</span><br><span class="line">            &lt;Text style=&#123;styles.buttonText&#125;&gt;Press me!&lt;/Text&gt;</span><br><span class="line">          &lt;/View&gt;</span><br><span class="line">        &lt;/TouchableOpacity&gt;</span><br><span class="line">      &lt;/View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h2><p>requestAnimationFrame是一个对浏览器标准API的兼容实现，你可能已经熟悉它了。它接受一个函数作为唯一的参数，并且在下一次重绘之前调用此函数。一些基于JavaScript的动画库高度依赖于这一API。通常你不必直接调用它——那些动画库会替你管理好帧的更新。</p>
+<h2 id="关于setNativeProps"><a href="#关于setNativeProps" class="headerlink" title="关于setNativeProps"></a>关于setNativeProps</h2><p>正如直接操作文档所说，setNativeProps方法可以使我们直接修改基于原生视图的组件的属性，而不需要使用setState来重新渲染整个组件树。</p>
+<p>我们可以把这个用在Rebound样例中来更新缩放比例——如果我们要更新的组件有一个非常深的内嵌结构，并且没有使用shouldComponentUpdate来优化，那么使用setNativeProps就将大有裨益。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/ 回到上面示例的那个组件中，找到componentWillMount方法，</span><br><span class="line">// 然后将scrollSpring的监听函数替换为如下代码:</span><br><span class="line">this._scrollSpring.addListener(&#123;</span><br><span class="line">  onSpringUpdate: () =&gt; &#123;</span><br><span class="line">    if (!this._photo) &#123; return &#125;</span><br><span class="line">    var v = this._scrollSpring.getCurrentValue();</span><br><span class="line">    var newProps = &#123;style: &#123;transform: [&#123;scaleX: v&#125;, &#123;scaleY: v&#125;]&#125;&#125;;</span><br><span class="line">    this._photo.setNativeProps(newProps);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 最后，我们修改render方法，不再通过style来传入transform（避免</span><br><span class="line">// 重新渲染时产生冲突）；然后给图片加上ref引用。 </span><br><span class="line">render: function() &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">      &lt;TouchableWithoutFeedback onPressIn=&#123;this._onPressIn&#125; onPressOut=&#123;this._onPressOut&#125;&gt;</span><br><span class="line">        &lt;Image ref=&#123;component =&gt; this._photo = component&#125;</span><br><span class="line">               source=&#123;&#123;uri: &quot;https://facebook.github.io/react-native/img/ReboundExample.png&quot;&#125;&#125;</span><br><span class="line">               style=&#123;&#123;width: 250, height: 200&#125;&#125; /&gt;</span><br><span class="line">      &lt;/TouchableWithoutFeedback&gt;</span><br><span class="line">    &lt;/View&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过你没办法把setNativeProps和react-tween-state结合使用，因为更新的补间值会自动被库设置到state上——Rebound则不同，它通过onSprintUpdate函数在每一帧中给我们提供一个更新后的值。</p>
+<p>如果你发现你的动画丢帧（低于60帧每秒），可以尝试使用setNativeProps或者shouldComponentUpdate来优化它们。你还可能需要将部分计算工作放在动画完成之后进行，这时可以使用InteractionManager。你还可以使用应用内的开发者菜单中的“FPS Monitor”工具来监控应用的帧率。</p>
+<h2 id="导航器场景切换"><a href="#导航器场景切换" class="headerlink" title="导航器场景切换"></a>导航器场景切换</h2><p>正如文档导航器对比所说，Navigator使用JavaScript实现，而NavigatoIOS则是一个对于UINavigationController提供的原生功能的包装。所以这些场景切换动画仅仅对Navigator有效。为了在Navigator中重新创建UINavigationController所提供的动画并且使之可以被自定义，React Native导出了一个NavigatorSceneConfigsAPI。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Dimensions &#125; from &apos;react-native&apos;;</span><br><span class="line">var SCREEN_WIDTH = Dimensions.get(&apos;window&apos;).width;</span><br><span class="line">var BaseConfig = Navigator.SceneConfigs.FloatFromRight;</span><br><span class="line"></span><br><span class="line">var CustomLeftToRightGesture = Object.assign(&#123;&#125;, BaseConfig.gestures.pop, &#123;</span><br><span class="line">  // 用户中断返回手势时，迅速弹回  </span><br><span class="line">  snapVelocity: 8,</span><br><span class="line"></span><br><span class="line">  // 如下设置可以使我们在屏幕的任何地方拖动它</span><br><span class="line">  edgeHitWidth: SCREEN_WIDTH,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">var CustomSceneConfig = Object.assign(&#123;&#125;, BaseConfig, &#123;</span><br><span class="line">  // 如下设置使过场动画看起来很快</span><br><span class="line">  springTension: 100,</span><br><span class="line">  springFriction: 1,</span><br><span class="line"></span><br><span class="line">  // 使用上面我们自定义的手势</span><br><span class="line">  gestures: &#123;</span><br><span class="line">    pop: CustomLeftToRightGesture,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React-Native/" rel="tag">#React Native</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/09/react-native2/" rel="next" title="React Native基础 (一)">
+                <i class="fa fa-chevron-left"></i> React Native基础 (一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/09/react-native3/"
+     data-title="React Native基础 (二)"
+     data-content=""
+     data-url="http://gcblog.cn/2016/07/09/react-native3/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/09/react-native3/"
+           data-title="React Native基础 (二)" data-url="http://gcblog.cn/2016/07/09/react-native3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Gc" />
+          <p class="site-author-name" itemprop="name">Gc</p>
+          <p class="site-description motion-element" itemprop="description">Discontent is the first step in progress.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/chrisgong" target="_blank">
+                  
+                    <i class="fa fa-github"></i> GitHub
+                  
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1916380757" target="_blank">
+                  
+                    <i class="fa fa-weibo"></i> Weibo
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number">1.</span> <span class="nav-text">动画</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Animated"><span class="nav-number">2.</span> <span class="nav-text">Animated</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心API"><span class="nav-number">2.1.</span> <span class="nav-text">核心API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合动画"><span class="nav-number">2.2.</span> <span class="nav-text">组合动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插值（interpolate）"><span class="nav-number">2.3.</span> <span class="nav-text">插值（interpolate）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跟踪动态值"><span class="nav-number">2.4.</span> <span class="nav-text">跟踪动态值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入事件"><span class="nav-number">2.5.</span> <span class="nav-text">输入事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#响应当前的动画值"><span class="nav-number">2.6.</span> <span class="nav-text">响应当前的动画值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">2.7.</span> <span class="nav-text">Demo</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LayoutAnimation"><span class="nav-number">3.</span> <span class="nav-text">LayoutAnimation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#requestAnimationFrame"><span class="nav-number">3.1.</span> <span class="nav-text">requestAnimationFrame</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于setNativeProps"><span class="nav-number">3.2.</span> <span class="nav-text">关于setNativeProps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导航器场景切换"><span class="nav-number">3.3.</span> <span class="nav-text">导航器场景切换</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Gc</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gcblog"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
