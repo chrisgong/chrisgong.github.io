@@ -59,36 +59,28 @@
 
 
 
-<meta name="description" content="官网地址 : http://reactnative.cn/
-
-准备工作
-如果已安装请无视
-
-Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
-译注：在Max OS X 10.11（El Capitan)版本中，h">
+<meta name="description" content="特定平台代码在制作跨平台的App时，多半会碰到针对不同平台编写不同代码的需求。最直接的方案就是把组件放置到不同的文件夹下：
+123/common/components/   /android/components/   /ios/components/
+另一个选择是根据平台不同在组件的文件命名上加以区分，如下：
+12BigButtonIOS.jsBigButtonAndroid.js
+但除此以外R">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React Native环境搭建">
-<meta property="og:url" content="http://gcblog.cn/2016/06/27/react-native1/index.html">
+<meta property="og:title" content="React Native基础 (三)">
+<meta property="og:url" content="http://gcblog.cn/2016/07/09/react-native4/index.html">
 <meta property="og:site_name" content="Gc's blog">
-<meta property="og:description" content="官网地址 : http://reactnative.cn/
-
-准备工作
-如果已安装请无视
-
-Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
-译注：在Max OS X 10.11（El Capitan)版本中，h">
-<meta property="og:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-06-27%20%E4%B8%8B%E5%8D%8810.48.05.png">
-<meta property="og:updated_time" content="2016-06-27T14:57:43.000Z">
+<meta property="og:description" content="特定平台代码在制作跨平台的App时，多半会碰到针对不同平台编写不同代码的需求。最直接的方案就是把组件放置到不同的文件夹下：
+123/common/components/   /android/components/   /ios/components/
+另一个选择是根据平台不同在组件的文件命名上加以区分，如下：
+12BigButtonIOS.jsBigButtonAndroid.js
+但除此以外R">
+<meta property="og:updated_time" content="2016-07-09T13:47:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React Native环境搭建">
-<meta name="twitter:description" content="官网地址 : http://reactnative.cn/
-
-准备工作
-如果已安装请无视
-
-Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
-译注：在Max OS X 10.11（El Capitan)版本中，h">
-<meta name="twitter:image" content="http://7xs2xr.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-06-27%20%E4%B8%8B%E5%8D%8810.48.05.png">
+<meta name="twitter:title" content="React Native基础 (三)">
+<meta name="twitter:description" content="特定平台代码在制作跨平台的App时，多半会碰到针对不同平台编写不同代码的需求。最直接的方案就是把组件放置到不同的文件夹下：
+123/common/components/   /android/components/   /ios/components/
+另一个选择是根据平台不同在组件的文件命名上加以区分，如下：
+12BigButtonIOS.jsBigButtonAndroid.js
+但除此以外R">
 
 
 
@@ -106,7 +98,7 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
   };
 </script>
 
-  <title> React Native环境搭建 | Gc's blog </title>
+  <title> React Native基础 (三) | Gc's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -257,7 +249,7 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
             
             
               
-                React Native环境搭建
+                React Native基础 (三)
               
             
           </h1>
@@ -269,8 +261,8 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-27T21:45:36+08:00" content="2016-06-27">
-              2016-06-27
+            <time itemprop="dateCreated" datetime="2016-07-09T21:43:45+08:00" content="2016-07-09">
+              2016-07-09
             </time>
           </span>
 
@@ -299,8 +291,8 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/27/react-native1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/react-native1/" itemprop="commentsCount"></span>
+                <a href="/2016/07/09/react-native4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/09/react-native4/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,77 +314,27 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
       
 
       
-        <blockquote>
-<p>官网地址 : <a href="http://reactnative.cn/" target="_blank" rel="external">http://reactnative.cn/</a></p>
-</blockquote>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><blockquote>
-<p>如果已安装请无视</p>
-</blockquote>
-<h4 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
-<p>译注：在Max OS X 10.11（El Capitan)版本中，homebrew在安装软件时可能会碰到/usr/local目录不可写的权限问题。可以使用下面的命令修复：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R `whoami` /usr/local</span><br></pre></td></tr></table></figure>
-<h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
-<h4 id="react-native-cli"><a href="#react-native-cli" class="headerlink" title="react-native-cli"></a>react-native-cli</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
-<h4 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h4><blockquote>
-<p>国内用户要切换npm源, 原因你自己感受下就懂了. 切换办法如下: </p>
-</blockquote>
-<h5 id="安装nrm"><a href="#安装nrm" class="headerlink" title="安装nrm"></a>安装nrm</h5><blockquote>
-<p>nrm是一个npm源管理器, 允许你快速地在如下npm源间切换：</p>
-</blockquote>
-<ul>
-<li><a href="https://www.npmjs.org/" target="_blank" rel="external">npm</a></li>
-<li><a href="http://cnpmjs.org/" target="_blank" rel="external">cnpm</a></li>
-<li><a href="http://strongloop.com/" target="_blank" rel="external">strongloop</a></li>
-<li><a href="http://npmjs.eu/" target="_blank" rel="external">european</a></li>
-<li><a href="http://npmjs.org.au/" target="_blank" rel="external">australia</a></li>
-<li><a href="https://www.nodejitsu.com/" target="_blank" rel="external">nodejitsu</a></li>
-<li><a href="http://npm.taobao.org/" target="_blank" rel="external">taobao</a></li>
-</ul>
-<h5 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令:"></a>安装命令:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br></pre></td></tr></table></figure>
-<h5 id="列出可选的源"><a href="#列出可选的源" class="headerlink" title="列出可选的源:"></a>列出可选的源:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nrm ls                                                                                                                                    </span><br><span class="line"></span><br><span class="line">* npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">  taobao - http://registry.npm.taobao.org/</span><br><span class="line">  eu ----- http://registry.npmjs.eu/</span><br><span class="line">  au ----- http://registry.npmjs.org.au/</span><br><span class="line">  sl ----- http://npm.strongloop.com/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br></pre></td></tr></table></figure>
-<h5 id="切换"><a href="#切换" class="headerlink" title="切换:"></a>切换:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nrm use taobao                                                                                                                             </span><br><span class="line"></span><br><span class="line">   Registry has been set to: http://registry.npm.taobao.org/</span><br></pre></td></tr></table></figure>
-<h5 id="增加源"><a href="#增加源" class="headerlink" title="增加源:"></a>增加源:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm add  &lt;registry&gt; &lt;url&gt; [home]</span><br></pre></td></tr></table></figure>
-<h5 id="删除源"><a href="#删除源" class="headerlink" title="删除源:"></a>删除源:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrm del &lt;registry&gt;</span><br></pre></td></tr></table></figure>
-<h5 id="测试速度"><a href="#测试速度" class="headerlink" title="测试速度:"></a>测试速度:</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nrm test npm                                                                                                                               </span><br><span class="line"></span><br><span class="line">  npm ---- 1328ms</span><br></pre></td></tr></table></figure>
-<h5 id="测试所有源的响应时间："><a href="#测试所有源的响应时间：" class="headerlink" title="测试所有源的响应时间："></a>测试所有源的响应时间：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">nrm test                                                                                                                                   </span><br><span class="line"></span><br><span class="line">  npm ---- 891ms</span><br><span class="line">  cnpm --- 1213ms</span><br><span class="line">* taobao - 460ms</span><br><span class="line">  eu ----- 3859ms</span><br><span class="line">  au ----- 1073ms</span><br><span class="line">  sl ----- 4150ms</span><br><span class="line">  nj ----- 8008ms</span><br></pre></td></tr></table></figure>
-<h4 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h4><h4 id="Android-Studio"><a href="#Android-Studio" class="headerlink" title="Android Studio"></a>Android Studio</h4><h4 id="JDK-1-8"><a href="#JDK-1-8" class="headerlink" title="JDK 1.8"></a>JDK 1.8</h4><hr>
-<h3 id="运行DEMO"><a href="#运行DEMO" class="headerlink" title="运行DEMO"></a>运行DEMO</h3><blockquote>
-<p>Demo Github地址: <a href="https://github.com/facebook/react-native" target="_blank" rel="external">https://github.com/facebook/react-native</a></p>
-</blockquote>
-<h4 id="下载项目"><a href="#下载项目" class="headerlink" title="下载项目"></a>下载项目</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/facebook/react-native.git</span><br><span class="line">cd react-native &amp;&amp; npm install</span><br></pre></td></tr></table></figure>
-<h4 id="配置Android环境并运行Demo"><a href="#配置Android环境并运行Demo" class="headerlink" title="配置Android环境并运行Demo"></a>配置Android环境并运行Demo</h4><ol>
-<li>将下载的Examples用Android Studio打开. (如果本地没有gradle会在导入过程中下载, 需要很长时间, 不要着急, 耐心等待)</li>
-<li>修改项目local.properties, 加入以下路径.<ul>
-<li>sdk.dir=$Android SDK路径 </li>
-<li>ndk.dir=$Android NDK路径</li>
-</ul>
-</li>
-<li>打开Terminal</li>
-<li><p>启动本地资源服务</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//切记使用sudo来执行, 否则会因权限导致启动错误 </span><br><span class="line">sudo ./packager/packager.sh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编译运行项目</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./gradlew :Examples:Movies:android:app:installDebug </span><br><span class="line">//此命令为编译项目, 并且安装debug版本apk到终端(需要连接手机或模拟器)</span><br><span class="line">//也可以自行build项目, 然后运行到终端</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h4 id="配置iOS环境并运行Demo"><a href="#配置iOS环境并运行Demo" class="headerlink" title="配置iOS环境并运行Demo"></a>配置iOS环境并运行Demo</h4><ol>
-<li><p>启动本地资源服务</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//切记使用sudo来执行, 否则会因权限导致启动错误 </span><br><span class="line">sudo ./packager/packager.sh</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开Examples/*/*.xcodeproj文件</p>
-</li>
-<li>Build -&gt; Run in Xcode</li>
-</ol>
-<hr>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>ndk版本不要高于r10b</li>
-<li>脚本执行需要提供权限</li>
-<li>Node等支持工具需要最新版本</li>
-<li>build过程需要下载boost_1_57_0.zip(100+MB), 最好直接去下载完了扔到ReactAndroid/build/downloads下, 如果在线下载的话最好开墙. 否则你懂得.</li>
-<li>过程中提示缺包的话, npm info查下, 然后install.</li>
-</ol>
-<p>目前Demo的运行就这些坑, 没太多难度的.<br>附个运行Demo截图:</p>
-<p><img src="http://7xs2xr.com1.z0.glb.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-06-27%20%E4%B8%8B%E5%8D%8810.48.05.png" width="1280" height="720"></p>
+        <h1 id="特定平台代码"><a href="#特定平台代码" class="headerlink" title="特定平台代码"></a>特定平台代码</h1><p>在制作跨平台的App时，多半会碰到针对不同平台编写不同代码的需求。最直接的方案就是把组件放置到不同的文件夹下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/common/components/   </span><br><span class="line">/android/components/   </span><br><span class="line">/ios/components/</span><br></pre></td></tr></table></figure>
+<p>另一个选择是根据平台不同在组件的文件命名上加以区分，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BigButtonIOS.js</span><br><span class="line">BigButtonAndroid.js</span><br></pre></td></tr></table></figure>
+<p>但除此以外React Native还提供了另外两种简单区分平台的方案：</p>
+<h1 id="特定平台扩展名"><a href="#特定平台扩展名" class="headerlink" title="特定平台扩展名"></a>特定平台扩展名</h1><p>React Native会检测某个文件是否具有.ios.或是.android.的扩展名，然后根据当前运行的平台加载正确对应的文件。</p>
+<p>假设你的项目中有如下两个文</p>
+<p>BigButton.ios.js<br>BigButton.android.js</p>
+<p>这样命名组件后你就可以在其他组件中直接引用，而无需关心当前运行的平台是哪个。</p>
+<p>import BigButton from ‘./components/BigButton’;</p>
+<p>React Native会根据运行平台的不同引入正确对应的组件。</p>
+<p>还有个实用的方法是Platform.select()，它可以以Platform.OS为key，从传入的对象中返回对应平台的值，见下面的示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var &#123; Platform &#125; = React;</span><br><span class="line"></span><br><span class="line">var styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    flex: 1,</span><br><span class="line">    ...Platform.select(&#123;</span><br><span class="line">      ios: &#123;</span><br><span class="line">        backgroundColor: &apos;red&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">      android: &#123;</span><br><span class="line">        backgroundColor: &apos;blue&apos;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>上面的代码会根据平台的不同返回不同的container样式——iOS上背景色为红色，而android为蓝色。</p>
+<p>这一方法可以接受任何合法类型的参数，因此你也可以直接用它针对不同平台返回不同的组件，像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var Component = Platform.select(&#123;</span><br><span class="line">  ios: () =&gt; require(&apos;ComponentIOS&apos;),</span><br><span class="line">  android: () =&gt; require(&apos;ComponentAndroid&apos;),</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">&lt;Component /&gt;;</span><br></pre></td></tr></table></figure>
+<h1 id="平台模块"><a href="#平台模块" class="headerlink" title="平台模块"></a>平台模块</h1><p>React Native提供了一个检测当前运行平台的模块。如果组件只有一小部分代码需要依据平台定制，那么这个模块就可以派上用场。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Platform &#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">var styles = StyleSheet.create(&#123;</span><br><span class="line">  height: (Platform.OS === &apos;ios&apos;) ? 200 : 100,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Platform.OS在iOS上会返回ios，而在Android设备或模拟器上则会返回android。</p>
+<h2 id="检测Android版本"><a href="#检测Android版本" class="headerlink" title="检测Android版本"></a>检测Android版本</h2><p>在Android上，平台模块还可以用来检测当前所运行的Android平台的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Platform &#125; from &apos;react-native&apos;;</span><br><span class="line"></span><br><span class="line">if(Platform.Version === 21)&#123;</span><br><span class="line">  console.log(&apos;Running on Lollipop!&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -416,17 +358,13 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/20/bluetooth/" rel="next" title="Android 4.0蓝牙介绍">
-                <i class="fa fa-chevron-left"></i> Android 4.0蓝牙介绍
+              <a href="/2016/07/09/react-native3/" rel="next" title="React Native基础 (二)">
+                <i class="fa fa-chevron-left"></i> React Native基础 (二)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/09/react-native2/" rel="prev" title="React Native基础 (一)">
-                React Native基础 (一) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -441,10 +379,10 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/06/27/react-native1/"
-     data-title="React Native环境搭建"
+        <div class="ds-share flat" data-thread-key="2016/07/09/react-native4/"
+     data-title="React Native基础 (三)"
      data-content=""
-     data-url="http://gcblog.cn/2016/06/27/react-native1/">
+     data-url="http://gcblog.cn/2016/07/09/react-native4/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -471,8 +409,8 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/27/react-native1/"
-           data-title="React Native环境搭建" data-url="http://gcblog.cn/2016/06/27/react-native1/">
+      <div class="ds-thread" data-thread-key="2016/07/09/react-native4/"
+           data-title="React Native基础 (三)" data-url="http://gcblog.cn/2016/07/09/react-native4/">
       </div>
     
   </div>
@@ -592,7 +530,7 @@ Homebrew1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.c
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Homebrew"><span class="nav-number">1.1.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node"><span class="nav-number">1.2.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#react-native-cli"><span class="nav-number">1.3.</span> <span class="nav-text">react-native-cli</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#npm"><span class="nav-number">1.4.</span> <span class="nav-text">npm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装nrm"><span class="nav-number">1.4.1.</span> <span class="nav-text">安装nrm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装命令"><span class="nav-number">1.4.2.</span> <span class="nav-text">安装命令:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#列出可选的源"><span class="nav-number">1.4.3.</span> <span class="nav-text">列出可选的源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#切换"><span class="nav-number">1.4.4.</span> <span class="nav-text">切换:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#增加源"><span class="nav-number">1.4.5.</span> <span class="nav-text">增加源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除源"><span class="nav-number">1.4.6.</span> <span class="nav-text">删除源:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试速度"><span class="nav-number">1.4.7.</span> <span class="nav-text">测试速度:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试所有源的响应时间："><span class="nav-number">1.4.8.</span> <span class="nav-text">测试所有源的响应时间：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xcode"><span class="nav-number">1.5.</span> <span class="nav-text">Xcode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-Studio"><span class="nav-number">1.6.</span> <span class="nav-text">Android Studio</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDK-1-8"><span class="nav-number">1.7.</span> <span class="nav-text">JDK 1.8</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行DEMO"><span class="nav-number">2.</span> <span class="nav-text">运行DEMO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载项目"><span class="nav-number">2.1.</span> <span class="nav-text">下载项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Android环境并运行Demo"><span class="nav-number">2.2.</span> <span class="nav-text">配置Android环境并运行Demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置iOS环境并运行Demo"><span class="nav-number">2.3.</span> <span class="nav-text">配置iOS环境并运行Demo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#特定平台代码"><span class="nav-number">1.</span> <span class="nav-text">特定平台代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特定平台扩展名"><span class="nav-number">2.</span> <span class="nav-text">特定平台扩展名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#平台模块"><span class="nav-number">3.</span> <span class="nav-text">平台模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#检测Android版本"><span class="nav-number">3.1.</span> <span class="nav-text">检测Android版本</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
